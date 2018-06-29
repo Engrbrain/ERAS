@@ -1,0 +1,19 @@
+﻿using System;
+using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+using System.Linq;
+using System.Web;
+
+namespace ERAS.Models.EBOKDailyReport
+{
+    public class WellTestEnrichmentData
+    {
+        public int Id { get; set; }
+        [MaxLength(15)]
+        public string Well { get; set; }
+        [MaxLength(15)]
+        public string Rsv { get; set; }
+        public DateTime TimeStamp { get; set; }
+
+    }
+}

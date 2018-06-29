@@ -1,0 +1,171 @@
+﻿@model IEnumerable<ERAS.Models.EBOKDailyReport.WellTestResult>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Rsv)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Well)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.TestDate)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Choke)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Hours)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.THP)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.FLP)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.BSW)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.API)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.GROSSLIQUID)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.OIL)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.GAS)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.WATER)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.GOR)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.GLR)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Ps)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Pwf)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.FREQ)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.NETOILPOTENTIAL)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Comment)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ReportDate)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.UploadTime)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.TimeStamp)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DayOftheWeek)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Rsv)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Well)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.TestDate)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Choke)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Hours)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.THP)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.FLP)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.BSW)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.API)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.GROSSLIQUID)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.OIL)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.GAS)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.WATER)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.GOR)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.GLR)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Ps)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Pwf)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.FREQ)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.NETOILPOTENTIAL)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Comment)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ReportDate)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.UploadTime)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.TimeStamp)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.DayOftheWeek)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |
+            @Html.ActionLink("Details", "Details", new { id=item.Id }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.Id })
+        </td>
+    </tr>
+}
+
+</table>

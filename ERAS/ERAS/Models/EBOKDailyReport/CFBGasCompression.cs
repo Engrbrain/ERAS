@@ -9,8 +9,8 @@ namespace ERAS.Models.EBOKDailyReport
     {
         public int Id { get; set; }
         public string Compressor { get; set; }
-        public string SuctionPressure { get; set; }
-        public string DischargePressure { get; set; }
+        public string Parameter { get; set; }
+        public string ParameterValue { get; set; }
         public DateTime ReportDate { get; set; }
         public String UploadTime { get; set; }
         public DateTime TimeStamp { get; set; }

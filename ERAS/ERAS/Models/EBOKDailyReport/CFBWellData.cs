@@ -11,7 +11,8 @@ namespace ERAS.Models.EBOKDailyReport
         public string Rsv { get; set; }
         public string Well { get; set; }
         public string CHOKE { get; set; }
-        public string HOURS { get; set; }
+        public string HOURS_Online { get; set; }
+        public string HOURS_Offline { get; set; }
         public string THP { get; set; }
         public string FLP { get; set; }
         public string BSW { get; set; }

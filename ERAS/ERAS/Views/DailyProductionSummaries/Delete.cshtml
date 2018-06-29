@@ -1,0 +1,144 @@
+﻿@model ERAS.Models.EBOKDailyReport.DailyProductionSummary
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>DailyProductionSummary</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.ReportParameter)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ReportParameter)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.MopuMeter)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.MopuMeter)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.WaterInjection)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.WaterInjection)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Oilinventory)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Oilinventory)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.GasProduced)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.GasProduced)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.GasUtilized)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.GasUtilized)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.GasFlared)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.GasFlared)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ProducedWater)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ProducedWater)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.WfbUptime)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.WfbUptime)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.MopuUptime)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.MopuUptime)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.WaterInjectionUptime)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.WaterInjectionUptime)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ReportDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ReportDate)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.UploadTime)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.UploadTime)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.TimeStamp)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TimeStamp)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DayOftheWeek)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DayOftheWeek)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+            @Html.ActionLink("Back to List", "Index")
+        </div>
+    }
+</div>

@@ -26,7 +26,8 @@ namespace ERAS.Models.EBOKDailyReport
     public string Ps { get; set; }
     public string Pwf { get; set; }
     public string FREQ { get; set; }
-    public string Comment { get; set; }
+        public string NETOILPOTENTIAL { get; set; }
+        public string Comment { get; set; }
     public DateTime ReportDate { get; set; }
     public String UploadTime { get; set; }
     public DateTime TimeStamp { get; set; }

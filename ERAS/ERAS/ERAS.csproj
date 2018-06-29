@@ -196,15 +196,106 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\CFBCrudeExportMetersController.cs" />
+    <Compile Include="Controllers\CFBGasCompressionsController.cs" />
+    <Compile Include="Controllers\CFBGasLiftDatasController.cs" />
+    <Compile Include="Controllers\CFBMaintenanceDatasController.cs" />
+    <Compile Include="Controllers\CFBProcessData_GasConsumedController.cs" />
+    <Compile Include="Controllers\CFBProcessData_GasProducedController.cs" />
+    <Compile Include="Controllers\CFBProcessData_ReadingController.cs" />
+    <Compile Include="Controllers\CFBSummariesController.cs" />
+    <Compile Include="Controllers\CFBWaterInjectorMetersController.cs" />
+    <Compile Include="Controllers\CFBWaterInjectorsController.cs" />
+    <Compile Include="Controllers\CFBWellDatasController.cs" />
+    <Compile Include="Controllers\CONSUMABLESANALYSISController.cs" />
+    <Compile Include="Controllers\DailyProductionSummariesController.cs" />
+    <Compile Include="Controllers\DailySafetySummariesController.cs" />
+    <Compile Include="Controllers\DownTimeLossReasonsController.cs" />
+    <Compile Include="Controllers\E27GasLiftController.cs" />
+    <Compile Include="Controllers\EHSSReportsController.cs" />
+    <Compile Include="Controllers\EHSSVEERsController.cs" />
+    <Compile Include="Controllers\EHSSVIRINIsController.cs" />
+    <Compile Include="Controllers\FSCargoWPDatasController.cs" />
+    <Compile Include="Controllers\FSOOILQUALITiesController.cs" />
+    <Compile Include="Controllers\FSOSummariesController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\InstrumentElectricalsController.cs" />
+    <Compile Include="Controllers\LastAvialableWellTestsController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
+    <Compile Include="Controllers\OperationsSummariesController.cs" />
+    <Compile Include="Controllers\PendingMaintenanceReportsController.cs" />
+    <Compile Include="Controllers\PendingProjectWorkReportsController.cs" />
+    <Compile Include="Controllers\PlannedMaintenancesController.cs" />
+    <Compile Include="Controllers\PlantOperationsReportsController.cs" />
+    <Compile Include="Controllers\ProducedWaterDatasController.cs" />
+    <Compile Include="Controllers\ProductionPotentialsController.cs" />
+    <Compile Include="Controllers\ProjectActivitiesController.cs" />
+    <Compile Include="Controllers\UnPlannedMaintenanceReportsController.cs" />
+    <Compile Include="Controllers\UnPlannedMaintenancesController.cs" />
+    <Compile Include="Controllers\WellTestEnrichmentDatasController.cs" />
+    <Compile Include="Controllers\WellTestResultsController.cs" />
+    <Compile Include="Controllers\WFBGasAllocationsController.cs" />
+    <Compile Include="Controllers\WFBGasLiftDatasController.cs" />
+    <Compile Include="Controllers\WFBGeneralReportsController.cs" />
+    <Compile Include="Controllers\WFBMaintenanceDatasController.cs" />
+    <Compile Include="Controllers\WFBProcessData_GasConsumedController.cs" />
+    <Compile Include="Controllers\WFBProcessData_GasProducedController.cs" />
+    <Compile Include="Controllers\WFBProcessData_ReadingController.cs" />
+    <Compile Include="Controllers\WFBWaterInjectorMetersController.cs" />
+    <Compile Include="Controllers\WFBWellDatasController.cs" />
+    <Compile Include="Controllers\WIJManifoldMetersController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201806251128069_Initial.cs" />
+    <Compile Include="Migrations\201806251128069_Initial.Designer.cs">
+      <DependentUpon>201806251128069_Initial.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201806261008275_CFBWellEnrichmentData.cs" />
+    <Compile Include="Migrations\201806261008275_CFBWellEnrichmentData.Designer.cs">
+      <DependentUpon>201806261008275_CFBWellEnrichmentData.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201806261031399_WellTestEnrichmentData.cs" />
+    <Compile Include="Migrations\201806261031399_WellTestEnrichmentData.Designer.cs">
+      <DependentUpon>201806261031399_WellTestEnrichmentData.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201806261041359_Update Enrichment Data Schema.cs" />
+    <Compile Include="Migrations\201806261041359_Update Enrichment Data Schema.Designer.cs">
+      <DependentUpon>201806261041359_Update Enrichment Data Schema.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201806261140355_Update Well Data Schema.cs" />
+    <Compile Include="Migrations\201806261140355_Update Well Data Schema.Designer.cs">
+      <DependentUpon>201806261140355_Update Well Data Schema.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201806261218038_Add Oil Potential.cs" />
+    <Compile Include="Migrations\201806261218038_Add Oil Potential.Designer.cs">
+      <DependentUpon>201806261218038_Add Oil Potential.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201806261239514_CFBGasCompression_update.cs" />
+    <Compile Include="Migrations\201806261239514_CFBGasCompression_update.Designer.cs">
+      <DependentUpon>201806261239514_CFBGasCompression_update.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201806271014568_Process Data Schema Update.cs" />
+    <Compile Include="Migrations\201806271014568_Process Data Schema Update.Designer.cs">
+      <DependentUpon>201806271014568_Process Data Schema Update.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201806271018104_ProcessData Readings.cs" />
+    <Compile Include="Migrations\201806271018104_ProcessData Readings.Designer.cs">
+      <DependentUpon>201806271018104_ProcessData Readings.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201806281334170_productionpotential.cs" />
+    <Compile Include="Migrations\201806281334170_productionpotential.Designer.cs">
+      <DependentUpon>201806281334170_productionpotential.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
+    <Compile Include="Models\EBOKDailyReport\ProductionPotential.cs" />
+    <Compile Include="Models\EBOKDailyReport\WellTestEnrichmentData.cs" />
     <Compile Include="Models\EBOKDailyReport\CFBGasLiftData.cs" />
     <Compile Include="Models\EBOKDailyReport\WFBGasLiftData.cs" />
     <Compile Include="Models\EBOKDailyReport\CFBProcessData_GasConsumed.cs" />
+    <Compile Include="Models\EBOKDailyReport\WFBProcessData_Reading.cs" />
+    <Compile Include="Models\EBOKDailyReport\CFBProcessData_Reading.cs" />
     <Compile Include="Models\EBOKDailyReport\WFBProcessData_GasProduced.cs" />
     <Compile Include="Models\EBOKDailyReport\WFBWaterInjectorMeter.cs" />
     <Compile Include="Models\EBOKDailyReport\WIJManifoldMeter.cs" />
@@ -308,6 +399,236 @@
     <Content Include="Views\Manage\VerifyPhoneNumber.cshtml" />
     <Content Include="Views\Shared\Lockout.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
+    <Content Include="Views\CFBCrudeExportMeters\Create.cshtml" />
+    <Content Include="Views\CFBCrudeExportMeters\Delete.cshtml" />
+    <Content Include="Views\CFBCrudeExportMeters\Details.cshtml" />
+    <Content Include="Views\CFBCrudeExportMeters\Edit.cshtml" />
+    <Content Include="Views\CFBCrudeExportMeters\Index.cshtml" />
+    <Content Include="Views\CFBGasCompressions\Create.cshtml" />
+    <Content Include="Views\CFBGasCompressions\Delete.cshtml" />
+    <Content Include="Views\CFBGasCompressions\Details.cshtml" />
+    <Content Include="Views\CFBGasCompressions\Edit.cshtml" />
+    <Content Include="Views\CFBGasCompressions\Index.cshtml" />
+    <Content Include="Views\CFBGasLiftDatas\Create.cshtml" />
+    <Content Include="Views\CFBGasLiftDatas\Delete.cshtml" />
+    <Content Include="Views\CFBGasLiftDatas\Details.cshtml" />
+    <Content Include="Views\CFBGasLiftDatas\Edit.cshtml" />
+    <Content Include="Views\CFBGasLiftDatas\Index.cshtml" />
+    <Content Include="Views\CFBMaintenanceDatas\Create.cshtml" />
+    <Content Include="Views\CFBMaintenanceDatas\Delete.cshtml" />
+    <Content Include="Views\CFBMaintenanceDatas\Details.cshtml" />
+    <Content Include="Views\CFBMaintenanceDatas\Edit.cshtml" />
+    <Content Include="Views\CFBMaintenanceDatas\Index.cshtml" />
+    <Content Include="Views\CFBProcessData_GasConsumed\Create.cshtml" />
+    <Content Include="Views\CFBProcessData_GasConsumed\Delete.cshtml" />
+    <Content Include="Views\CFBProcessData_GasConsumed\Details.cshtml" />
+    <Content Include="Views\CFBProcessData_GasConsumed\Edit.cshtml" />
+    <Content Include="Views\CFBProcessData_GasConsumed\Index.cshtml" />
+    <Content Include="Views\CFBProcessData_GasProduced\Create.cshtml" />
+    <Content Include="Views\CFBProcessData_GasProduced\Delete.cshtml" />
+    <Content Include="Views\CFBProcessData_GasProduced\Details.cshtml" />
+    <Content Include="Views\CFBProcessData_GasProduced\Edit.cshtml" />
+    <Content Include="Views\CFBProcessData_GasProduced\Index.cshtml" />
+    <Content Include="Views\CFBProcessData_Reading\Create.cshtml" />
+    <Content Include="Views\CFBProcessData_Reading\Delete.cshtml" />
+    <Content Include="Views\CFBProcessData_Reading\Details.cshtml" />
+    <Content Include="Views\CFBProcessData_Reading\Edit.cshtml" />
+    <Content Include="Views\CFBProcessData_Reading\Index.cshtml" />
+    <Content Include="Views\CFBSummaries\Create.cshtml" />
+    <Content Include="Views\CFBSummaries\Delete.cshtml" />
+    <Content Include="Views\CFBSummaries\Details.cshtml" />
+    <Content Include="Views\CFBSummaries\Edit.cshtml" />
+    <Content Include="Views\CFBSummaries\Index.cshtml" />
+    <Content Include="Views\CFBWaterInjectors\Create.cshtml" />
+    <Content Include="Views\CFBWaterInjectors\Delete.cshtml" />
+    <Content Include="Views\CFBWaterInjectors\Details.cshtml" />
+    <Content Include="Views\CFBWaterInjectors\Edit.cshtml" />
+    <Content Include="Views\CFBWaterInjectors\Index.cshtml" />
+    <Content Include="Views\CFBWaterInjectorMeters\Create.cshtml" />
+    <Content Include="Views\CFBWaterInjectorMeters\Delete.cshtml" />
+    <Content Include="Views\CFBWaterInjectorMeters\Details.cshtml" />
+    <Content Include="Views\CFBWaterInjectorMeters\Edit.cshtml" />
+    <Content Include="Views\CFBWaterInjectorMeters\Index.cshtml" />
+    <Content Include="Views\CFBWellDatas\Create.cshtml" />
+    <Content Include="Views\CFBWellDatas\Delete.cshtml" />
+    <Content Include="Views\CFBWellDatas\Details.cshtml" />
+    <Content Include="Views\CFBWellDatas\Edit.cshtml" />
+    <Content Include="Views\CFBWellDatas\Index.cshtml" />
+    <Content Include="Views\CONSUMABLESANALYSIS\Create.cshtml" />
+    <Content Include="Views\CONSUMABLESANALYSIS\Delete.cshtml" />
+    <Content Include="Views\CONSUMABLESANALYSIS\Details.cshtml" />
+    <Content Include="Views\CONSUMABLESANALYSIS\Edit.cshtml" />
+    <Content Include="Views\CONSUMABLESANALYSIS\Index.cshtml" />
+    <Content Include="Views\DailyProductionSummaries\Create.cshtml" />
+    <Content Include="Views\DailyProductionSummaries\Delete.cshtml" />
+    <Content Include="Views\DailyProductionSummaries\Details.cshtml" />
+    <Content Include="Views\DailyProductionSummaries\Edit.cshtml" />
+    <Content Include="Views\DailyProductionSummaries\Index.cshtml" />
+    <Content Include="Views\DailySafetySummaries\Create.cshtml" />
+    <Content Include="Views\DailySafetySummaries\Delete.cshtml" />
+    <Content Include="Views\DailySafetySummaries\Details.cshtml" />
+    <Content Include="Views\DailySafetySummaries\Edit.cshtml" />
+    <Content Include="Views\DailySafetySummaries\Index.cshtml" />
+    <Content Include="Views\DownTimeLossReasons\Create.cshtml" />
+    <Content Include="Views\DownTimeLossReasons\Delete.cshtml" />
+    <Content Include="Views\DownTimeLossReasons\Details.cshtml" />
+    <Content Include="Views\DownTimeLossReasons\Edit.cshtml" />
+    <Content Include="Views\DownTimeLossReasons\Index.cshtml" />
+    <Content Include="Views\E27GasLift\Create.cshtml" />
+    <Content Include="Views\E27GasLift\Delete.cshtml" />
+    <Content Include="Views\E27GasLift\Details.cshtml" />
+    <Content Include="Views\E27GasLift\Edit.cshtml" />
+    <Content Include="Views\E27GasLift\Index.cshtml" />
+    <Content Include="Views\EHSSReports\Create.cshtml" />
+    <Content Include="Views\EHSSReports\Delete.cshtml" />
+    <Content Include="Views\EHSSReports\Details.cshtml" />
+    <Content Include="Views\EHSSReports\Edit.cshtml" />
+    <Content Include="Views\EHSSReports\Index.cshtml" />
+    <Content Include="Views\EHSSVEERs\Create.cshtml" />
+    <Content Include="Views\EHSSVEERs\Delete.cshtml" />
+    <Content Include="Views\EHSSVEERs\Details.cshtml" />
+    <Content Include="Views\EHSSVEERs\Edit.cshtml" />
+    <Content Include="Views\EHSSVEERs\Index.cshtml" />
+    <Content Include="Views\EHSSVIRINIs\Create.cshtml" />
+    <Content Include="Views\EHSSVIRINIs\Delete.cshtml" />
+    <Content Include="Views\EHSSVIRINIs\Details.cshtml" />
+    <Content Include="Views\EHSSVIRINIs\Edit.cshtml" />
+    <Content Include="Views\EHSSVIRINIs\Index.cshtml" />
+    <Content Include="Views\FSCargoWPDatas\Create.cshtml" />
+    <Content Include="Views\FSCargoWPDatas\Delete.cshtml" />
+    <Content Include="Views\FSCargoWPDatas\Details.cshtml" />
+    <Content Include="Views\FSCargoWPDatas\Edit.cshtml" />
+    <Content Include="Views\FSCargoWPDatas\Index.cshtml" />
+    <Content Include="Views\FSOOILQUALITies\Create.cshtml" />
+    <Content Include="Views\FSOOILQUALITies\Delete.cshtml" />
+    <Content Include="Views\FSOOILQUALITies\Details.cshtml" />
+    <Content Include="Views\FSOOILQUALITies\Edit.cshtml" />
+    <Content Include="Views\FSOOILQUALITies\Index.cshtml" />
+    <Content Include="Views\FSOSummaries\Create.cshtml" />
+    <Content Include="Views\FSOSummaries\Delete.cshtml" />
+    <Content Include="Views\FSOSummaries\Details.cshtml" />
+    <Content Include="Views\FSOSummaries\Edit.cshtml" />
+    <Content Include="Views\FSOSummaries\Index.cshtml" />
+    <Content Include="Views\InstrumentElectricals\Create.cshtml" />
+    <Content Include="Views\InstrumentElectricals\Delete.cshtml" />
+    <Content Include="Views\InstrumentElectricals\Details.cshtml" />
+    <Content Include="Views\InstrumentElectricals\Edit.cshtml" />
+    <Content Include="Views\InstrumentElectricals\Index.cshtml" />
+    <Content Include="Views\LastAvialableWellTests\Create.cshtml" />
+    <Content Include="Views\LastAvialableWellTests\Delete.cshtml" />
+    <Content Include="Views\LastAvialableWellTests\Details.cshtml" />
+    <Content Include="Views\LastAvialableWellTests\Edit.cshtml" />
+    <Content Include="Views\LastAvialableWellTests\Index.cshtml" />
+    <Content Include="Views\OperationsSummaries\Create.cshtml" />
+    <Content Include="Views\OperationsSummaries\Delete.cshtml" />
+    <Content Include="Views\OperationsSummaries\Details.cshtml" />
+    <Content Include="Views\OperationsSummaries\Edit.cshtml" />
+    <Content Include="Views\OperationsSummaries\Index.cshtml" />
+    <Content Include="Views\PendingMaintenanceReports\Create.cshtml" />
+    <Content Include="Views\PendingMaintenanceReports\Delete.cshtml" />
+    <Content Include="Views\PendingMaintenanceReports\Details.cshtml" />
+    <Content Include="Views\PendingMaintenanceReports\Edit.cshtml" />
+    <Content Include="Views\PendingMaintenanceReports\Index.cshtml" />
+    <Content Include="Views\PendingProjectWorkReports\Create.cshtml" />
+    <Content Include="Views\PendingProjectWorkReports\Delete.cshtml" />
+    <Content Include="Views\PendingProjectWorkReports\Details.cshtml" />
+    <Content Include="Views\PendingProjectWorkReports\Edit.cshtml" />
+    <Content Include="Views\PendingProjectWorkReports\Index.cshtml" />
+    <Content Include="Views\PlannedMaintenances\Create.cshtml" />
+    <Content Include="Views\PlannedMaintenances\Delete.cshtml" />
+    <Content Include="Views\PlannedMaintenances\Details.cshtml" />
+    <Content Include="Views\PlannedMaintenances\Edit.cshtml" />
+    <Content Include="Views\PlannedMaintenances\Index.cshtml" />
+    <Content Include="Views\PlantOperationsReports\Create.cshtml" />
+    <Content Include="Views\PlantOperationsReports\Delete.cshtml" />
+    <Content Include="Views\PlantOperationsReports\Details.cshtml" />
+    <Content Include="Views\PlantOperationsReports\Edit.cshtml" />
+    <Content Include="Views\PlantOperationsReports\Index.cshtml" />
+    <Content Include="Views\ProducedWaterDatas\Create.cshtml" />
+    <Content Include="Views\ProducedWaterDatas\Delete.cshtml" />
+    <Content Include="Views\ProducedWaterDatas\Details.cshtml" />
+    <Content Include="Views\ProducedWaterDatas\Edit.cshtml" />
+    <Content Include="Views\ProducedWaterDatas\Index.cshtml" />
+    <Content Include="Views\ProductionPotentials\Create.cshtml" />
+    <Content Include="Views\ProductionPotentials\Delete.cshtml" />
+    <Content Include="Views\ProductionPotentials\Details.cshtml" />
+    <Content Include="Views\ProductionPotentials\Edit.cshtml" />
+    <Content Include="Views\ProductionPotentials\Index.cshtml" />
+    <Content Include="Views\ProjectActivities\Create.cshtml" />
+    <Content Include="Views\ProjectActivities\Delete.cshtml" />
+    <Content Include="Views\ProjectActivities\Details.cshtml" />
+    <Content Include="Views\ProjectActivities\Edit.cshtml" />
+    <Content Include="Views\ProjectActivities\Index.cshtml" />
+    <Content Include="Views\UnPlannedMaintenances\Create.cshtml" />
+    <Content Include="Views\UnPlannedMaintenances\Delete.cshtml" />
+    <Content Include="Views\UnPlannedMaintenances\Details.cshtml" />
+    <Content Include="Views\UnPlannedMaintenances\Edit.cshtml" />
+    <Content Include="Views\UnPlannedMaintenances\Index.cshtml" />
+    <Content Include="Views\UnPlannedMaintenanceReports\Create.cshtml" />
+    <Content Include="Views\UnPlannedMaintenanceReports\Delete.cshtml" />
+    <Content Include="Views\UnPlannedMaintenanceReports\Details.cshtml" />
+    <Content Include="Views\UnPlannedMaintenanceReports\Edit.cshtml" />
+    <Content Include="Views\UnPlannedMaintenanceReports\Index.cshtml" />
+    <Content Include="Views\WellTestEnrichmentDatas\Create.cshtml" />
+    <Content Include="Views\WellTestEnrichmentDatas\Delete.cshtml" />
+    <Content Include="Views\WellTestEnrichmentDatas\Details.cshtml" />
+    <Content Include="Views\WellTestEnrichmentDatas\Edit.cshtml" />
+    <Content Include="Views\WellTestEnrichmentDatas\Index.cshtml" />
+    <Content Include="Views\WellTestResults\Create.cshtml" />
+    <Content Include="Views\WellTestResults\Delete.cshtml" />
+    <Content Include="Views\WellTestResults\Details.cshtml" />
+    <Content Include="Views\WellTestResults\Edit.cshtml" />
+    <Content Include="Views\WellTestResults\Index.cshtml" />
+    <Content Include="Views\WFBGasAllocations\Create.cshtml" />
+    <Content Include="Views\WFBGasAllocations\Delete.cshtml" />
+    <Content Include="Views\WFBGasAllocations\Details.cshtml" />
+    <Content Include="Views\WFBGasAllocations\Edit.cshtml" />
+    <Content Include="Views\WFBGasAllocations\Index.cshtml" />
+    <Content Include="Views\WFBGasLiftDatas\Create.cshtml" />
+    <Content Include="Views\WFBGasLiftDatas\Delete.cshtml" />
+    <Content Include="Views\WFBGasLiftDatas\Details.cshtml" />
+    <Content Include="Views\WFBGasLiftDatas\Edit.cshtml" />
+    <Content Include="Views\WFBGasLiftDatas\Index.cshtml" />
+    <Content Include="Views\WFBGeneralReports\Create.cshtml" />
+    <Content Include="Views\WFBGeneralReports\Delete.cshtml" />
+    <Content Include="Views\WFBGeneralReports\Details.cshtml" />
+    <Content Include="Views\WFBGeneralReports\Edit.cshtml" />
+    <Content Include="Views\WFBGeneralReports\Index.cshtml" />
+    <Content Include="Views\WFBMaintenanceDatas\Create.cshtml" />
+    <Content Include="Views\WFBMaintenanceDatas\Delete.cshtml" />
+    <Content Include="Views\WFBMaintenanceDatas\Details.cshtml" />
+    <Content Include="Views\WFBMaintenanceDatas\Edit.cshtml" />
+    <Content Include="Views\WFBMaintenanceDatas\Index.cshtml" />
+    <Content Include="Views\WFBProcessData_GasConsumed\Create.cshtml" />
+    <Content Include="Views\WFBProcessData_GasConsumed\Delete.cshtml" />
+    <Content Include="Views\WFBProcessData_GasConsumed\Details.cshtml" />
+    <Content Include="Views\WFBProcessData_GasConsumed\Edit.cshtml" />
+    <Content Include="Views\WFBProcessData_GasConsumed\Index.cshtml" />
+    <Content Include="Views\WFBProcessData_GasProduced\Create.cshtml" />
+    <Content Include="Views\WFBProcessData_GasProduced\Delete.cshtml" />
+    <Content Include="Views\WFBProcessData_GasProduced\Details.cshtml" />
+    <Content Include="Views\WFBProcessData_GasProduced\Edit.cshtml" />
+    <Content Include="Views\WFBProcessData_GasProduced\Index.cshtml" />
+    <Content Include="Views\WFBProcessData_Reading\Create.cshtml" />
+    <Content Include="Views\WFBProcessData_Reading\Delete.cshtml" />
+    <Content Include="Views\WFBProcessData_Reading\Details.cshtml" />
+    <Content Include="Views\WFBProcessData_Reading\Edit.cshtml" />
+    <Content Include="Views\WFBProcessData_Reading\Index.cshtml" />
+    <Content Include="Views\WFBWaterInjectorMeters\Create.cshtml" />
+    <Content Include="Views\WFBWaterInjectorMeters\Delete.cshtml" />
+    <Content Include="Views\WFBWaterInjectorMeters\Details.cshtml" />
+    <Content Include="Views\WFBWaterInjectorMeters\Edit.cshtml" />
+    <Content Include="Views\WFBWaterInjectorMeters\Index.cshtml" />
+    <Content Include="Views\WFBWellDatas\Create.cshtml" />
+    <Content Include="Views\WFBWellDatas\Delete.cshtml" />
+    <Content Include="Views\WFBWellDatas\Details.cshtml" />
+    <Content Include="Views\WFBWellDatas\Edit.cshtml" />
+    <Content Include="Views\WFBWellDatas\Index.cshtml" />
+    <Content Include="Views\WIJManifoldMeters\Create.cshtml" />
+    <Content Include="Views\WIJManifoldMeters\Delete.cshtml" />
+    <Content Include="Views\WIJManifoldMeters\Details.cshtml" />
+    <Content Include="Views\WIJManifoldMeters\Edit.cshtml" />
+    <Content Include="Views\WIJManifoldMeters\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -324,6 +645,38 @@
     <None Include="packages.config" />
     <Content Include="Scripts\jquery-3.3.1.slim.min.map" />
     <Content Include="Scripts\jquery-3.3.1.min.map" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\201806251128069_Initial.resx">
+      <DependentUpon>201806251128069_Initial.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201806261008275_CFBWellEnrichmentData.resx">
+      <DependentUpon>201806261008275_CFBWellEnrichmentData.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201806261031399_WellTestEnrichmentData.resx">
+      <DependentUpon>201806261031399_WellTestEnrichmentData.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201806261041359_Update Enrichment Data Schema.resx">
+      <DependentUpon>201806261041359_Update Enrichment Data Schema.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201806261140355_Update Well Data Schema.resx">
+      <DependentUpon>201806261140355_Update Well Data Schema.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201806261218038_Add Oil Potential.resx">
+      <DependentUpon>201806261218038_Add Oil Potential.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201806261239514_CFBGasCompression_update.resx">
+      <DependentUpon>201806261239514_CFBGasCompression_update.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201806271014568_Process Data Schema Update.resx">
+      <DependentUpon>201806271014568_Process Data Schema Update.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201806271018104_ProcessData Readings.resx">
+      <DependentUpon>201806271018104_ProcessData Readings.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201806281334170_productionpotential.resx">
+      <DependentUpon>201806281334170_productionpotential.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
