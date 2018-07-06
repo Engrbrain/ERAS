@@ -77,5 +77,7 @@ namespace ERAS.Models
         public DbSet<ERAS.Models.EBOKDailyReport.WFBProcessData_Reading> WFBProcessData_Reading { get; set; }
         public DbSet<ERAS.Models.EBOKDailyReport.CFBProcessData_Reading> CFBProcessData_Reading { get; set; }
         public DbSet<ERAS.Models.EBOKDailyReport.ProductionPotential> ProductionPotential { get; set; }
+        public DbSet<ERAS.Models.EBOKTranformedData.EKOBDailyProductionIndicator> EKOBDailyProductionIndicator { get; set; }
+        
     }
 }

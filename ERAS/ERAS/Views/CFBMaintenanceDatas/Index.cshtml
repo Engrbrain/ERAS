@@ -1,81 +1,167 @@
 ﻿@model IEnumerable<ERAS.Models.EBOKDailyReport.CFBMaintenanceData>
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "CFB Maintenance Data-Index";
 }
 
-<h2>Index</h2>
+<div class="page-wrapper">
+    <!-- ============================================================== -->
+    <!-- Bread crumb and right sidebar toggle -->
+    <!-- ============================================================== -->
+    <div class="row page-titles">
+        <div class="col-md-5 align-self-center">
+            <h3 class="text-themecolor">CFB Maintenance Data </h3>
+        </div>
+        <div class="col-md-7 align-self-center">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="javascript:void(0)">Home</a></li>
+                <li class="breadcrumb-item">CFB Maintenance Data</li>
+                <li class="breadcrumb-item active">Data List</li>
+            </ol>
+        </div>
+        <div>
+            <button class="right-side-toggle waves-effect waves-light btn-inverse btn btn-circle btn-sm pull-right m-l-10"><i class="ti-settings text-white"></i></button>
+        </div>
+    </div>
+    <!-- ============================================================== -->
+    <!-- End Bread crumb and right sidebar toggle -->
+    <!-- ============================================================== -->
+    <!-- ============================================================== -->
+    <!-- Container fluid  -->
+    <!-- ============================================================== -->
+    <div class="container-fluid">
+        <!-- ============================================================== -->
+        <!-- Start Page Content -->
+        <!-- ============================================================== -->
+        <div class="row">
+            <div class="col-12">
+                <div class="card">
+                    <div class="card-body">
+                        <h4 class="card-title">CFB Maintenance Data </h4>
+                        <h6 class="card-subtitle">Export data to Copy, CSV, Excel, PDF & Print, Create New Daily Entry</h6>
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.Parameters)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.DailyTotal)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.PreviousTotal)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Cummulative)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Comment)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.ReportDate)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.UploadTime)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.TimeStamp)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.DayOftheWeek)
-        </th>
-        <th></th>
-    </tr>
-
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.Parameters)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.DailyTotal)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.PreviousTotal)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Cummulative)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Comment)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.ReportDate)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.UploadTime)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.TimeStamp)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.DayOftheWeek)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |
-            @Html.ActionLink("Details", "Details", new { id=item.Id }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.Id })
-        </td>
-    </tr>
-}
-
-</table>
+                        <p><a href="@Url.Action("Create", "CFBMaintenanceDatas")" class="btn-info"> &nbsp;Add Data&nbsp; </a>  &nbsp;&nbsp; <a href="@Url.Action("Create", "CFBMaintenanceDatas")" class="btn-success"> &nbsp;Add Data From Previous&nbsp; </a> &nbsp;&nbsp;  <a href="@Url.Action("Create", "CFBMaintenanceDatas")" class="btn-warning">&nbsp; Add From Template &nbsp;</a></p>
+                        <div class="table-responsive m-t-40" style="overflow-x: auto;">
+                            <table id="example23" class="display nowrap table table-hover table-striped table-bordered" cellspacing="0" width="100%">
+                                <thead>
+                                    <tr>
+                                        <th>Parameter</th>
+                                        <th>Daily Total</th>
+                                        <th>Previous Total</th>
+                                        <th>Cumulative</th>
+                                        <th>Comments</th>
+                                        <th>Date</th>
+                                        <th class="text-nowrap">Action</th>
+                                    </tr>
+                                </thead>
+                                <tfoot>
+                                    <tr>
+                                        <th>Parameter</th>
+                                        <th>Daily Total</th>
+                                        <th>Previous Total</th>
+                                        <th>Cumulative</th>
+                                        <th>Comments</th>
+                                        <th>Date</th>
+                                        <th class="text-nowrap">Action</th>
+                                    </tr>
+                                </tfoot>
+                                <tbody>
+                                    @foreach (var item in Model)
+                                    {
+                                        <tr>
+                                            <td>
+                                                @Html.DisplayFor(modelItem => item.Parameters)
+                                            </td>
+                                            <td>
+                                                @Html.DisplayFor(modelItem => item.DailyTotal)
+                                            </td>
+                                            <td>
+                                                @Html.DisplayFor(modelItem => item.PreviousTotal)
+                                            </td>
+                                            <td>
+                                                @Html.DisplayFor(modelItem => item.Cummulative)
+                                            </td>
+                                            <td>
+                                                @Html.DisplayFor(modelItem => item.Comment)
+                                            </td>
+                                            <td>
+                                                @Html.DisplayFor(modelItem => item.ReportDate)
+                                            </td>
+                                           
+                                            <td>
+                                                <a title="Modify Customer" href="@Url.Action("Edit", "CFBMaintenanceDatas", new { id = item.Id})" class="btn btn-default btn-rounded btn-condensed btn-sm"><i class='fa fa-pencil'></i></a>
+                                                <a title="View Customer" href="@Url.Action("Details", "CFBMaintenanceDatas", new { id = item.Id})" class="btn btn-default btn-rounded btn-condensed btn-sm"><i class='fa fa-desktop'></i></a>
+                                                <a title="View Customer" href="@Url.Action("Delete", "CFBMaintenanceDatas", new { id = item.Id})" class="btn btn-default btn-rounded btn-condensed btn-sm"><i class='fa fa-times'></i></a>
+                                            </td>
+                                        </tr>
+                                    }
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- ============================================================== -->
+        <!-- End PAge Content -->
+        @section pagescript
+            {
+            <!-- This is data table -->
+            <script src="~/Content/assets/plugins/datatables/jquery.dataTables.min.js"></script>
+            <!-- start - This is for export functionality only -->
+            <script src="https://cdn.datatables.net/buttons/1.2.2/js/dataTables.buttons.min.js"></script>
+            <script src="https://cdn.datatables.net/buttons/1.2.2/js/buttons.flash.min.js"></script>
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/2.5.0/jszip.min.js"></script>
+            <script src="https://cdn.rawgit.com/bpampuch/pdfmake/0.1.18/build/pdfmake.min.js"></script>
+            <script src="https://cdn.rawgit.com/bpampuch/pdfmake/0.1.18/build/vfs_fonts.js"></script>
+            <script src="https://cdn.datatables.net/buttons/1.2.2/js/buttons.html5.min.js"></script>
+            <script src="https://cdn.datatables.net/buttons/1.2.2/js/buttons.print.min.js"></script>
+            <!-- end - This is for export functionality only -->
+            <script>
+    $(document).ready(function() {
+        $('#myTable').DataTable();
+        $(document).ready(function() {
+            var table = $('#example').DataTable({
+                "columnDefs": [{
+                    "visible": false,
+                    "targets": 2
+                }],
+                "order": [
+                    [2, 'asc']
+                ],
+                "displayLength": 25,
+                "drawCallback": function(settings) {
+                    var api = this.api();
+                    var rows = api.rows({
+                        page: 'current'
+                    }).nodes();
+                    var last = null;
+                    api.column(2, {
+                        page: 'current'
+                    }).data().each(function(group, i) {
+                        if (last !== group) {
+                            $(rows).eq(i).before('<tr class="group"><td colspan="5">' + group + '</td></tr>');
+                            last = group;
+                        }
+                    });
+                }
+            });
+            // Order by the grouping
+            $('#example tbody').on('click', 'tr.group', function() {
+                var currentOrder = table.order()[0];
+                if (currentOrder[0] === 2 && currentOrder[1] === 'asc') {
+                    table.order([2, 'desc']).draw();
+                } else {
+                    table.order([2, 'asc']).draw();
+                }
+            });
+        });
+    });
+    $('#example23').DataTable({
+        dom: 'Bfrtip',
+        buttons: [
+            'copy', 'csv', 'excel', 'pdf', 'print'
+        ]
+    });
+            </script>
+        }
