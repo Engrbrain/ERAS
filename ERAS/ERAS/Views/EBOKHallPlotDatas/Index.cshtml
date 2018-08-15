@@ -1,0 +1,105 @@
+﻿@model IEnumerable<ERAS.Models.EBOKOutputData.EBOKHallPlotData>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Well)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.IndicatorDate)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.BWPD)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CUMMMBBL)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.FTHP)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.THSP)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DTDays)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.II)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.HallCal)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.HallCal2)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.HallCal3)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.HallCal4)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Hall)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Well)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.IndicatorDate)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.BWPD)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.CUMMMBBL)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.FTHP)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.THSP)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.DTDays)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.II)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.HallCal)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.HallCal2)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.HallCal3)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.HallCal4)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Hall)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |
+            @Html.ActionLink("Details", "Details", new { id=item.Id }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.Id })
+        </td>
+    </tr>
+}
+
+</table>

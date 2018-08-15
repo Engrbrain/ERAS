@@ -78,6 +78,49 @@ namespace ERAS.Models
         public DbSet<ERAS.Models.EBOKDailyReport.CFBProcessData_Reading> CFBProcessData_Reading { get; set; }
         public DbSet<ERAS.Models.EBOKDailyReport.ProductionPotential> ProductionPotential { get; set; }
         public DbSet<ERAS.Models.EBOKTranformedData.EKOBDailyProductionIndicator> EKOBDailyProductionIndicator { get; set; }
+        public DbSet<ERAS.Models.EBOKTranformedData.BackAllocationAssumedGOR> FlowParameter { get; set; }
+        public DbSet<ERAS.Models.EBOKTranformedData.GasInjectorDailyIndicators> GasInjectorDailyIndicators { get; set; }
+        public DbSet<ERAS.Models.EBOKTranformedData.WaterInjectorQuality> WaterInjectorQuality { get; set; }
+        public DbSet<ERAS.Models.EBOKTranformedData.WaterInjectorRateHeader> WaterInjectorRateHeader { get; set; }
+        public DbSet<ERAS.Models.EBOKTranformedData.WaterInjectorRateLineItem> WaterInjectorRateLineItem { get; set; }
+        public DbSet<ERAS.Models.EBOKTranformedData.EBOKGasProductionSummary> EBOKGasProductionSummary { get; set; }
+        public DbSet<ERAS.Models.EBOKTranformedData.BackAllocationBPLD> BackAllocationBPLD { get; set; }
+        public DbSet<ERAS.Models.EBOKTranformedData.EBOKFieldProductionSummary> EBOKFieldProductionSummary { get; set; }
+        public DbSet<ERAS.Models.EBOKOutputData.BackAllocationActualGOR> BackAllocationActualGOR { get; set; }
+        public DbSet<ERAS.Models.EBOKOutputData.PressurePlotTCM> PressurePlotTCM { get; set; }
+        public DbSet<ERAS.Models.EBOKOutputData.GasTrend> GasTrend { get; set; }
+        public DbSet<ERAS.Models.EBOKOutputData.EBOKProductionSurveillance> EBOKProductionSurveillance { get; set; }
+        public DbSet<ERAS.Models.EBOKOutputData.EBOKInjectivityIndex> EBOKInjectivityIndex { get; set; }
+        public DbSet<ERAS.Models.EBOKOutputData.EBOKHallPlotData> EBOKHallPlotData { get; set; }
+        public DbSet<ERAS.Models.EBOKOutputData.BackAllocationQwSummary> BackAllocationQwSummary { get; set; }
+        public DbSet<ERAS.Models.EBOKOutputData.BackAllocationQwHeader> BackAllocationQwHeader { get; set; }
+        public DbSet<ERAS.Models.EBOKOutputData.BackAllocationQw> BackAllocationQw { get; set; }
+        public DbSet<ERAS.Models.EBOKOutputData.BackAllocationQoSummary> BackAllocationQoSummary { get; set; }
+        public DbSet<ERAS.Models.EBOKOutputData.BackAllocationQoHeader> BackAllocationQoHeader { get; set; }
+        public DbSet<ERAS.Models.EBOKOutputData.BackAllocationQoestSummary> BackAllocationQoestSummary { get; set; }
+        public DbSet<ERAS.Models.EBOKOutputData.BackAllocationQoestHeader> BackAllocationQoestHeader { get; set; }
+        public DbSet<ERAS.Models.EBOKOutputData.BackAllocationQoest> BackAllocationQoest { get; set; }
+        public DbSet<ERAS.Models.EBOKOutputData.BackAllocationQo> BackAllocationQo { get; set; }
+        public DbSet<ERAS.Models.EBOKOutputData.BackAllocationQlinkSummary> BackAllocationQlinkSummary { get; set; }
+        public DbSet<ERAS.Models.EBOKOutputData.BackAllocationQlest> BackAllocationQlest { get; set; }
+        public DbSet<ERAS.Models.EBOKOutputData.BackAllocationQgPotentialSummary> BackAllocationQgPotentialSummary { get; set; }
+        public DbSet<ERAS.Models.EBOKOutputData.BackAllocationQgPotentialHeader> BackAllocationQgPotentialHeader { get; set; }
+        public DbSet<ERAS.Models.EBOKOutputData.BackAllocationQgPotential> BackAllocationQgPotential { get; set; }
+        public DbSet<ERAS.Models.EBOKOutputData.BackAllocationGasAllocationSummary> BackAllocationGasAllocationSummary { get; set; }
+        public DbSet<ERAS.Models.EBOKOutputData.BackAllocationGasAllocationHeader> BackAllocationGasAllocationHeader { get; set; }
+        public DbSet<ERAS.Models.EBOKOutputData.BackAllocationGasAllocation> BackAllocationGasAllocation { get; set; }
+        public DbSet<ERAS.Models.EBOKOutputData.BackAllocationFlowHRS> BackAllocationFlowHRS { get; set; }
+        public DbSet<ERAS.Models.EBOKOutputData.BackAllocationBSW> BackAllocationBSW { get; set; }
+        public DbSet<ERAS.Models.EBOKOutputData.BackAllocationBOPD> BackAllocationBOPD { get; set; }
+        public DbSet<ERAS.Models.EBOKOutputData.BackAllocationActualGORSummary> BackAllocationActualGORSummary { get; set; }
+        public DbSet<ERAS.Models.EBOKOutputData.BackAllocationActualGORHeader> BackAllocationActualGORHeader { get; set; }
         
+            public DbSet<ERAS.Models.EBOKOutputData.BackAllocationQlestHeader> BackAllocationQlestHeader { get; set; }
+        public DbSet<ERAS.Models.EBOKOutputData.BackAllocationQlinkHeader> BackAllocationQlinkHeader { get; set; }
+        public DbSet<ERAS.Models.EBOKOutputData.BackAllocationQlink> BackAllocationQlink { get; set; }
+        public DbSet<ERAS.Models.EBOKOutputData.BackAllocationQgActualSummary> BackAllocationQgActualSummary { get; set; }
+        public DbSet<ERAS.Models.EBOKOutputData.BackAllocationQgActualHeader> BackAllocationQgActualHeader { get; set; }
+        public DbSet<ERAS.Models.EBOKOutputData.BackAllocationQgActual> BackAllocationQgActual { get; set; }
+
     }
 }

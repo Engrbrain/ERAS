@@ -1,0 +1,105 @@
+﻿@model IEnumerable<ERAS.Models.EBOKTranformedData.WaterInjectorRateLineItem>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Well)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.IndicatorDate)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ChokeSize)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.UpTime)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.THIP)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.FLP)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.HP)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.INJRate)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CumINJRate)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ReportDate)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.UploadTime)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.TimeStamp)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DayOftheWeek)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Well)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.IndicatorDate)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ChokeSize)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.UpTime)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.THIP)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.FLP)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.HP)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.INJRate)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.CumINJRate)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ReportDate)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.UploadTime)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.TimeStamp)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.DayOftheWeek)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |
+            @Html.ActionLink("Details", "Details", new { id=item.Id }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.Id })
+        </td>
+    </tr>
+}
+
+</table>

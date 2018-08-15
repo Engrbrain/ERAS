@@ -1,0 +1,123 @@
+﻿@model IEnumerable<ERAS.Models.EBOKTranformedData.GasInjectorDailyIndicators>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.IndicatorDate)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ChokeSize)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Uptime)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Well)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CompDischPress)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.GasInject)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.IFLP)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.IFLSkinTemp)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ITHP)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.IBHP)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.IBHT)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Remark)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ReportDate)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.UploadTime)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.TimeStamp)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DayOftheWeek)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.IndicatorDate)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ChokeSize)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Uptime)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Well)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.CompDischPress)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.GasInject)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.IFLP)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.IFLSkinTemp)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ITHP)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.IBHP)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.IBHT)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Remark)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ReportDate)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.UploadTime)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.TimeStamp)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.DayOftheWeek)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |
+            @Html.ActionLink("Details", "Details", new { id=item.Id }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.Id })
+        </td>
+    </tr>
+}
+
+</table>

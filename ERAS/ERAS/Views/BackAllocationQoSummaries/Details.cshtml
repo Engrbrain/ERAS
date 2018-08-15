@@ -1,0 +1,58 @@
+﻿@model ERAS.Models.EBOKOutputData.BackAllocationQoSummary
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>BackAllocationQoSummary</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.IndicatorDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.IndicatorDate)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.FaultBlock)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.FaultBlock)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.RSV)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.RSV)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Qo)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Qo)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ProdOil)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ProdOil)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

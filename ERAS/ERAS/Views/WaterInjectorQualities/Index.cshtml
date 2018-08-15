@@ -1,0 +1,87 @@
+﻿@model IEnumerable<ERAS.Models.EBOKTranformedData.WaterInjectorQuality>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.IndicatorDate)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.SWLPumpInlet)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PH)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ParticlesUpstream)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ParticlesDownStream)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Remark)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ReportDate)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.UploadTime)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.TimeStamp)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DayOftheWeek)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.IndicatorDate)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.SWLPumpInlet)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.PH)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ParticlesUpstream)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ParticlesDownStream)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Remark)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ReportDate)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.UploadTime)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.TimeStamp)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.DayOftheWeek)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |
+            @Html.ActionLink("Details", "Details", new { id=item.Id }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.Id })
+        </td>
+    </tr>
+}
+
+</table>

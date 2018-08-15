@@ -1,0 +1,56 @@
+﻿@model ERAS.Models.EBOKOutputData.BackAllocationGasAllocationHeader
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>BackAllocationGasAllocationHeader</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.IndicatorDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.IndicatorDate)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.GasAllocation)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.GasAllocation)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ActualGasProduced)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ActualGasProduced)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.GasDifference)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.GasDifference)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+            @Html.ActionLink("Back to List", "Index")
+        </div>
+    }
+</div>

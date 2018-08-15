@@ -1,0 +1,63 @@
+﻿@model IEnumerable<ERAS.Models.EBOKOutputData.BackAllocationQoestSummary>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.IndicatorDate)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.FaultBlock)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.RSV)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ProdOil)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.wellTestPotential)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.WellTestActual)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.IndicatorDate)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.FaultBlock)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.RSV)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ProdOil)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.wellTestPotential)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.WellTestActual)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |
+            @Html.ActionLink("Details", "Details", new { id=item.Id }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.Id })
+        </td>
+    </tr>
+}
+
+</table>

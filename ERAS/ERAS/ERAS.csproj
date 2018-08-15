@@ -196,6 +196,37 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\BackAllocationActualGORHeadersController.cs" />
+    <Compile Include="Controllers\BackAllocationActualGORsController.cs" />
+    <Compile Include="Controllers\BackAllocationActualGORSummariesController.cs" />
+    <Compile Include="Controllers\BackAllocationAssumedGORsController.cs" />
+    <Compile Include="Controllers\BackAllocationBOPDsController.cs" />
+    <Compile Include="Controllers\BackAllocationBPLDsController.cs" />
+    <Compile Include="Controllers\BackAllocationBSWsController.cs" />
+    <Compile Include="Controllers\BackAllocationFlowHRSController.cs" />
+    <Compile Include="Controllers\BackAllocationGasAllocationHeadersController.cs" />
+    <Compile Include="Controllers\BackAllocationGasAllocationsController.cs" />
+    <Compile Include="Controllers\BackAllocationGasAllocationSummariesController.cs" />
+    <Compile Include="Controllers\BackAllocationQgActualHeadersController.cs" />
+    <Compile Include="Controllers\BackAllocationQgActualsController.cs" />
+    <Compile Include="Controllers\BackAllocationQgActualSummariesController.cs" />
+    <Compile Include="Controllers\BackAllocationQgPotentialHeadersController.cs" />
+    <Compile Include="Controllers\BackAllocationQgPotentialsController.cs" />
+    <Compile Include="Controllers\BackAllocationQgPotentialSummariesController.cs" />
+    <Compile Include="Controllers\BackAllocationQlestHeadersController.cs" />
+    <Compile Include="Controllers\BackAllocationQlestsController.cs" />
+    <Compile Include="Controllers\BackAllocationQlinkHeadersController.cs" />
+    <Compile Include="Controllers\BackAllocationQlinksController.cs" />
+    <Compile Include="Controllers\BackAllocationQlinkSummariesController.cs" />
+    <Compile Include="Controllers\BackAllocationQoesController.cs" />
+    <Compile Include="Controllers\BackAllocationQoestHeadersController.cs" />
+    <Compile Include="Controllers\BackAllocationQoestsController.cs" />
+    <Compile Include="Controllers\BackAllocationQoestSummariesController.cs" />
+    <Compile Include="Controllers\BackAllocationQoHeadersController.cs" />
+    <Compile Include="Controllers\BackAllocationQoSummariesController.cs" />
+    <Compile Include="Controllers\BackAllocationQwHeadersController.cs" />
+    <Compile Include="Controllers\BackAllocationQwsController.cs" />
+    <Compile Include="Controllers\BackAllocationQwSummariesController.cs" />
     <Compile Include="Controllers\CFBCrudeExportMetersController.cs" />
     <Compile Include="Controllers\CFBGasCompressionsController.cs" />
     <Compile Include="Controllers\CFBGasLiftDatasController.cs" />
@@ -212,12 +243,20 @@
     <Compile Include="Controllers\DailySafetySummariesController.cs" />
     <Compile Include="Controllers\DownTimeLossReasonsController.cs" />
     <Compile Include="Controllers\E27GasLiftController.cs" />
+    <Compile Include="Controllers\EBOKFieldProductionSummariesController.cs" />
+    <Compile Include="Controllers\EBOKGasProductionSummariesController.cs" />
+    <Compile Include="Controllers\EBOKHallPlotDatasController.cs" />
+    <Compile Include="Controllers\EBOKInjectivityIndexesController.cs" />
+    <Compile Include="Controllers\EBOKProductionSurveillancesController.cs" />
     <Compile Include="Controllers\EHSSReportsController.cs" />
     <Compile Include="Controllers\EHSSVEERsController.cs" />
     <Compile Include="Controllers\EHSSVIRINIsController.cs" />
+    <Compile Include="Controllers\EKOBDailyProductionIndicatorsController.cs" />
     <Compile Include="Controllers\FSCargoWPDatasController.cs" />
     <Compile Include="Controllers\FSOOILQUALITiesController.cs" />
     <Compile Include="Controllers\FSOSummariesController.cs" />
+    <Compile Include="Controllers\GasInjectorDailyIndicatorsController.cs" />
+    <Compile Include="Controllers\GasTrendsController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\InstrumentElectricalsController.cs" />
     <Compile Include="Controllers\LastAvialableWellTestsController.cs" />
@@ -227,11 +266,15 @@
     <Compile Include="Controllers\PendingProjectWorkReportsController.cs" />
     <Compile Include="Controllers\PlannedMaintenancesController.cs" />
     <Compile Include="Controllers\PlantOperationsReportsController.cs" />
+    <Compile Include="Controllers\PressurePlotTCMsController.cs" />
     <Compile Include="Controllers\ProducedWaterDatasController.cs" />
     <Compile Include="Controllers\ProductionPotentialsController.cs" />
     <Compile Include="Controllers\ProjectActivitiesController.cs" />
     <Compile Include="Controllers\UnPlannedMaintenanceReportsController.cs" />
     <Compile Include="Controllers\UnPlannedMaintenancesController.cs" />
+    <Compile Include="Controllers\WaterInjectorQualitiesController.cs" />
+    <Compile Include="Controllers\WaterInjectorRateHeadersController.cs" />
+    <Compile Include="Controllers\WaterInjectorRateLineItemsController.cs" />
     <Compile Include="Controllers\WellTestEnrichmentDatasController.cs" />
     <Compile Include="Controllers\WellTestResultsController.cs" />
     <Compile Include="Controllers\WFBGasAllocationsController.cs" />
@@ -291,6 +334,86 @@
     <Compile Include="Migrations\201807021538409_EKOBDailyProductionIndicator.Designer.cs">
       <DependentUpon>201807021538409_EKOBDailyProductionIndicator.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201807260919186_Create Transform Data.cs" />
+    <Compile Include="Migrations\201807260919186_Create Transform Data.Designer.cs">
+      <DependentUpon>201807260919186_Create Transform Data.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201807260930132_Include Date to Models.cs" />
+    <Compile Include="Migrations\201807260930132_Include Date to Models.Designer.cs">
+      <DependentUpon>201807260930132_Include Date to Models.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201807261053415_Data Annotation Update.cs" />
+    <Compile Include="Migrations\201807261053415_Data Annotation Update.Designer.cs">
+      <DependentUpon>201807261053415_Data Annotation Update.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201807261152034_New Columns EKOBDailyProductionIndicator.cs" />
+    <Compile Include="Migrations\201807261152034_New Columns EKOBDailyProductionIndicator.Designer.cs">
+      <DependentUpon>201807261152034_New Columns EKOBDailyProductionIndicator.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201807261222259_Add New Column EKOBDailyProductionIndicator.cs" />
+    <Compile Include="Migrations\201807261222259_Add New Column EKOBDailyProductionIndicator.Designer.cs">
+      <DependentUpon>201807261222259_Add New Column EKOBDailyProductionIndicator.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201807271043078_EKOBDailyProductionIndicator remove Blob.cs" />
+    <Compile Include="Migrations\201807271043078_EKOBDailyProductionIndicator remove Blob.Designer.cs">
+      <DependentUpon>201807271043078_EKOBDailyProductionIndicator remove Blob.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201807301246489_set string length constraint.cs" />
+    <Compile Include="Migrations\201807301246489_set string length constraint.Designer.cs">
+      <DependentUpon>201807301246489_set string length constraint.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201808031301550_More Transformation Data Objects.cs" />
+    <Compile Include="Migrations\201808031301550_More Transformation Data Objects.Designer.cs">
+      <DependentUpon>201808031301550_More Transformation Data Objects.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201808031858249_More Transformation Data Objects2.cs" />
+    <Compile Include="Migrations\201808031858249_More Transformation Data Objects2.Designer.cs">
+      <DependentUpon>201808031858249_More Transformation Data Objects2.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201808031901239_Data Type Change.cs" />
+    <Compile Include="Migrations\201808031901239_Data Type Change.Designer.cs">
+      <DependentUpon>201808031901239_Data Type Change.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201808031916403_New Create Table.cs" />
+    <Compile Include="Migrations\201808031916403_New Create Table.Designer.cs">
+      <DependentUpon>201808031916403_New Create Table.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201808032005214_Add Lernght.cs" />
+    <Compile Include="Migrations\201808032005214_Add Lernght.Designer.cs">
+      <DependentUpon>201808032005214_Add Lernght.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201808061352044_Adding New Field.cs" />
+    <Compile Include="Migrations\201808061352044_Adding New Field.Designer.cs">
+      <DependentUpon>201808061352044_Adding New Field.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201808091339485_Update data type of fields.cs" />
+    <Compile Include="Migrations\201808091339485_Update data type of fields.Designer.cs">
+      <DependentUpon>201808091339485_Update data type of fields.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201808121101008_OutputDataModels.cs" />
+    <Compile Include="Migrations\201808121101008_OutputDataModels.Designer.cs">
+      <DependentUpon>201808121101008_OutputDataModels.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201808140803551_%27QlestHeader%27.cs" />
+    <Compile Include="Migrations\201808140803551_%27QlestHeader%27.Designer.cs">
+      <DependentUpon>201808140803551_%27QlestHeader%27.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201808140822570_Remove Well fromQlest.cs" />
+    <Compile Include="Migrations\201808140822570_Remove Well fromQlest.Designer.cs">
+      <DependentUpon>201808140822570_Remove Well fromQlest.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201808141233585_QlinkDataModels.cs" />
+    <Compile Include="Migrations\201808141233585_QlinkDataModels.Designer.cs">
+      <DependentUpon>201808141233585_QlinkDataModels.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201808150822367_BackAllocationQgActual.cs" />
+    <Compile Include="Migrations\201808150822367_BackAllocationQgActual.Designer.cs">
+      <DependentUpon>201808150822367_BackAllocationQgActual.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201808150835173_UpdatePotentialToActual.cs" />
+    <Compile Include="Migrations\201808150835173_UpdatePotentialToActual.Designer.cs">
+      <DependentUpon>201808150835173_UpdatePotentialToActual.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\EBOKDailyReport\ProductionPotential.cs" />
@@ -339,9 +462,53 @@
     <Compile Include="Models\EBOKDailyReport\DownTimeLossReason.cs" />
     <Compile Include="Models\EBOKDailyReport\DailySafetySummary.cs" />
     <Compile Include="Models\EBOKDailyReport\DailyProductionSummary.cs" />
+    <Compile Include="Models\EBOKOutputData\BackAllocationActualGORHeader.cs" />
+    <Compile Include="Models\EBOKOutputData\BackAllocationActualGORSummary.cs" />
+    <Compile Include="Models\EBOKOutputData\BackAllocationBOPD.cs" />
+    <Compile Include="Models\EBOKOutputData\BackAllocationQgActual.cs" />
+    <Compile Include="Models\EBOKOutputData\BackAllocationQgActualHeader.cs" />
+    <Compile Include="Models\EBOKOutputData\BackAllocationQgActualSummary.cs" />
+    <Compile Include="Models\EBOKOutputData\BackAllocationQgPotentialSummary.cs" />
+    <Compile Include="Models\EBOKOutputData\BackAllocationQgPotentialHeader.cs" />
+    <Compile Include="Models\EBOKOutputData\BackAllocationGasAllocationHeader.cs" />
+    <Compile Include="Models\EBOKOutputData\BackAllocationGasAllocationSummary.cs" />
+    <Compile Include="Models\EBOKOutputData\BackAllocationGasAllocation.cs" />
+    <Compile Include="Models\EBOKOutputData\BackAllocationQgPotential.cs" />
+    <Compile Include="Models\EBOKOutputData\BackAllocationQlestHeader.cs" />
+    <Compile Include="Models\EBOKOutputData\BackAllocationQlink.cs" />
+    <Compile Include="Models\EBOKOutputData\BackAllocationQlinkHeader.cs" />
+    <Compile Include="Models\EBOKOutputData\BackAllocationQlinkSummary.cs" />
+    <Compile Include="Models\EBOKOutputData\BackAllocationActualGOR.cs" />
+    <Compile Include="Models\EBOKOutputData\EBOKHallPlotData.cs" />
+    <Compile Include="Models\EBOKOutputData\EBOKInjectivityIndex.cs" />
+    <Compile Include="Models\EBOKOutputData\BackAllocationQlest.cs" />
+    <Compile Include="Models\EBOKOutputData\BackAllocationBSW.cs" />
+    <Compile Include="Models\EBOKOutputData\BackAllocationQo.cs" />
+    <Compile Include="Models\EBOKOutputData\BackAllocationQoSummary.cs" />
+    <Compile Include="Models\EBOKOutputData\BackAllocationQoHeader.cs" />
+    <Compile Include="Models\EBOKOutputData\BackAllocationFlowHRS.cs" />
+    <Compile Include="Models\EBOKOutputData\PressurePlotTCM.cs" />
+    <Compile Include="Models\EBOKOutputData\EBOKProductionSurveillance.cs" />
+    <Compile Include="Models\EBOKOutputData\GasTrend.cs" />
+    <Compile Include="Models\EBOKOutputData\BackAllocationQwHeader.cs" />
+    <Compile Include="Models\EBOKOutputData\BackAllocationQwSummary.cs" />
+    <Compile Include="Models\EBOKOutputData\BackAllocationQw.cs" />
+    <Compile Include="Models\EBOKOutputData\BackAllocationQoest.cs" />
+    <Compile Include="Models\EBOKOutputData\BackAllocationQoestHeader.cs" />
+    <Compile Include="Models\EBOKTranformedData\BackAllocationAssumedGORsController.cs" />
+    <Compile Include="Models\EBOKTranformedData\EBOKFieldProductionSummary.cs" />
+    <Compile Include="Models\EBOKTranformedData\BackAllocationBPLD.cs" />
+    <Compile Include="Models\EBOKTranformedData\EBOKGasProductionSummary.cs" />
+    <Compile Include="Models\EBOKOutputData\BackAllocationQoestSummary.cs" />
+    <Compile Include="Models\EBOKTranformedData\GasInjectorDailyIndicators.cs" />
+    <Compile Include="Models\EBOKTranformedData\BackAllocationAssumedGOR.cs" />
+    <Compile Include="Models\EBOKTranformedData\WaterInjectorQuality.cs" />
+    <Compile Include="Models\EBOKTranformedData\WaterInjectorRateHeader.cs" />
+    <Compile Include="Models\EBOKTranformedData\WaterInjectorRateLineItem.cs" />
     <Compile Include="Models\EBOKTranformedData\EKOBDailyProductionIndicator.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
+    <Compile Include="Models\MasterData\WellMasterData.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
   </ItemGroup>
@@ -4384,8 +4551,227 @@
     <Content Include="Views\WIJManifoldMeters\Details.cshtml" />
     <Content Include="Views\WIJManifoldMeters\Edit.cshtml" />
     <Content Include="Views\WIJManifoldMeters\Index.cshtml" />
-    <Content Include="Views\Shared\_Layout - Copy.cshtml" />
     <Content Include="Views\Shared\Login.cshtml" />
+    <Content Include="Views\EKOBDailyProductionIndicators\Create.cshtml" />
+    <Content Include="Views\EKOBDailyProductionIndicators\Delete.cshtml" />
+    <Content Include="Views\EKOBDailyProductionIndicators\Details.cshtml" />
+    <Content Include="Views\EKOBDailyProductionIndicators\Edit.cshtml" />
+    <Content Include="Views\EKOBDailyProductionIndicators\Index.cshtml" />
+    <Content Include="Views\WaterInjectorRateLineItems\Create.cshtml" />
+    <Content Include="Views\WaterInjectorRateLineItems\Delete.cshtml" />
+    <Content Include="Views\WaterInjectorRateLineItems\Details.cshtml" />
+    <Content Include="Views\WaterInjectorRateLineItems\Edit.cshtml" />
+    <Content Include="Views\WaterInjectorRateLineItems\Index.cshtml" />
+    <Content Include="Views\WaterInjectorRateHeaders\Create.cshtml" />
+    <Content Include="Views\WaterInjectorRateHeaders\Delete.cshtml" />
+    <Content Include="Views\WaterInjectorRateHeaders\Details.cshtml" />
+    <Content Include="Views\WaterInjectorRateHeaders\Edit.cshtml" />
+    <Content Include="Views\WaterInjectorRateHeaders\Index.cshtml" />
+    <Content Include="Views\WaterInjectorQualities\Create.cshtml" />
+    <Content Include="Views\WaterInjectorQualities\Delete.cshtml" />
+    <Content Include="Views\WaterInjectorQualities\Details.cshtml" />
+    <Content Include="Views\WaterInjectorQualities\Edit.cshtml" />
+    <Content Include="Views\WaterInjectorQualities\Index.cshtml" />
+    <Content Include="Views\GasInjectorDailyIndicators\Create.cshtml" />
+    <Content Include="Views\GasInjectorDailyIndicators\Delete.cshtml" />
+    <Content Include="Views\GasInjectorDailyIndicators\Details.cshtml" />
+    <Content Include="Views\GasInjectorDailyIndicators\Edit.cshtml" />
+    <Content Include="Views\GasInjectorDailyIndicators\Index.cshtml" />
+    <Content Include="Views\EBOKGasProductionSummaries\Create.cshtml" />
+    <Content Include="Views\EBOKGasProductionSummaries\Delete.cshtml" />
+    <Content Include="Views\EBOKGasProductionSummaries\Details.cshtml" />
+    <Content Include="Views\EBOKGasProductionSummaries\Edit.cshtml" />
+    <Content Include="Views\EBOKGasProductionSummaries\Index.cshtml" />
+    <Content Include="Views\BackAllocationBPLDs\Create.cshtml" />
+    <Content Include="Views\BackAllocationBPLDs\Delete.cshtml" />
+    <Content Include="Views\BackAllocationBPLDs\Details.cshtml" />
+    <Content Include="Views\BackAllocationBPLDs\Edit.cshtml" />
+    <Content Include="Views\BackAllocationBPLDs\Index.cshtml" />
+    <Content Include="Views\EBOKFieldProductionSummaries\Create.cshtml" />
+    <Content Include="Views\EBOKFieldProductionSummaries\Delete.cshtml" />
+    <Content Include="Views\EBOKFieldProductionSummaries\Details.cshtml" />
+    <Content Include="Views\EBOKFieldProductionSummaries\Edit.cshtml" />
+    <Content Include="Views\EBOKFieldProductionSummaries\Index.cshtml" />
+    <Content Include="Views\BackAllocationActualGORs\Create.cshtml" />
+    <Content Include="Views\BackAllocationActualGORs\Delete.cshtml" />
+    <Content Include="Views\BackAllocationActualGORs\Details.cshtml" />
+    <Content Include="Views\BackAllocationActualGORs\Edit.cshtml" />
+    <Content Include="Views\BackAllocationActualGORs\Index.cshtml" />
+    <Content Include="Views\BackAllocationActualGORHeaders\Create.cshtml" />
+    <Content Include="Views\BackAllocationActualGORHeaders\Delete.cshtml" />
+    <Content Include="Views\BackAllocationActualGORHeaders\Details.cshtml" />
+    <Content Include="Views\BackAllocationActualGORHeaders\Edit.cshtml" />
+    <Content Include="Views\BackAllocationActualGORHeaders\Index.cshtml" />
+    <Content Include="Views\BackAllocationActualGORSummaries\Create.cshtml" />
+    <Content Include="Views\BackAllocationActualGORSummaries\Delete.cshtml" />
+    <Content Include="Views\BackAllocationActualGORSummaries\Details.cshtml" />
+    <Content Include="Views\BackAllocationActualGORSummaries\Edit.cshtml" />
+    <Content Include="Views\BackAllocationActualGORSummaries\Index.cshtml" />
+    <Content Include="Views\BackAllocationBOPDs\Create.cshtml" />
+    <Content Include="Views\BackAllocationBOPDs\Delete.cshtml" />
+    <Content Include="Views\BackAllocationBOPDs\Details.cshtml" />
+    <Content Include="Views\BackAllocationBOPDs\Edit.cshtml" />
+    <Content Include="Views\BackAllocationBOPDs\Index.cshtml" />
+    <Content Include="Views\BackAllocationBSWs\Create.cshtml" />
+    <Content Include="Views\BackAllocationBSWs\Delete.cshtml" />
+    <Content Include="Views\BackAllocationBSWs\Details.cshtml" />
+    <Content Include="Views\BackAllocationBSWs\Edit.cshtml" />
+    <Content Include="Views\BackAllocationBSWs\Index.cshtml" />
+    <Content Include="Views\BackAllocationFlowHRS\Create.cshtml" />
+    <Content Include="Views\BackAllocationFlowHRS\Delete.cshtml" />
+    <Content Include="Views\BackAllocationFlowHRS\Details.cshtml" />
+    <Content Include="Views\BackAllocationFlowHRS\Edit.cshtml" />
+    <Content Include="Views\BackAllocationFlowHRS\Index.cshtml" />
+    <Content Include="Views\BackAllocationGasAllocations\Create.cshtml" />
+    <Content Include="Views\BackAllocationGasAllocations\Delete.cshtml" />
+    <Content Include="Views\BackAllocationGasAllocations\Details.cshtml" />
+    <Content Include="Views\BackAllocationGasAllocations\Edit.cshtml" />
+    <Content Include="Views\BackAllocationGasAllocations\Index.cshtml" />
+    <Content Include="Views\BackAllocationGasAllocationHeaders\Create.cshtml" />
+    <Content Include="Views\BackAllocationGasAllocationHeaders\Delete.cshtml" />
+    <Content Include="Views\BackAllocationGasAllocationHeaders\Details.cshtml" />
+    <Content Include="Views\BackAllocationGasAllocationHeaders\Edit.cshtml" />
+    <Content Include="Views\BackAllocationGasAllocationHeaders\Index.cshtml" />
+    <Content Include="Views\BackAllocationGasAllocationSummaries\Create.cshtml" />
+    <Content Include="Views\BackAllocationGasAllocationSummaries\Delete.cshtml" />
+    <Content Include="Views\BackAllocationGasAllocationSummaries\Details.cshtml" />
+    <Content Include="Views\BackAllocationGasAllocationSummaries\Edit.cshtml" />
+    <Content Include="Views\BackAllocationGasAllocationSummaries\Index.cshtml" />
+    <Content Include="Views\BackAllocationQgPotentials\Create.cshtml" />
+    <Content Include="Views\BackAllocationQgPotentials\Delete.cshtml" />
+    <Content Include="Views\BackAllocationQgPotentials\Details.cshtml" />
+    <Content Include="Views\BackAllocationQgPotentials\Edit.cshtml" />
+    <Content Include="Views\BackAllocationQgPotentials\Index.cshtml" />
+    <Content Include="Views\BackAllocationQgPotentialHeaders\Create.cshtml" />
+    <Content Include="Views\BackAllocationQgPotentialHeaders\Delete.cshtml" />
+    <Content Include="Views\BackAllocationQgPotentialHeaders\Details.cshtml" />
+    <Content Include="Views\BackAllocationQgPotentialHeaders\Edit.cshtml" />
+    <Content Include="Views\BackAllocationQgPotentialHeaders\Index.cshtml" />
+    <Content Include="Views\BackAllocationQgPotentialSummaries\Create.cshtml" />
+    <Content Include="Views\BackAllocationQgPotentialSummaries\Delete.cshtml" />
+    <Content Include="Views\BackAllocationQgPotentialSummaries\Details.cshtml" />
+    <Content Include="Views\BackAllocationQgPotentialSummaries\Edit.cshtml" />
+    <Content Include="Views\BackAllocationQgPotentialSummaries\Index.cshtml" />
+    <Content Include="Views\BackAllocationQlests\Create.cshtml" />
+    <Content Include="Views\BackAllocationQlests\Delete.cshtml" />
+    <Content Include="Views\BackAllocationQlests\Details.cshtml" />
+    <Content Include="Views\BackAllocationQlests\Edit.cshtml" />
+    <Content Include="Views\BackAllocationQlests\Index.cshtml" />
+    <Content Include="Views\BackAllocationQlinkSummaries\Create.cshtml" />
+    <Content Include="Views\BackAllocationQlinkSummaries\Delete.cshtml" />
+    <Content Include="Views\BackAllocationQlinkSummaries\Details.cshtml" />
+    <Content Include="Views\BackAllocationQlinkSummaries\Edit.cshtml" />
+    <Content Include="Views\BackAllocationQlinkSummaries\Index.cshtml" />
+    <Content Include="Views\BackAllocationQoes\Create.cshtml" />
+    <Content Include="Views\BackAllocationQoes\Delete.cshtml" />
+    <Content Include="Views\BackAllocationQoes\Details.cshtml" />
+    <Content Include="Views\BackAllocationQoes\Edit.cshtml" />
+    <Content Include="Views\BackAllocationQoes\Index.cshtml" />
+    <Content Include="Views\BackAllocationQoests\Create.cshtml" />
+    <Content Include="Views\BackAllocationQoests\Delete.cshtml" />
+    <Content Include="Views\BackAllocationQoests\Details.cshtml" />
+    <Content Include="Views\BackAllocationQoests\Edit.cshtml" />
+    <Content Include="Views\BackAllocationQoests\Index.cshtml" />
+    <Content Include="Views\BackAllocationQoestHeaders\Create.cshtml" />
+    <Content Include="Views\BackAllocationQoestHeaders\Delete.cshtml" />
+    <Content Include="Views\BackAllocationQoestHeaders\Details.cshtml" />
+    <Content Include="Views\BackAllocationQoestHeaders\Edit.cshtml" />
+    <Content Include="Views\BackAllocationQoestHeaders\Index.cshtml" />
+    <Content Include="Views\BackAllocationQoestSummaries\Create.cshtml" />
+    <Content Include="Views\BackAllocationQoestSummaries\Delete.cshtml" />
+    <Content Include="Views\BackAllocationQoestSummaries\Details.cshtml" />
+    <Content Include="Views\BackAllocationQoestSummaries\Edit.cshtml" />
+    <Content Include="Views\BackAllocationQoestSummaries\Index.cshtml" />
+    <Content Include="Views\BackAllocationQoHeaders\Create.cshtml" />
+    <Content Include="Views\BackAllocationQoHeaders\Delete.cshtml" />
+    <Content Include="Views\BackAllocationQoHeaders\Details.cshtml" />
+    <Content Include="Views\BackAllocationQoHeaders\Edit.cshtml" />
+    <Content Include="Views\BackAllocationQoHeaders\Index.cshtml" />
+    <Content Include="Views\BackAllocationQoSummaries\Create.cshtml" />
+    <Content Include="Views\BackAllocationQoSummaries\Delete.cshtml" />
+    <Content Include="Views\BackAllocationQoSummaries\Details.cshtml" />
+    <Content Include="Views\BackAllocationQoSummaries\Edit.cshtml" />
+    <Content Include="Views\BackAllocationQoSummaries\Index.cshtml" />
+    <Content Include="Views\BackAllocationQws\Create.cshtml" />
+    <Content Include="Views\BackAllocationQws\Delete.cshtml" />
+    <Content Include="Views\BackAllocationQws\Details.cshtml" />
+    <Content Include="Views\BackAllocationQws\Edit.cshtml" />
+    <Content Include="Views\BackAllocationQws\Index.cshtml" />
+    <Content Include="Views\BackAllocationQwHeaders\Create.cshtml" />
+    <Content Include="Views\BackAllocationQwHeaders\Delete.cshtml" />
+    <Content Include="Views\BackAllocationQwHeaders\Details.cshtml" />
+    <Content Include="Views\BackAllocationQwHeaders\Edit.cshtml" />
+    <Content Include="Views\BackAllocationQwHeaders\Index.cshtml" />
+    <Content Include="Views\BackAllocationQwSummaries\Create.cshtml" />
+    <Content Include="Views\BackAllocationQwSummaries\Delete.cshtml" />
+    <Content Include="Views\BackAllocationQwSummaries\Details.cshtml" />
+    <Content Include="Views\BackAllocationQwSummaries\Edit.cshtml" />
+    <Content Include="Views\BackAllocationQwSummaries\Index.cshtml" />
+    <Content Include="Views\BackAllocationQwSummaries1\Create.cshtml" />
+    <Content Include="Views\BackAllocationQwSummaries1\Delete.cshtml" />
+    <Content Include="Views\BackAllocationQwSummaries1\Details.cshtml" />
+    <Content Include="Views\BackAllocationQwSummaries1\Edit.cshtml" />
+    <Content Include="Views\BackAllocationQwSummaries1\Index.cshtml" />
+    <Content Include="Views\EBOKHallPlotDatas\Create.cshtml" />
+    <Content Include="Views\EBOKHallPlotDatas\Delete.cshtml" />
+    <Content Include="Views\EBOKHallPlotDatas\Details.cshtml" />
+    <Content Include="Views\EBOKHallPlotDatas\Edit.cshtml" />
+    <Content Include="Views\EBOKHallPlotDatas\Index.cshtml" />
+    <Content Include="Views\EBOKInjectivityIndexes\Create.cshtml" />
+    <Content Include="Views\EBOKInjectivityIndexes\Delete.cshtml" />
+    <Content Include="Views\EBOKInjectivityIndexes\Details.cshtml" />
+    <Content Include="Views\EBOKInjectivityIndexes\Edit.cshtml" />
+    <Content Include="Views\EBOKInjectivityIndexes\Index.cshtml" />
+    <Content Include="Views\EBOKProductionSurveillances\Create.cshtml" />
+    <Content Include="Views\EBOKProductionSurveillances\Delete.cshtml" />
+    <Content Include="Views\EBOKProductionSurveillances\Details.cshtml" />
+    <Content Include="Views\EBOKProductionSurveillances\Edit.cshtml" />
+    <Content Include="Views\EBOKProductionSurveillances\Index.cshtml" />
+    <Content Include="Views\GasTrends\Create.cshtml" />
+    <Content Include="Views\GasTrends\Delete.cshtml" />
+    <Content Include="Views\GasTrends\Details.cshtml" />
+    <Content Include="Views\GasTrends\Edit.cshtml" />
+    <Content Include="Views\GasTrends\Index.cshtml" />
+    <Content Include="Views\PressurePlotTCMs\Create.cshtml" />
+    <Content Include="Views\PressurePlotTCMs\Delete.cshtml" />
+    <Content Include="Views\PressurePlotTCMs\Details.cshtml" />
+    <Content Include="Views\PressurePlotTCMs\Edit.cshtml" />
+    <Content Include="Views\PressurePlotTCMs\Index.cshtml" />
+    <Content Include="Views\BackAllocationAssumedGORs\Create.cshtml" />
+    <Content Include="Views\BackAllocationAssumedGORs\Delete.cshtml" />
+    <Content Include="Views\BackAllocationAssumedGORs\Details.cshtml" />
+    <Content Include="Views\BackAllocationAssumedGORs\Edit.cshtml" />
+    <Content Include="Views\BackAllocationAssumedGORs\Index.cshtml" />
+    <Content Include="Views\BackAllocationQlestHeaders\Create.cshtml" />
+    <Content Include="Views\BackAllocationQlestHeaders\Delete.cshtml" />
+    <Content Include="Views\BackAllocationQlestHeaders\Details.cshtml" />
+    <Content Include="Views\BackAllocationQlestHeaders\Edit.cshtml" />
+    <Content Include="Views\BackAllocationQlestHeaders\Index.cshtml" />
+    <Content Include="Views\BackAllocationQlinks\Create.cshtml" />
+    <Content Include="Views\BackAllocationQlinks\Delete.cshtml" />
+    <Content Include="Views\BackAllocationQlinks\Details.cshtml" />
+    <Content Include="Views\BackAllocationQlinks\Edit.cshtml" />
+    <Content Include="Views\BackAllocationQlinks\Index.cshtml" />
+    <Content Include="Views\BackAllocationQlinkHeaders\Create.cshtml" />
+    <Content Include="Views\BackAllocationQlinkHeaders\Delete.cshtml" />
+    <Content Include="Views\BackAllocationQlinkHeaders\Details.cshtml" />
+    <Content Include="Views\BackAllocationQlinkHeaders\Edit.cshtml" />
+    <Content Include="Views\BackAllocationQlinkHeaders\Index.cshtml" />
+    <Content Include="Views\BackAllocationQgActualSummaries\Create.cshtml" />
+    <Content Include="Views\BackAllocationQgActualSummaries\Delete.cshtml" />
+    <Content Include="Views\BackAllocationQgActualSummaries\Details.cshtml" />
+    <Content Include="Views\BackAllocationQgActualSummaries\Edit.cshtml" />
+    <Content Include="Views\BackAllocationQgActualSummaries\Index.cshtml" />
+    <Content Include="Views\BackAllocationQgActualHeaders\Create.cshtml" />
+    <Content Include="Views\BackAllocationQgActualHeaders\Delete.cshtml" />
+    <Content Include="Views\BackAllocationQgActualHeaders\Details.cshtml" />
+    <Content Include="Views\BackAllocationQgActualHeaders\Edit.cshtml" />
+    <Content Include="Views\BackAllocationQgActualHeaders\Index.cshtml" />
+    <Content Include="Views\BackAllocationQgActuals\Create.cshtml" />
+    <Content Include="Views\BackAllocationQgActuals\Delete.cshtml" />
+    <Content Include="Views\BackAllocationQgActuals\Details.cshtml" />
+    <Content Include="Views\BackAllocationQgActuals\Edit.cshtml" />
+    <Content Include="Views\BackAllocationQgActuals\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -4436,6 +4822,66 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201807021538409_EKOBDailyProductionIndicator.resx">
       <DependentUpon>201807021538409_EKOBDailyProductionIndicator.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201807260919186_Create Transform Data.resx">
+      <DependentUpon>201807260919186_Create Transform Data.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201807260930132_Include Date to Models.resx">
+      <DependentUpon>201807260930132_Include Date to Models.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201807261053415_Data Annotation Update.resx">
+      <DependentUpon>201807261053415_Data Annotation Update.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201807261152034_New Columns EKOBDailyProductionIndicator.resx">
+      <DependentUpon>201807261152034_New Columns EKOBDailyProductionIndicator.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201807261222259_Add New Column EKOBDailyProductionIndicator.resx">
+      <DependentUpon>201807261222259_Add New Column EKOBDailyProductionIndicator.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201807271043078_EKOBDailyProductionIndicator remove Blob.resx">
+      <DependentUpon>201807271043078_EKOBDailyProductionIndicator remove Blob.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201807301246489_set string length constraint.resx">
+      <DependentUpon>201807301246489_set string length constraint.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201808031301550_More Transformation Data Objects.resx">
+      <DependentUpon>201808031301550_More Transformation Data Objects.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201808031858249_More Transformation Data Objects2.resx">
+      <DependentUpon>201808031858249_More Transformation Data Objects2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201808031901239_Data Type Change.resx">
+      <DependentUpon>201808031901239_Data Type Change.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201808031916403_New Create Table.resx">
+      <DependentUpon>201808031916403_New Create Table.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201808032005214_Add Lernght.resx">
+      <DependentUpon>201808032005214_Add Lernght.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201808061352044_Adding New Field.resx">
+      <DependentUpon>201808061352044_Adding New Field.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201808091339485_Update data type of fields.resx">
+      <DependentUpon>201808091339485_Update data type of fields.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201808121101008_OutputDataModels.resx">
+      <DependentUpon>201808121101008_OutputDataModels.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201808140803551_%27QlestHeader%27.resx">
+      <DependentUpon>201808140803551_%27QlestHeader%27.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201808140822570_Remove Well fromQlest.resx">
+      <DependentUpon>201808140822570_Remove Well fromQlest.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201808141233585_QlinkDataModels.resx">
+      <DependentUpon>201808141233585_QlinkDataModels.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201808150822367_BackAllocationQgActual.resx">
+      <DependentUpon>201808150822367_BackAllocationQgActual.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201808150835173_UpdatePotentialToActual.resx">
+      <DependentUpon>201808150835173_UpdatePotentialToActual.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

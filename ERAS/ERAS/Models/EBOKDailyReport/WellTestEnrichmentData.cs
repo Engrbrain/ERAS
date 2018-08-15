@@ -13,6 +13,8 @@ namespace ERAS.Models.EBOKDailyReport
         public string Well { get; set; }
         [MaxLength(15)]
         public string Rsv { get; set; }
+        [MaxLength(15)]
+        public string FaultBlock { get; set; }
         public DateTime TimeStamp { get; set; }
 
     }

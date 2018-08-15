@@ -1,0 +1,50 @@
+﻿@model ERAS.Models.EBOKOutputData.BackAllocationQoestHeader
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>BackAllocationQoestHeader</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.IndicatorDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.IndicatorDate)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ProdOil)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ProdOil)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.wellTestPotential)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.wellTestPotential)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.WellTestActual)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.WellTestActual)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

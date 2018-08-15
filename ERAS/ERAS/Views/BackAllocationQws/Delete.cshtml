@@ -1,0 +1,48 @@
+﻿@model ERAS.Models.EBOKOutputData.BackAllocationQw
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>BackAllocationQw</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.IndicatorDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.IndicatorDate)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Well)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Well)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Qw)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Qw)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+            @Html.ActionLink("Back to List", "Index")
+        </div>
+    }
+</div>
