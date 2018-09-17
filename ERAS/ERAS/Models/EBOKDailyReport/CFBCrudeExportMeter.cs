@@ -12,8 +12,8 @@ namespace ERAS.Models.EBOKDailyReport
         public string CurrentEightHours { get; set; }
         public string MeterFactor { get; set; }
         public string GrossCorr { get; set; }
-        public DateTime BSW { get; set; }
-        public String NetOil { get; set; }
+        public string BSW { get; set; }
+        public string NetOil { get; set; }
         public DateTime ReportDate { get; set; }
         public String UploadTime { get; set; }
         public DateTime TimeStamp { get; set; }

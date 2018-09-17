@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Net;
 using System.Web;
@@ -16,12 +17,14 @@ namespace ERAS.Controllers
         private ApplicationDbContext db = new ApplicationDbContext();
 
         // GET: BackAllocationActualGORs
-        public ActionResult Index()
+        public ActionResult Index(DateTime StartDate, DateTime EndDate)
         {
             List<BackAllocationActualGOR> backAllocationActualGOR = new List<BackAllocationActualGOR>();
 
             backAllocationActualGOR = db.Database.SqlQuery<BackAllocationActualGOR>(
-        "usp_GetBackAllocationActualGOR"
+        "exec dbo.[usp_GetBackAllocationActualGOR]@StartDate,@EndDate",
+       new SqlParameter("@StartDate", StartDate),
+       new SqlParameter("@EndDate", StartDate)
         ).ToList();
             return View(backAllocationActualGOR);
         }

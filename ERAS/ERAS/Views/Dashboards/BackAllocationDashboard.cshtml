@@ -1,0 +1,698 @@
+﻿
+@{
+    ViewBag.Title = "BackAllocationDashboard";
+}
+
+@section pagecss
+            {
+
+    <link href="~/Content/assets/plugins/morrisjs/morris.css" rel="stylesheet">
+}
+
+<!-- Page wrapper  -->
+<!-- ============================================================== -->
+<div class="page-wrapper">
+    <!-- ============================================================== -->
+    <!-- Bread crumb and right sidebar toggle -->
+    <!-- ============================================================== -->
+    <div class="row page-titles">
+        <div class="col-md-5 align-self-center">
+            <h3 class="text-themecolor">Dashboard</h3>
+        </div>
+        <div class="col-md-7 align-self-center">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="javascript:void(0)">Home</a></li>
+                <li class="breadcrumb-item active">Dashboard</li>
+            </ol>
+        </div>
+        <div>
+            <button class="right-side-toggle waves-effect waves-light btn-inverse btn btn-circle btn-sm pull-right m-l-10"><i class="ti-settings text-white"></i></button>
+        </div>
+    </div>
+    <!-- ============================================================== -->
+    <!-- End Bread crumb and right sidebar toggle -->
+    <!-- ============================================================== -->
+    <!-- ============================================================== -->
+    <!-- Container fluid  -->
+    <!-- ============================================================== -->
+    <div class="container-fluid">
+        <!-- ============================================================== -->
+        <!-- Start Page Content -->
+        <!-- ============================================================== -->
+        <!-- Row -->
+        <div class="card-group">
+            <div class="card">
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-12">
+                            <h2 class="m-b-0"><i class="mdi mdi-briefcase-check text-info"></i></h2>
+                            <h3 class="">2456</h3>
+                            <h6 class="card-subtitle">New Projects</h6>
+                        </div>
+                        <div class="col-12">
+                            <div class="progress">
+                                <div class="progress-bar bg-info" role="progressbar" style="width: 85%; height: 6px;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Column -->
+            <!-- Column -->
+            <div class="card">
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-12">
+                            <h2 class="m-b-0"><i class="mdi mdi-alert-circle text-success"></i></h2>
+                            <h3 class="">546</h3>
+                            <h6 class="card-subtitle">Pending Project</h6>
+                        </div>
+                        <div class="col-12">
+                            <div class="progress">
+                                <div class="progress-bar bg-success" role="progressbar" style="width: 40%; height: 6px;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Column -->
+            <!-- Column -->
+            <div class="card">
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-12">
+                            <h2 class="m-b-0"><i class="mdi mdi-wallet text-purple"></i></h2>
+                            <h3 class="">$24561</h3>
+                            <h6 class="card-subtitle">Total Cost</h6>
+                        </div>
+                        <div class="col-12">
+                            <div class="progress">
+                                <div class="progress-bar bg-primary" role="progressbar" style="width: 56%; height: 6px;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Column -->
+            <!-- Column -->
+            <div class="card">
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-12">
+                            <h2 class="m-b-0"><i class="mdi mdi-buffer text-warning"></i></h2>
+                            <h3 class="">$30010</h3>
+                            <h6 class="card-subtitle">Total Earnings</h6>
+                        </div>
+                        <div class="col-12">
+                            <div class="progress">
+                                <div class="progress-bar bg-warning" role="progressbar" style="width: 26%; height: 6px;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Row -->
+        <div class="row">
+            <div class="col-lg-3 col-md-6">
+                <div class="card">
+                    <div class="card-body analytics-info">
+                        <h4 class="card-title">Total Visit</h4>
+                        <ul class="list-inline two-part">
+                            <li>
+                                <div id="sparklinedash"></div>
+                            </li>
+                            <li class="text-right"><i class="ti-arrow-up text-success"></i> <span class="counter text-success">1659</span></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-6">
+                <div class="card">
+                    <div class="card-body analytics-info">
+                        <h4 class="card-title">Total Page Views</h4>
+                        <ul class="list-inline two-part">
+                            <li>
+                                <div id="sparklinedash2"></div>
+                            </li>
+                            <li class="text-right"><i class="ti-arrow-up text-purple"></i> <span class="counter text-purple">7469</span></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-6">
+                <div class="card">
+                    <div class="card-body analytics-info">
+                        <h4 class="card-title">Unique Visitor</h4>
+                        <ul class="list-inline two-part">
+                            <li>
+                                <div id="sparklinedash3"></div>
+                            </li>
+                            <li class="text-right"><i class="ti-arrow-up text-info"></i> <span class="counter text-info">6011</span></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-6">
+                <div class="card">
+                    <div class="card-body analytics-info">
+                        <h4 class="card-title">Bounce Rate</h4>
+                        <ul class="list-inline two-part">
+                            <li>
+                                <div id="sparklinedash4"></div>
+                            </li>
+                            <li class="text-right"><i class="ti-arrow-down text-danger"></i> <span class="text-danger">18%</span></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-4">
+                <div class="card">
+                    <div class="card-body analytics-info">
+                        <h4 class="card-title">Total Visit <small class="pull-right text-success"><i class="fa fa-sort-asc"></i> 18% High then last month</small></h4>
+                        <div class="stats-row">
+                            <div class="stat-item">
+                                <h6>Overall Growth</h6>
+                                <b>80.40%</b>
+                            </div>
+                            <div class="stat-item">
+                                <h6>Montly</h6>
+                                <b>15.40%</b>
+                            </div>
+                            <div class="stat-item">
+                                <h6>Day</h6>
+                                <b>5.50%</b>
+                            </div>
+                        </div>
+                        <div id="sparkline8"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4">
+                <div class="card">
+                    <div class="card-body analytics-info">
+                        <h4 class="card-title">Site Traffic</h4>
+                        <div class="stats-row">
+                            <div class="stat-item">
+                                <h6>Overall Growth</h6>
+                                <b>80.40%</b>
+                            </div>
+                            <div class="stat-item">
+                                <h6>Montly</h6>
+                                <b>15.40%</b>
+                            </div>
+                            <div class="stat-item">
+                                <h6>Day</h6>
+                                <b>5.50%</b>
+                            </div>
+                        </div>
+                        <div id="sparkline9"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4">
+                <div class="card">
+                    <div class="card-body analytics-info">
+                        <h4 class="card-title">Site Visit</h4>
+                        <div class="stats-row">
+                            <div class="stat-item">
+                                <h6>Overall Growth</h6>
+                                <b>80.40%</b>
+                            </div>
+                            <div class="stat-item">
+                                <h6>Montly</h6>
+                                <b>15.40%</b>
+                            </div>
+                            <div class="stat-item">
+                                <h6>Day</h6>
+                                <b>5.50%</b>
+                            </div>
+                        </div>
+                        <div id="sparkline10"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <!-- Column -->
+            <div class="col-lg-8 col-xlg-9">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-12">
+                                <div class="d-flex flex-wrap">
+                                    <div>
+                                        <h4 class="card-title">Yearly Earning</h4>
+                                    </div>
+                                    <div class="ml-auto">
+                                        <ul class="list-inline">
+                                            <li>
+                                                <h6 class="text-muted text-success"><i class="fa fa-circle font-10 m-r-10 "></i>Sales</h6>
+                                            </li>
+                                            <li>
+                                                <h6 class="text-muted  text-info"><i class="fa fa-circle font-10 m-r-10"></i>Earning ($)</h6>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-12">
+                                <div id="earning" style="height: 355px;"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Column -->
+            <div class="col-lg-4 col-xlg-3">
+                <div class="card card-inverse card-info">
+                    <div class="card-body">
+                        <div class="d-flex">
+                            <div class="m-r-20 align-self-center">
+                                <h1 class="text-white"><i class="ti-light-bulb"></i></h1>
+                            </div>
+                            <div>
+                                <h3 class="card-title">Sales Analytics</h3>
+                                <h6 class="card-subtitle">March  2017</h6>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-6 align-self-center">
+                                <h2 class="font-light text-white"><sup><small><i class="ti-arrow-up"></i></small></sup>35487</h2>
+                            </div>
+                            <div class="col-6 p-t-10 p-b-20 text-right">
+                                <div class="spark-count" style="height:65px"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="card card-inverse card-success">
+                    <div class="card-body">
+                        <div class="d-flex">
+                            <div class="m-r-20 align-self-center">
+                                <h1 class="text-white"><i class="ti-pie-chart"></i></h1>
+                            </div>
+                            <div>
+                                <h3 class="card-title">Bandwidth usage</h3>
+                                <h6 class="card-subtitle">March  2017</h6>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-6 align-self-center">
+                                <h2 class="font-light text-white">50 GB</h2>
+                            </div>
+                            <div class="col-6 p-t-10 p-b-20 text-right align-self-center">
+                                <div class="spark-count2" style="height:65px"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Column -->
+        </div>
+        <!-- Row -->
+        <!-- Row -->
+        <div class="row">
+            <div class="col-lg-6">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="d-flex no-block">
+                            <h4 class="card-title">Earning Report<br /><small class="text-muted">Emplyee earning report</small></h4>
+                            <div class="ml-auto">
+                                <select class="custom-select">
+                                    <option selected="">July</option>
+                                    <option value="1">Aug</option>
+                                    <option value="2">Sept</option>
+                                    <option value="3">Oct</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="bg-light p-20">
+                        <div class="d-flex">
+                            <div class="align-self-center">
+                                <h3 class="m-b-0">July 2017</h3><small>Total Earning</small>
+                            </div>
+                            <div class="ml-auto align-self-center">
+                                <h2 class="text-success">$5470</h2>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <div class="table-responsive">
+                            <table class="table table-hover earning-box">
+                                <thead>
+                                    <tr>
+                                        <th colspan="2">Name</th>
+                                        <th>Priority</th>
+                                        <th>Earnings</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td style="width:50px;"><span class="round"><img src="../assets/images/users/8.jpg" alt="user" width="50"></span></td>
+                                        <td>
+                                            <h6>Sunil Joshi</h6><small class="text-muted">Web Designer</small>
+                                        </td>
+                                        <td><span class="label label-success">Low</span></td>
+                                        <td>$3.9K</td>
+                                    </tr>
+                                    <tr class="active">
+                                        <td><span class="round"><img src="../assets/images/users/2.jpg" alt="user" width="50"></span></td>
+                                        <td>
+                                            <h6>Andrew</h6><small class="text-muted">Project Manager</small>
+                                        </td>
+                                        <td><span class="label label-info">Medium</span></td>
+                                        <td>$23.9K</td>
+                                    </tr>
+                                    <tr>
+                                        <td><span class="round round-success"><img src="../assets/images/users/1.jpg" alt="user" width="50"></span></td>
+                                        <td>
+                                            <h6>Bhavesh patel</h6><small class="text-muted">Developer</small>
+                                        </td>
+                                        <td><span class="label label-primary">High</span></td>
+                                        <td>$12.9K</td>
+                                    </tr>
+                                    <tr>
+                                        <td><span class="round round-primary"><img src="../assets/images/users/4.jpg" alt="user" width="50"></span></td>
+                                        <td>
+                                            <h6>Nirav Joshi</h6><small class="text-muted">Frontend Eng</small>
+                                        </td>
+                                        <td><span class="label label-danger">Low</span></td>
+                                        <td>$10.9K</td>
+                                    </tr>
+                                    <tr>
+                                        <td><span class="round round-warning"><img src="../assets/images/users/5.jpg" alt="user" width="50"></span></td>
+                                        <td>
+                                            <h6>Micheal Doe</h6><small class="text-muted">Content Writer</small>
+                                        </td>
+                                        <td><span class="label label-warning">High</span></td>
+                                        <td>$12.9K</td>
+                                    </tr>
+                                    <tr>
+                                        <td><span class="round round-danger"><img src="../assets/images/users/1.jpg" alt="user" width="50"></span></td>
+                                        <td>
+                                            <h6>Johnathan</h6><small class="text-muted">Graphic</small>
+                                        </td>
+                                        <td><span class="label label-info">High</span></td>
+                                        <td>$2.6K</td>
+                                    </tr>
+                                    <tr>
+                                        <td><span class="round round-success">M</span></td>
+                                        <td>
+                                            <h6>Vishal Doe</h6><small class="text-muted">Content Writer</small>
+                                        </td>
+                                        <td><span class="label label-warning">High</span></td>
+                                        <td>$12.9K</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-6">
+                <!-- Column -->
+                <div class="card">
+                    <div class="card-body">
+                        <h4 class="card-title">Recent Comments</h4>
+                        <h6 class="card-subtitle">Latest Comments on users from Material</h6>
+                    </div>
+                    <!-- ============================================================== -->
+                    <!-- Comment widgets -->
+                    <!-- ============================================================== -->
+                    <div class="card-body">
+                        <h4 class="card-title d-flex">Indicator Paramter</h4>
+                        <div class="text-center">
+                            <input data-plugin="knob" data-width="150" data-height="150" data-linecap=round data-fgColor="#01c0c8" value="40" data-skin="tron" data-angleOffset="180" data-readOnly=true data-thickness=".1" />
+                        </div>
+                    </div>
+
+                    <div class="card-body">
+                        <h4 class="card-title d-flex">Indicator Reading</h4>
+                        <div class="text-center">
+                            <input data-plugin="knob" data-width="150" data-height="150" data-linecap=round data-fgColor="#ffbc34" value="67" data-skin="tron" data-angleOffset="180" data-readOnly=true data-thickness=".1" />
+                        </div>
+                    </div>
+                    <!-- Column -->
+
+
+                    <div class="card-body">
+                        <h4 class="card-title d-flex">Readonly</h4>
+                        <div class="text-center">
+                            <input data-plugin="knob" data-width="150" data-height="150" data-linecap=round data-fgColor="#fb9678" value="70" data-skin="tron" data-angleOffset="180" data-readOnly=true data-thickness=".1" />
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Row -->
+        <div class="row">
+            <!-- Column -->
+            <div class="col-lg-4">
+                <div class="card card-inverse card-success">
+                    <div class="card-body">
+                        <div id="myCarousel" class="carousel slide" data-ride="carousel">
+                            <!-- Carousel items -->
+                            <div class="carousel-inner">
+                                <div class="carousel-item flex-column carousel-item-next carousel-item-left">
+                                    <i class="fa fa-facebook fa-2x text-white"></i>
+                                    <p class="text-white">25th Jan</p>
+                                    <h3 class="text-white font-light">
+                                        Now Get <span class="font-bold">50% Off</span><br>
+                                        on buy
+                                    </h3>
+                                    <div class="text-white m-t-20">
+                                        <i>- post form wrap</i>
+                                    </div>
+                                </div>
+                                <div class="carousel-item flex-column">
+                                    <i class="fa fa-facebook fa-2x text-white"></i>
+                                    <p class="text-white">25th Jan</p>
+                                    <h3 class="text-white font-light">
+                                        Now Get <span class="font-bold">50% Off</span><br>
+                                        on buy
+                                    </h3>
+                                    <div class="text-white m-t-20">
+                                        <i>- post form wrap</i>
+                                    </div>
+                                </div>
+                                <div class="carousel-item flex-column active carousel-item-left">
+                                    <i class="fa fa-facebook fa-2x text-white"></i>
+                                    <p class="text-white">25th Jan</p>
+                                    <h3 class="text-white font-light">
+                                        Now Get <span class="font-bold">50% Off</span><br>
+                                        on buy
+                                    </h3>
+                                    <div class="text-white m-t-20">
+                                        <i>- post form wrap</i>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Column -->
+            <!-- Column -->
+            <div class="col-lg-4">
+                <div class="card card-inverse card-danger">
+                    <div class="card-body">
+                        <div id="myCarouse2" class="carousel slide" data-ride="carousel">
+                            <!-- Carousel items -->
+                            <div class="carousel-inner">
+                                <div class="carousel-item flex-column carousel-item-next carousel-item-left">
+                                    <i class="fa fa-google-plus fa-2x text-white"></i>
+                                    <p class="text-white">25th Jan</p>
+                                    <h3 class="text-white font-light">
+                                        Now Get <span class="font-bold">50% Off</span><br>
+                                        on buy
+                                    </h3>
+                                    <div class="text-white m-t-20">
+                                        <i>- Eric fandanc</i>
+                                    </div>
+                                </div>
+                                <div class="carousel-item flex-column">
+                                    <i class="fa fa-google-plus fa-2x text-white"></i>
+                                    <p class="text-white">25th Jan</p>
+                                    <h3 class="text-white font-light">
+                                        Now Get <span class="font-bold">50% Off</span><br>
+                                        on buy
+                                    </h3>
+                                    <div class="text-white m-t-20">
+                                        <i>- Numbro zomix</i>
+                                    </div>
+                                </div>
+                                <div class="carousel-item flex-column active carousel-item-left">
+                                    <i class="fa fa-google-plus fa-2x text-white"></i>
+                                    <p class="text-white">25th Jan</p>
+                                    <h3 class="text-white font-light">
+                                        Now Get <span class="font-bold">50% Off</span><br>
+                                        on buy
+                                    </h3>
+                                    <div class="text-white m-t-20">
+                                        <i>- Sitrix stock</i>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Column -->
+            <!-- Column -->
+            <div class="col-lg-4">
+                <div class="card card-inverse card-info">
+                    <div class="card-body">
+                        <div id="myCarouse3" class="carousel slide" data-ride="carousel">
+                            <!-- Carousel items -->
+                            <div class="carousel-inner">
+                                <div class="carousel-item flex-column carousel-item-next carousel-item-left">
+                                    <i class="fa fa-twitter fa-2x text-white"></i>
+                                    <p class="text-white">25th Jan</p>
+                                    <h3 class="text-white font-light">
+                                        Tweet now <span class="font-bold">50% Off</span><br>
+                                        on buy
+                                    </h3>
+                                    <div class="text-white m-t-20">
+                                        <i> shoperstaff</i>
+                                    </div>
+                                </div>
+                                <div class="carousel-item flex-column">
+                                    <i class="fa fa-twitter fa-2x text-white"></i>
+                                    <p class="text-white">25th Jan</p>
+                                    <h3 class="text-white font-light">
+                                        Sachin #star <span class="font-bold">50% Off</span><br>
+                                        on buy
+                                    </h3>
+                                    <div class="text-white m-t-20">
+                                        <i>- #shoperstaff</i>
+                                    </div>
+                                </div>
+                                <div class="carousel-item flex-column active carousel-item-left">
+                                    <i class="fa fa-twitter fa-2x text-white"></i>
+                                    <p class="text-white">25th Jan</p>
+                                    <h3 class="text-white font-light">
+                                        Now Get <span class="font-bold">50% Off</span><br>
+                                        on buy
+                                    </h3>
+                                    <div class="text-white m-t-20">
+                                        <i>- shoperstaff</i>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Column -->
+        </div>
+        <div class="row">
+            <!-- column -->
+            <div class="col-lg-6">
+                <div class="card">
+                    <div class="card-body">
+                        <h4 class="card-title">Real Chart</h4>
+                        <div class="demo-container" style="height:400px;">
+                            <div id="placeholder" class="flot-chart-content"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- column -->
+            <!-- column -->
+            <div class="col-lg-6">
+                <div class="card">
+                    <div class="card-body">
+                        <h4 class="card-title">Line Chart</h4>
+                        <div class="flot-chart">
+                            <div class="flot-chart-content" id="flot-line-chart"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- column -->
+            <!-- column -->
+            <div class="col-lg-6">
+                <div class="card">
+                    <div class="card-body">
+                        <h4 class="card-title">Pie Chart</h4>
+                        <div class="flot-chart">
+                            <div class="flot-chart-content" id="flot-pie-chart"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- column -->
+            <!-- column -->
+            <div class="col-lg-6">
+                <div class="card">
+                    <div class="card-body">
+                        <h4 class="card-title">Moving Line Chart Example</h4>
+                        <div class="flot-chart">
+                            <div class="flot-chart-content" id="flot-line-chart-moving"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- column -->
+            <!-- column -->
+            <div class="col-lg-6">
+                <div class="card">
+                    <div class="card-body">
+                        <h4 class="card-title">Bar Chart</h4>
+                        <div class="flot-chart">
+                            <div class="flot-chart-content" id="flot-bar-chart"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- column -->
+            <!-- column -->
+            <div class="col-lg-6">
+                <div class="card">
+                    <div class="card-body">
+                        <h4 class="card-title">Sales Bar Chart</h4>
+                        <div class="flot-chart">
+                            <div class="sales-bars-chart" style="height: 320px;"> </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- column -->
+        </div>
+        <!-- ============================================================== -->
+        <!-- End PAge Content -->
+
+        @section pagescript
+            {
+            <script src="~/Content/assets/plugins/sparkline/jquery.sparkline.min.js"></script>
+            <script src="~/Content/assets/plugins/sparkline/jquery.sparkline.min.js"></script>
+            <script src="~/Content/assets/plugins/sparkline/jquery.charts-sparkline.js"></script>
+            <!--morris JavaScript -->
+            <script src="~/Content/assets/plugins/raphael/raphael-min.js"></script>
+            <script src="~/Content/assets/plugins/morrisjs/morris.min.js"></script>
+            <!-- Chart JS -->
+            <script src="~/Content/js/dashboard1.js"></script>
+
+            <script src="~/Content/assets/plugins/knob/jquery.knob.js"></script>
+            <script>
+                $(function () {
+                    $('[data-plugin="knob"]').knob();
+                });
+            </script>
+
+            <!-- Flot Charts JavaScript -->
+            <script src="~/Content/assets/plugins/flot/excanvas.js"></script>
+            <script src="~/Content/assets/plugins/flot/jquery.flot.js"></script>
+            <script src="~/Content/assets/plugins/flot/jquery.flot.pie.js"></script>
+            <script src="~/Content/assets/plugins/flot/jquery.flot.time.js"></script>
+            <script src="~/Content/assets/plugins/flot/jquery.flot.stack.js"></script>
+            <script src="~/Content/assets/plugins/flot/jquery.flot.crosshair.js"></script>
+            <script src="~/Content/assets/plugins/flot.tooltip/js/jquery.flot.tooltip.min.js"></script>
+            <script src="~/Content/js/flot-data.js"></script>
+            <!-- ============================================================== -->
+            <!-- Style switcher -->
+        }

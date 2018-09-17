@@ -6,8 +6,10 @@ using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
+using System.Web.Services;
 using ERAS.Models;
 using ERAS.Models.EBOKDailyReport;
+using Newtonsoft.Json;
 
 namespace ERAS.Controllers
 {
@@ -18,7 +20,48 @@ namespace ERAS.Controllers
         // GET: DailySafetySummaries
         public ActionResult Index()
         {
-            return View(db.DailySafetySummaries.ToList());
+            var dailySafetySummary = db.DailySafetySummaries.Where(x => x.ReportDate == DateTime.Today.Date);
+            return View(dailySafetySummary.ToList());
+        }
+        public ActionResult FilterReport(ReportParameter model)
+        {
+            var StartDate = model.StartDate.Date;
+            var EndDate = model.EndDate.Date;
+            var dailySafetySummary = db.DailySafetySummaries.Where(x => x.ReportDate >= StartDate && x.ReportDate <= EndDate);
+            return View("Index", dailySafetySummary);
+        }
+        public ActionResult LoadPrevious()
+        {
+            List<DailySafetySummary> dailySafetySummary = new List<DailySafetySummary>();
+
+            dailySafetySummary = db.Database.SqlQuery<DailySafetySummary>(
+        "usp_GetDailySafetySummary"
+        ).ToList();
+            return View("Index", dailySafetySummary);
+        }
+
+        public ActionResult CreateMultipleBulk()
+        {
+            return View();
+        }
+
+        [WebMethod]
+        public string LoadBulkData(string mydata)
+        {
+            var serializeData = JsonConvert.DeserializeObject<List<DailySafetySummary>>(mydata);
+            foreach (var data in serializeData)
+            {
+                DailySafetySummary postdata = new DailySafetySummary
+                {
+                    SafetyReport = data.SafetyReport,
+                    ReportDate = data.ReportDate,
+                    TimeStamp = DateTime.Now,
+                    UploadTime = DateTime.Now.TimeOfDay.ToString()
+                };
+                db.DailySafetySummaries.Add(postdata);
+            }
+            db.SaveChanges();
+            return null;
         }
 
         // GET: DailySafetySummaries/Details/5
@@ -51,6 +94,9 @@ namespace ERAS.Controllers
         {
             if (ModelState.IsValid)
             {
+                dailySafetySummary.DayOftheWeek = DateTime.Today.Date.DayOfWeek.ToString();
+                dailySafetySummary.TimeStamp = DateTime.Now;
+                dailySafetySummary.UploadTime = DateTime.Now.TimeOfDay.ToString();
                 db.DailySafetySummaries.Add(dailySafetySummary);
                 db.SaveChanges();
                 return RedirectToAction("Index");
@@ -90,31 +136,23 @@ namespace ERAS.Controllers
             return View(dailySafetySummary);
         }
 
-        // GET: DailySafetySummaries/Delete/5
-        public ActionResult Delete(int? id)
+      
+        public ActionResult RemoveRecord(int id)
         {
-            if (id == null)
+            try
             {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                DailySafetySummary dailySafetySummary = db.DailySafetySummaries.Find(id);
+                db.DailySafetySummaries.Remove(dailySafetySummary);
+                db.SaveChanges();
+                return Json(true, JsonRequestBehavior.AllowGet);
             }
-            DailySafetySummary dailySafetySummary = db.DailySafetySummaries.Find(id);
-            if (dailySafetySummary == null)
+            catch (Exception)
             {
-                return HttpNotFound();
+                return Json(false, JsonRequestBehavior.AllowGet);
             }
-            return View(dailySafetySummary);
         }
 
-        // POST: DailySafetySummaries/Delete/5
-        [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
-        public ActionResult DeleteConfirmed(int id)
-        {
-            DailySafetySummary dailySafetySummary = db.DailySafetySummaries.Find(id);
-            db.DailySafetySummaries.Remove(dailySafetySummary);
-            db.SaveChanges();
-            return RedirectToAction("Index");
-        }
+
 
         protected override void Dispose(bool disposing)
         {

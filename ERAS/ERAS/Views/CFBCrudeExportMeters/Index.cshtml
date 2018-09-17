@@ -40,8 +40,34 @@
                     <div class="card-body">
                         <h4 class="card-title">CFB Crude Export Meters </h4>
                         <h6 class="card-subtitle">Export data to Copy, CSV, Excel, PDF & Print, Create New Daily Entry</h6>
+                        @using (Html.BeginForm("FilterReport", "CFBCrudeExportMeters", FormMethod.Post))
+                        {
+                            @Html.ValidationSummary()
+                            <div class="row p-t-20">
+                                <div class="col-md-4">
+                                    <div class="form-group has-success">
 
-                        <p><a href="@Url.Action("Create", "CFBCrudeExportMeters")" class="btn-info"> &nbsp;Add Data&nbsp; </a>  &nbsp;&nbsp; <a href="@Url.Action("Create", "CFBCrudeExportMeters")" class="btn-success"> &nbsp;Add Data From Previous&nbsp; </a> &nbsp;&nbsp;  <a href="@Url.Action("Create", "CFBCrudeExportMeters")" class="btn-warning">&nbsp; Add From Template &nbsp;</a></p>
+                                        <input type="date" name="StartDate" class="form-control" placeholder="Start Date" />
+                                        <small class="form-control-feedback">Start Date</small>
+                                    </div>
+                                </div>
+                                <!--/span-->
+                                <div class="col-md-4">
+                                    <div class="form-group has-success">
+
+                                        <input type="date" name="EndDate" class="form-control" placeholder="End Date" />
+                                        <small class="form-control-feedback">End Date</small>
+                                    </div>
+                                </div>
+
+                                <div class="col-md-2">
+                                    <button type="submit" class="btn btn-success"><i class='fa fa-filter'></i> Filter Report</button>
+                                </div>
+                                <!--/span-->
+                            </div>
+                        }
+
+                        <p><a href="@Url.Action("Create", "CFBCrudeExportMeters")" class="btn-info"> &nbsp;Add Data&nbsp; </a>  &nbsp;&nbsp; <a href="@Url.Action("LoadPrevious", "CFBCrudeExportMeters")" class="btn-success"> &nbsp;Add Data From Previous&nbsp; </a> &nbsp;&nbsp;  <a href="@Url.Action("CreateMultipleBulk", "CFBCrudeExportMeters")" class="btn-warning">&nbsp; Add Multiple &nbsp;</a></p>
                         <div class="table-responsive m-t-40" style="overflow-x: auto;">
                             <table id="example23" class="display nowrap table table-hover table-striped table-bordered" cellspacing="0" width="100%">
                                 <thead>
@@ -52,7 +78,7 @@
                                         <th>Gross CORR</th>
                                         <th>BS &W (%)</th>
                                         <th>NET OIL (bopd)</th>
-                                        <th>NET OIL (bopd)</th>
+                                        <th> Date</th>
                                         <th class="text-nowrap">Action</th>
                                     </tr>
                                 </thead>
@@ -78,6 +104,7 @@
                                             <td>@Html.DisplayFor(modelItem => item.GrossCorr)</td>
                                             <td>@Html.DisplayFor(modelItem => item.BSW)</td>
                                             <td>@Html.DisplayFor(modelItem => item.NetOil)</td>
+                                            <td>@Html.DisplayFor(modelItem => item.ReportDate)</td>
                                             <td>
                                                 <a title="Modify Customer" href="@Url.Action("Edit", "CFBCrudeExportMeters", new { id = item.Id})" class="btn btn-default btn-rounded btn-condensed btn-sm"><i class='fa fa-pencil'></i></a>
                                                 <a title="View Customer" href="@Url.Action("Details", "CFBCrudeExportMeters", new { id = item.Id})" class="btn btn-default btn-rounded btn-condensed btn-sm"><i class='fa fa-desktop'></i></a>
@@ -108,50 +135,50 @@
             <script src="https://cdn.datatables.net/buttons/1.2.2/js/buttons.print.min.js"></script>
             <!-- end - This is for export functionality only -->
             <script>
-    $(document).ready(function() {
-        $('#myTable').DataTable();
-        $(document).ready(function() {
-            var table = $('#example').DataTable({
-                "columnDefs": [{
-                    "visible": false,
-                    "targets": 2
-                }],
-                "order": [
-                    [2, 'asc']
-                ],
-                "displayLength": 25,
-                "drawCallback": function(settings) {
-                    var api = this.api();
-                    var rows = api.rows({
-                        page: 'current'
-                    }).nodes();
-                    var last = null;
-                    api.column(2, {
-                        page: 'current'
-                    }).data().each(function(group, i) {
-                        if (last !== group) {
-                            $(rows).eq(i).before('<tr class="group"><td colspan="5">' + group + '</td></tr>');
-                            last = group;
-                        }
+                $(document).ready(function () {
+                    $('#myTable').DataTable();
+                    $(document).ready(function () {
+                        var table = $('#example').DataTable({
+                            "columnDefs": [{
+                                "visible": false,
+                                "targets": 2
+                            }],
+                            "order": [
+                                [2, 'asc']
+                            ],
+                            "displayLength": 25,
+                            "drawCallback": function (settings) {
+                                var api = this.api();
+                                var rows = api.rows({
+                                    page: 'current'
+                                }).nodes();
+                                var last = null;
+                                api.column(2, {
+                                    page: 'current'
+                                }).data().each(function (group, i) {
+                                    if (last !== group) {
+                                        $(rows).eq(i).before('<tr class="group"><td colspan="5">' + group + '</td></tr>');
+                                        last = group;
+                                    }
+                                });
+                            }
+                        });
+                        // Order by the grouping
+                        $('#example tbody').on('click', 'tr.group', function () {
+                            var currentOrder = table.order()[0];
+                            if (currentOrder[0] === 2 && currentOrder[1] === 'asc') {
+                                table.order([2, 'desc']).draw();
+                            } else {
+                                table.order([2, 'asc']).draw();
+                            }
+                        });
                     });
-                }
-            });
-            // Order by the grouping
-            $('#example tbody').on('click', 'tr.group', function() {
-                var currentOrder = table.order()[0];
-                if (currentOrder[0] === 2 && currentOrder[1] === 'asc') {
-                    table.order([2, 'desc']).draw();
-                } else {
-                    table.order([2, 'asc']).draw();
-                }
-            });
-        });
-    });
-    $('#example23').DataTable({
-        dom: 'Bfrtip',
-        buttons: [
-            'copy', 'csv', 'excel', 'pdf', 'print'
-        ]
-    });
+                });
+                $('#example23').DataTable({
+                    dom: 'Bfrtip',
+                    buttons: [
+                        'copy', 'csv', 'excel', 'pdf', 'print'
+                    ]
+                });
             </script>
         }

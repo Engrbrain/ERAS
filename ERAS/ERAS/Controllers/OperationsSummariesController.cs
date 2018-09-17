@@ -6,8 +6,10 @@ using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
+using System.Web.Services;
 using ERAS.Models;
 using ERAS.Models.EBOKDailyReport;
+using Newtonsoft.Json;
 
 namespace ERAS.Controllers
 {
@@ -18,8 +20,52 @@ namespace ERAS.Controllers
         // GET: OperationsSummaries
         public ActionResult Index()
         {
-            return View(db.OperationsSummaries.ToList());
+            var operationsSummary = db.OperationsSummaries.Where(x => x.ReportDate == DateTime.Today.Date);
+            return View(operationsSummary.ToList());
         }
+
+        public ActionResult FilterReport(ReportParameter model)
+        {
+            var StartDate = model.StartDate.Date;
+            var EndDate = model.EndDate.Date;
+            var operationsSummary = db.OperationsSummaries.Where(x => x.ReportDate >= StartDate && x.ReportDate <= EndDate);
+            return View("Index", operationsSummary);
+        }
+        public ActionResult LoadPrevious()
+        {
+            List<OperationsSummary> operationsSummary = new List<OperationsSummary>();
+
+            operationsSummary = db.Database.SqlQuery<OperationsSummary>(
+        "usp_GetOperationsSummary"
+        ).ToList();
+            return View("Index", operationsSummary);
+        }
+
+        public ActionResult CreateMultipleBulk()
+        {
+            return View();
+        }
+
+        [WebMethod]
+        public string LoadBulkData(string mydata)
+        {
+            var serializeData = JsonConvert.DeserializeObject<List<OperationsSummary>>(mydata);
+            foreach (var data in serializeData)
+            {
+                OperationsSummary postdata = new OperationsSummary
+                {
+                    OperationsReport = data.OperationsReport,
+                    ReportDate = data.ReportDate,
+                    TimeStamp = DateTime.Now,
+                    UploadTime = DateTime.Now.TimeOfDay.ToString()
+                };
+                db.OperationsSummaries.Add(postdata);
+            }
+            db.SaveChanges();
+            return null;
+        }
+
+
 
         // GET: OperationsSummaries/Details/5
         public ActionResult Details(int? id)
@@ -51,6 +97,9 @@ namespace ERAS.Controllers
         {
             if (ModelState.IsValid)
             {
+                operationsSummary.DayOftheWeek = DateTime.Today.Date.DayOfWeek.ToString();
+                operationsSummary.TimeStamp = DateTime.Now;
+                operationsSummary.UploadTime = DateTime.Now.TimeOfDay.ToString();
                 db.OperationsSummaries.Add(operationsSummary);
                 db.SaveChanges();
                 return RedirectToAction("Index");
@@ -90,30 +139,19 @@ namespace ERAS.Controllers
             return View(operationsSummary);
         }
 
-        // GET: OperationsSummaries/Delete/5
-        public ActionResult Delete(int? id)
+        public ActionResult RemoveRecord(int id)
         {
-            if (id == null)
+            try
             {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                OperationsSummary operationsSummary = db.OperationsSummaries.Find(id);
+                db.OperationsSummaries.Remove(operationsSummary);
+                db.SaveChanges();
+                return Json(true, JsonRequestBehavior.AllowGet);
             }
-            OperationsSummary operationsSummary = db.OperationsSummaries.Find(id);
-            if (operationsSummary == null)
+            catch (Exception)
             {
-                return HttpNotFound();
+                return Json(false, JsonRequestBehavior.AllowGet);
             }
-            return View(operationsSummary);
-        }
-
-        // POST: OperationsSummaries/Delete/5
-        [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
-        public ActionResult DeleteConfirmed(int id)
-        {
-            OperationsSummary operationsSummary = db.OperationsSummaries.Find(id);
-            db.OperationsSummaries.Remove(operationsSummary);
-            db.SaveChanges();
-            return RedirectToAction("Index");
         }
 
         protected override void Dispose(bool disposing)

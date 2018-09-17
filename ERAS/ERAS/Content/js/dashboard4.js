@@ -122,6 +122,38 @@ $(function () {
             barSpacing: '5',
             barColor: '#f62d51'
         });
+        $('#sparklinedash5').sparkline([0, 5, 6, 10, 9, 12, 4, 9], {
+            type: 'bar',
+            height: '50',
+            barWidth: '2',
+            resize: true,
+            barSpacing: '5',
+            barColor: '#26c6da'
+        });
+        $('#sparklinedash6').sparkline([0, 5, 6, 10, 9, 12, 4, 9], {
+            type: 'bar',
+            height: '50',
+            barWidth: '2',
+            resize: true,
+            barSpacing: '5',
+            barColor: '#7460ee'
+        });
+        $('#sparklinedash7').sparkline([0, 5, 6, 10, 9, 12, 4, 9], {
+            type: 'bar',
+            height: '50',
+            barWidth: '2',
+            resize: true,
+            barSpacing: '5',
+            barColor: '#03a9f3'
+        });
+        $('#sparklinedash8').sparkline([0, 5, 6, 10, 9, 12, 4, 9], {
+            type: 'bar',
+            height: '50',
+            barWidth: '2',
+            resize: true,
+            barSpacing: '5',
+            barColor: '#f62d51'
+        });
        
    }
     var sparkResize;

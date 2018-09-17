@@ -6,8 +6,10 @@ using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
+using System.Web.Services;
 using ERAS.Models;
 using ERAS.Models.EBOKDailyReport;
+using Newtonsoft.Json;
 
 namespace ERAS.Controllers
 {
@@ -18,7 +20,49 @@ namespace ERAS.Controllers
         // GET: DownTimeLossReasons
         public ActionResult Index()
         {
-            return View(db.DownTimeLossReasons.ToList());
+            var downTimeLossReasons = db.DownTimeLossReasons.Where(x => x.ReportDate == DateTime.Today.Date);
+            return View(downTimeLossReasons.ToList());
+        }
+
+        public ActionResult FilterReport(ReportParameter model)
+        {
+            var StartDate = model.StartDate.Date;
+            var EndDate = model.EndDate.Date;
+            var downTimeLossReasons = db.DownTimeLossReasons.Where(x => x.ReportDate >= StartDate && x.ReportDate <= EndDate);
+            return View("Index", downTimeLossReasons);
+        }
+        public ActionResult LoadPrevious()
+        {
+            List<DownTimeLossReason> downTimeLossReason = new List<DownTimeLossReason>();
+
+            downTimeLossReason = db.Database.SqlQuery<DownTimeLossReason>(
+        "usp_GetDownTimeLossReason"
+        ).ToList();
+            return View("Index", downTimeLossReason);
+        }
+
+        public ActionResult CreateMultipleBulk()
+        {
+            return View();
+        }
+
+        [WebMethod]
+        public string LoadBulkData(string mydata)
+        {
+            var serializeData = JsonConvert.DeserializeObject<List<DownTimeLossReason>>(mydata);
+            foreach (var data in serializeData)
+            {
+                DownTimeLossReason postdata = new DownTimeLossReason
+                {
+                    DownTimeReport = data.DownTimeReport,
+                    ReportDate = data.ReportDate,
+                    TimeStamp = DateTime.Now,
+                    UploadTime = DateTime.Now.TimeOfDay.ToString()
+                };
+                db.DownTimeLossReasons.Add(postdata);
+            }
+            db.SaveChanges();
+            return null;
         }
 
         // GET: DownTimeLossReasons/Details/5
@@ -51,6 +95,9 @@ namespace ERAS.Controllers
         {
             if (ModelState.IsValid)
             {
+                downTimeLossReason.DayOftheWeek = DateTime.Today.Date.DayOfWeek.ToString();
+                downTimeLossReason.TimeStamp = DateTime.Now;
+                downTimeLossReason.UploadTime = DateTime.Now.TimeOfDay.ToString();
                 db.DownTimeLossReasons.Add(downTimeLossReason);
                 db.SaveChanges();
                 return RedirectToAction("Index");
@@ -90,30 +137,19 @@ namespace ERAS.Controllers
             return View(downTimeLossReason);
         }
 
-        // GET: DownTimeLossReasons/Delete/5
-        public ActionResult Delete(int? id)
+        public ActionResult RemoveRecord(int id)
         {
-            if (id == null)
+            try
             {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                DownTimeLossReason downTimeLossReason = db.DownTimeLossReasons.Find(id);
+                db.DownTimeLossReasons.Remove(downTimeLossReason);
+                db.SaveChanges();
+                return Json(true, JsonRequestBehavior.AllowGet); ;
             }
-            DownTimeLossReason downTimeLossReason = db.DownTimeLossReasons.Find(id);
-            if (downTimeLossReason == null)
+            catch (Exception)
             {
-                return HttpNotFound();
+                return Json(false, JsonRequestBehavior.AllowGet); ;
             }
-            return View(downTimeLossReason);
-        }
-
-        // POST: DownTimeLossReasons/Delete/5
-        [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
-        public ActionResult DeleteConfirmed(int id)
-        {
-            DownTimeLossReason downTimeLossReason = db.DownTimeLossReasons.Find(id);
-            db.DownTimeLossReasons.Remove(downTimeLossReason);
-            db.SaveChanges();
-            return RedirectToAction("Index");
         }
 
         protected override void Dispose(bool disposing)

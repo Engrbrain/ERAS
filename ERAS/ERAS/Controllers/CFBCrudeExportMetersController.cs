@@ -6,8 +6,10 @@ using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
+using System.Web.Services;
 using ERAS.Models;
 using ERAS.Models.EBOKDailyReport;
+using Newtonsoft.Json;
 
 namespace ERAS.Controllers
 {
@@ -19,6 +21,48 @@ namespace ERAS.Controllers
         public ActionResult Index()
         {
             return View(db.CFBCrudeExportMeters.ToList());
+        }
+
+
+        public ActionResult LoadPrevious()
+        {
+            List<CFBCrudeExportMeter> cFBCrudeExportMeter = new List<CFBCrudeExportMeter>();
+
+            cFBCrudeExportMeter = db.Database.SqlQuery<CFBCrudeExportMeter>(
+        "usp_GetCFBCrudeExportMeterPrevious"
+        ).ToList();
+            return View(cFBCrudeExportMeter);
+        }
+
+        public ActionResult CreateMultipleBulk()
+        {
+            return View();
+        }
+
+        [WebMethod]
+        public string LoadBulkData(string mydata)
+        {
+            var serializeData = JsonConvert.DeserializeObject<List<CFBCrudeExportMeter>>(mydata);
+            foreach (var data in serializeData)
+            {
+                CFBCrudeExportMeter postdata = new CFBCrudeExportMeter
+                {
+                    BSW = data.BSW,
+                    CurrentEightHours = data.CurrentEightHours,
+                    DayOftheWeek = DateTime.Now.DayOfWeek.ToString(),
+                    GrossCorr = data.GrossCorr,
+                    MeterFactor = data.MeterFactor,
+                    MeterName = data.MeterName,
+                    NetOil = data.NetOil,
+                    ReportDate = data.ReportDate,
+                    TimeStamp = DateTime.Now,
+                    UploadTime = DateTime.Now.TimeOfDay.ToString()
+                };
+                db.CFBCrudeExportMeters.Add(postdata);
+               
+            }
+            db.SaveChanges();
+            return  null; 
         }
 
         // GET: CFBCrudeExportMeters/Details/5

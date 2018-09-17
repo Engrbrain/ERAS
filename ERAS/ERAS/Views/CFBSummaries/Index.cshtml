@@ -39,6 +39,32 @@
                     <div class="card-body">
                         <h4 class="card-title">CFB Summaries</h4>
                         <h6 class="card-subtitle">Export data to Copy, CSV, Excel, PDF & Print, Create New Daily Entry</h6>
+                        @using (Html.BeginForm("FilterReport", "CFBSummaries", FormMethod.Post))
+                        {
+                            @Html.ValidationSummary()
+                            <div class="row p-t-20">
+                                <div class="col-md-4">
+                                    <div class="form-group has-success">
+
+                                        <input type="date" name="StartDate" class="form-control" placeholder="Start Date" />
+                                        <small class="form-control-feedback">Start Date</small>
+                                    </div>
+                                </div>
+                                <!--/span-->
+                                <div class="col-md-4">
+                                    <div class="form-group has-success">
+
+                                        <input type="date" name="EndDate" class="form-control" placeholder="End Date" />
+                                        <small class="form-control-feedback">End Date</small>
+                                    </div>
+                                </div>
+
+                                <div class="col-md-2">
+                                    <button type="submit" class="btn btn-success"><i class='fa fa-filter'></i> Filter Report</button>
+                                </div>
+                                <!--/span-->
+                            </div>
+                        }
 
                         <p><a href="@Url.Action("Create", "CFBSummaries")" class="btn-info"> &nbsp;Add Data&nbsp; </a>  &nbsp;&nbsp; <a href="@Url.Action("Create", "CFBSummaries")" class="btn-success"> &nbsp;Add Data From Previous&nbsp; </a> &nbsp;&nbsp;  <a href="@Url.Action("Create", "CFBSummaries")" class="btn-warning">&nbsp; Add From Template &nbsp;</a></p>
                         <div class="table-responsive m-t-40" style="overflow-x: auto;">

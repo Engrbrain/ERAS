@@ -1,7 +1,7 @@
 ﻿@model IEnumerable<ERAS.Models.EBOKDailyReport.WFBMaintenanceData>
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "WFB Maintenance Data - Index";
 }
 
 
@@ -40,35 +40,55 @@
                     <div class="card-body">
                         <h4 class="card-title">WFB Maintenance Data</h4>
                         <h6 class="card-subtitle">Export data to Copy, CSV, Excel, PDF & Print, Create New Daily Entry</h6>
+                        @using (Html.BeginForm("FilterReport", "WFBMaintenanceDatas", FormMethod.Post))
+                        {
+                            @Html.ValidationSummary()
+                            <div class="row p-t-20">
+                                <div class="col-md-4">
+                                    <div class="form-group has-success">
 
-                        <p><a href="@Url.Action("Create", "WFBMaintenanceData")" class="btn-info"> &nbsp;Add Data&nbsp; </a>  &nbsp;&nbsp; <a href="@Url.Action("Create", "WFBMaintenanceData")" class="btn-success"> &nbsp;Add Data From Previous&nbsp; </a> &nbsp;&nbsp;  <a href="@Url.Action("Create", "WFBMaintenanceData")" class="btn-warning">&nbsp; Add From Template &nbsp;</a></p>
+                                        <input type="date" name="StartDate" class="form-control" placeholder="Start Date" />
+                                        <small class="form-control-feedback">Start Date</small>
+                                    </div>
+                                </div>
+                                <!--/span-->
+                                <div class="col-md-4">
+                                    <div class="form-group has-success">
+
+                                        <input type="date" name="EndDate" class="form-control" placeholder="End Date" />
+                                        <small class="form-control-feedback">End Date</small>
+                                    </div>
+                                </div>
+
+                                <div class="col-md-2">
+                                    <button type="submit" class="btn btn-success"><i class='fa fa-filter'></i> Filter Report</button>
+                                </div>
+                                <!--/span-->
+                            </div>
+                        }
+
+                        <p><a href="@Url.Action("Create", "WFBMaintenanceDatas")" class="btn-info"> &nbsp;Add Data&nbsp; </a>  &nbsp;&nbsp; <a href="@Url.Action("Create", "WFBMaintenanceDatas")" class="btn-success"> &nbsp;Add Data From Previous&nbsp; </a> &nbsp;&nbsp;  <a href="@Url.Action("Create", "WFBMaintenanceDatas")" class="btn-warning">&nbsp; Add From Template &nbsp;</a></p>
                         <div class="table-responsive m-t-40" style="overflow-x: auto;">
                             <table id="example23" class="display nowrap table table-hover table-striped table-bordered" cellspacing="0" width="100%">
                                 <thead>
                                     <tr>
-                                        <th>Category</th>
-                                        <th>Consumables</th>
-                                        <th>ROB(Prev.Day)</th>
-                                        <th>Produced</th>
-                                        <th>Received</th>
-                                        <th>Daily Consumption</th>
-                                        <th>ROB</th>
-                                        <th>Consumption</th>
-                                        <th>Date</th>
+                                        <th>Parameters</th>
+                                        <th>Daily Total</th>
+                                        <th>Previous Total</th>
+                                        <th>Cummulative</th>
+                                        <th>Comment</th>
+                                        <th>Report Date</th>
                                         <th class="text-nowrap">Action</th>
                                     </tr>
                                 </thead>
                                 <tfoot>
                                     <tr>
-                                        <th>Category</th>
-                                        <th>Consumables</th>
-                                        <th>ROB(Prev.Day)</th>
-                                        <th>Produced</th>
-                                        <th>Received</th>
-                                        <th>Daily Consumption</th>
-                                        <th>ROB</th>
-                                        <th>Consumption YTD</th>
-                                        <th>Date</th>
+                                        <th>Parameters</th>
+                                        <th>Daily Total</th>
+                                        <th>Previous Total</th>
+                                        <th>Cummulative</th>
+                                        <th>Comment</th>
+                                        <th>Report Date</th>
                                         <th class="text-nowrap">Action</th>
                                     </tr>
                                 </tfoot>
@@ -95,19 +115,11 @@
                                             <td>
                                                 @Html.DisplayFor(modelItem => item.ReportDate)
                                             </td>
+                                           
                                             <td>
-                                                @Html.DisplayFor(modelItem => item.UploadTime)
-                                            </td>
-                                            <td>
-                                                @Html.DisplayFor(modelItem => item.TimeStamp)
-                                            </td>
-                                            <td>
-                                                @Html.DisplayFor(modelItem => item.DayOftheWeek)
-                                            </td>
-                                            <td>
-                                                <a title="Modify WFBMaintenanceData" href="@Url.Action("Edit", "WFBMaintenanceData", new { id = item.Id})" class="btn btn-default btn-rounded btn-condensed btn-sm"><i class='fa fa-pencil'></i></a>
-                                                <a title="View WFBMaintenanceData" href="@Url.Action("Details", "WFBMaintenanceData", new { id = item.Id})" class="btn btn-default btn-rounded btn-condensed btn-sm"><i class='fa fa-desktop'></i></a>
-                                                <a title="Delete WFBMaintenanceData" href="@Url.Action("Delete", "WFBMaintenanceData", new { id = item.Id})" class="btn btn-default btn-rounded btn-condensed btn-sm"><i class='fa fa-times'></i></a>
+                                                <a title="Modify WFBMaintenanceData" href="@Url.Action("Edit", "WFBMaintenanceDatas", new { id = item.Id})" class="btn btn-default btn-rounded btn-condensed btn-sm"><i class='fa fa-pencil'></i></a>
+                                                <a title="View WFBMaintenanceData" href="@Url.Action("Details", "WFBMaintenanceDatas", new { id = item.Id})" class="btn btn-default btn-rounded btn-condensed btn-sm"><i class='fa fa-desktop'></i></a>
+                                                <a title="Delete WFBMaintenanceData" href="@Url.Action("Delete", "WFBMaintenanceDatas", new { id = item.Id})" class="btn btn-default btn-rounded btn-condensed btn-sm"><i class='fa fa-times'></i></a>
                                             </td>
                                         </tr>
                                     }

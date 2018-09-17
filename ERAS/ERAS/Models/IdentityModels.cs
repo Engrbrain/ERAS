@@ -1,4 +1,5 @@
-﻿using System.Data.Entity;
+﻿using System;
+using System.Data.Entity;
 using System.Security.Claims;
 using System.Threading.Tasks;
 using Microsoft.AspNet.Identity;
@@ -122,5 +123,13 @@ namespace ERAS.Models
         public DbSet<ERAS.Models.EBOKOutputData.BackAllocationQgActualHeader> BackAllocationQgActualHeader { get; set; }
         public DbSet<ERAS.Models.EBOKOutputData.BackAllocationQgActual> BackAllocationQgActual { get; set; }
 
+        public System.Data.Entity.DbSet<ERAS.Models.ReportParameter> ReportParameter { get; set; }
+   
+
+    protected override void OnModelCreating(DbModelBuilder modelBuilder)
+    {
+        modelBuilder.Properties<DateTime>().Configure(c => c.HasColumnType("datetime2"));
+            base.OnModelCreating(modelBuilder);
+        }
     }
 }
