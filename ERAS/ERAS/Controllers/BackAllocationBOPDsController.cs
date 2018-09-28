@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Net;
 using System.Web;
@@ -16,109 +17,37 @@ namespace ERAS.Controllers
         private ApplicationDbContext db = new ApplicationDbContext();
 
         // GET: BackAllocationBOPDs
-        public ActionResult Index()
+        public ActionResult Index(DateTime? StartDate, DateTime? EndDate)
         {
+            if (StartDate == null)
+            {
+                return View("Index", "ReportParameters");
+            }
+            else
+            {
+                List<BackAllocationBOPD> backAllocationBOPD = new List<BackAllocationBOPD>();
+
+                backAllocationBOPD = db.Database.SqlQuery<BackAllocationBOPD>(
+            "exec dbo.[usp_GetBackAllocationBOPD] @StartDate,@EndDate",
+           new SqlParameter("@StartDate", StartDate),
+           new SqlParameter("@EndDate", StartDate)
+            ).ToList();
+                return View(backAllocationBOPD);
+            }
+        }
+
+        public ActionResult FilterReport(ReportParameter model)
+        {
+            var StartDate = model.StartDate.Date;
+            var EndDate = model.EndDate.Date;
             List<BackAllocationBOPD> backAllocationBOPD = new List<BackAllocationBOPD>();
 
             backAllocationBOPD = db.Database.SqlQuery<BackAllocationBOPD>(
-        "usp_GetBackAllocationBOPD"
+        "exec dbo.[usp_GetBackAllocationBOPD] @StartDate,@EndDate",
+       new SqlParameter("@StartDate", StartDate),
+       new SqlParameter("@EndDate", StartDate)
         ).ToList();
-            return View(backAllocationBOPD);
-        }
-
-        // GET: BackAllocationBOPDs/Details/5
-        public ActionResult Details(int? id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            BackAllocationBOPD backAllocationBOPD = db.BackAllocationBOPD.Find(id);
-            if (backAllocationBOPD == null)
-            {
-                return HttpNotFound();
-            }
-            return View(backAllocationBOPD);
-        }
-
-        // GET: BackAllocationBOPDs/Create
-        public ActionResult Create()
-        {
-            return View();
-        }
-
-        // POST: BackAllocationBOPDs/Create
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,IndicatorDate,Well,BOPD")] BackAllocationBOPD backAllocationBOPD)
-        {
-            if (ModelState.IsValid)
-            {
-                db.BackAllocationBOPD.Add(backAllocationBOPD);
-                db.SaveChanges();
-                return RedirectToAction("Index");
-            }
-
-            return View(backAllocationBOPD);
-        }
-
-        // GET: BackAllocationBOPDs/Edit/5
-        public ActionResult Edit(int? id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            BackAllocationBOPD backAllocationBOPD = db.BackAllocationBOPD.Find(id);
-            if (backAllocationBOPD == null)
-            {
-                return HttpNotFound();
-            }
-            return View(backAllocationBOPD);
-        }
-
-        // POST: BackAllocationBOPDs/Edit/5
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,IndicatorDate,Well,BOPD")] BackAllocationBOPD backAllocationBOPD)
-        {
-            if (ModelState.IsValid)
-            {
-                db.Entry(backAllocationBOPD).State = EntityState.Modified;
-                db.SaveChanges();
-                return RedirectToAction("Index");
-            }
-            return View(backAllocationBOPD);
-        }
-
-        // GET: BackAllocationBOPDs/Delete/5
-        public ActionResult Delete(int? id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            BackAllocationBOPD backAllocationBOPD = db.BackAllocationBOPD.Find(id);
-            if (backAllocationBOPD == null)
-            {
-                return HttpNotFound();
-            }
-            return View(backAllocationBOPD);
-        }
-
-        // POST: BackAllocationBOPDs/Delete/5
-        [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
-        public ActionResult DeleteConfirmed(int id)
-        {
-            BackAllocationBOPD backAllocationBOPD = db.BackAllocationBOPD.Find(id);
-            db.BackAllocationBOPD.Remove(backAllocationBOPD);
-            db.SaveChanges();
-            return RedirectToAction("Index");
+            return View("Index", backAllocationBOPD);
         }
 
         protected override void Dispose(bool disposing)

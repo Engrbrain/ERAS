@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
 
@@ -8,6 +9,7 @@ namespace ERAS.Models.EBOKTranformedData
     public class WaterInjectorRateLineItem
     {
         public int Id { get; set; }
+        [MaxLength(150)]
         public string Well { get; set; }
         public DateTime IndicatorDate { get; set; }
         public double ChokeSize { get; set; }
@@ -27,5 +29,25 @@ namespace ERAS.Models.EBOKTranformedData
             this.THSP = 0;
         }
 
+    }
+
+    public class WaterInjectorRateLineItemStaging
+    {
+        public int Id { get; set; }
+        [MaxLength(150)]
+        public string Well { get; set; }
+        public string IndicatorDate { get; set; }
+        public string ChokeSize { get; set; }
+        public string UpTime { get; set; }
+        public string THIP { get; set; }
+        public string THSP { get; set; }
+        public string FLP { get; set; }
+        public string HP { get; set; }
+        public string INJRate { get; set; }
+        public string CumINJRate { get; set; }
+        public DateTime ReportDate { get; set; }
+        public string UploadTime { get; set; }
+        public DateTime TimeStamp { get; set; }
+        public string DayOftheWeek { get; set; }
     }
 }

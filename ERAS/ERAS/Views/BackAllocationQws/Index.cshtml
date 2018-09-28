@@ -1,7 +1,7 @@
 ﻿@model IEnumerable<ERAS.Models.EBOKOutputData.BackAllocationQw>
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Back Allocation Qw - Index";
 }
 
 <div class="page-wrapper">
@@ -10,13 +10,13 @@
     <!-- ============================================================== -->
     <div class="row page-titles">
         <div class="col-md-5 align-self-center">
-            <h3 class="text-themecolor">Back Allocation A</h3>
+            <h3 class="text-themecolor">Back Allocation Qw</h3>
         </div>
         <div class="col-md-7 align-self-center">
             <ol class="breadcrumb">
                 <li class="breadcrumb-item"><a href="javascript:void(0)">Home</a></li>
                 <li class="breadcrumb-item">Back ALlocation Report</li>
-                <li class="breadcrumb-item active">Actual GOR Agreggated Report</li>
+                <li class="breadcrumb-item active">Back Allocation Qw</li>
             </ol>
         </div>
         <div>
@@ -37,52 +37,67 @@
             <div class="col-12">
                 <div class="card">
                     <div class="card-body">
-                        <h4 class="card-title">Actual GOR Aggregated Report</h4>
+                        <h4 class="card-title">Back Allocation Qw</h4>
                         <h6 class="card-subtitle">Export data to Copy, CSV, Excel, PDF & Print, Create New Daily Entry</h6>
+                        @using (Html.BeginForm("FilterReport", "BackAllocationQws", FormMethod.Post))
+                        {
+                            @Html.ValidationSummary()
+                            <div class="row p-t-20">
+                                <div class="col-md-4">
+                                    <div class="form-group has-success">
 
-                        <p><a href="@Url.Action("Create", "CFBSummaries")" class="btn-info"> &nbsp;View Complete Report&nbsp; </a> </p>
-                        <div class="table-responsive m-t-40" style="overflow-x: auto;">
-                            <table id="example23" class="display nowrap table table-hover table-striped table-bordered" cellspacing="0" width="100%">
-                                <thead>
-                                    <tr>
-                                        <th>Date</th>
-                                        <th>Fault Block</th>
-                                        <th>RSV</th>
-                                        <th>Actual GOR</th>
-                                        <th class="text-nowrap">Action</th>
-                                    </tr>
-                                </thead>
-                                <tfoot>
-                                    <tr>
-                                        <th>Date</th>
-                                        <th>Fault Block</th>
-                                        <th>RSV</th>
-                                        <th>Actual GOR</th>
-                                        <th class="text-nowrap">Action</th>
-                                    </tr>
-                                </tfoot>
-                                <tbody>
+                                        <input type="date" name="StartDate" class="form-control" placeholder="Start Date" />
+                                        <small class="form-control-feedback">Start Date</small>
+                                    </div>
+                                </div>
+                                <!--/span-->
+                                <div class="col-md-4">
+                                    <div class="form-group has-success">
 
+                                        <input type="date" name="EndDate" class="form-control" placeholder="End Date" />
+                                        <small class="form-control-feedback">End Date</small>
+                                    </div>
+                                </div>
 
-                                    @foreach (var item in Model)
-                                    {
+                                <div class="col-md-2">
+                                    <button type="submit" class="btn btn-success"><i class='fa fa-filter'></i> Filter Report</button>
+                                </div>
+                                <!--/span-->
+                            </div>
+                        }
+                            <p><a href="@Url.Action("Create", "CFBSummaries")" class="btn btn-info"> View Complete Report </a> </p>
+                            <div class="table-responsive m-t-40" style="overflow-x: auto;">
+                                <table id="example23" class="display nowrap table table-hover table-striped table-bordered" cellspacing="0" width="100%">
+                                    <thead>
                                         <tr>
-                                            <td>
-                                                @Html.DisplayFor(modelItem => item.IndicatorDate)
-                                            </td>
-                                            <td>
-                                                @Html.DisplayFor(modelItem => item.Qw)
-                                            </td>
-                                            <td>
-
-                                                <a title="Drill Down" href="@Url.Action("Index", "BackAllocationActualGORs", new { StartDate = item.IndicatorDate, EndDate = item.IndicatorDate})" class="btn btn-primary btn-rounded"><i class='fa fa-pencil'></i></a>
-                                            </td>
+                                            <th>Date</th>
+                                            <th>Qw</th>
                                         </tr>
-                                    }
-                                </tbody>
-                            </table>
+                                    </thead>
+                                    <tfoot>
+                                        <tr>
+                                            <th>Date</th>
+                                            <th>Qw</th>
+                                        </tr>
+                                    </tfoot>
+                                    <tbody>
+
+
+                                        @foreach (var item in Model)
+                                        {
+                                            <tr>
+                                                <td>
+                                                    @Html.DisplayFor(modelItem => item.IndicatorDate)
+                                                </td>
+                                                <td>
+                                                    @Html.DisplayFor(modelItem => item.Qw)
+                                                </td>
+                                            </tr>
+                                        }
+                                    </tbody>
+                                </table>
+                            </div>
                         </div>
-                    </div>
                 </div>
             </div>
         </div>

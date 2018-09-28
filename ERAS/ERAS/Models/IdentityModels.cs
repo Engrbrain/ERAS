@@ -79,7 +79,7 @@ namespace ERAS.Models
         public DbSet<ERAS.Models.EBOKDailyReport.CFBProcessData_Reading> CFBProcessData_Reading { get; set; }
         public DbSet<ERAS.Models.EBOKDailyReport.ProductionPotential> ProductionPotential { get; set; }
         public DbSet<ERAS.Models.EBOKTranformedData.EKOBDailyProductionIndicator> EKOBDailyProductionIndicator { get; set; }
-        public DbSet<ERAS.Models.EBOKTranformedData.BackAllocationAssumedGOR> FlowParameter { get; set; }
+        public DbSet<ERAS.Models.EBOKTranformedData.BackAllocationAssumedGOR> BackAllocationAssumedGOR { get; set; }
         public DbSet<ERAS.Models.EBOKTranformedData.GasInjectorDailyIndicators> GasInjectorDailyIndicators { get; set; }
         public DbSet<ERAS.Models.EBOKTranformedData.WaterInjectorQuality> WaterInjectorQuality { get; set; }
         public DbSet<ERAS.Models.EBOKTranformedData.WaterInjectorRateHeader> WaterInjectorRateHeader { get; set; }
@@ -122,6 +122,17 @@ namespace ERAS.Models
         public DbSet<ERAS.Models.EBOKOutputData.BackAllocationQgActualSummary> BackAllocationQgActualSummary { get; set; }
         public DbSet<ERAS.Models.EBOKOutputData.BackAllocationQgActualHeader> BackAllocationQgActualHeader { get; set; }
         public DbSet<ERAS.Models.EBOKOutputData.BackAllocationQgActual> BackAllocationQgActual { get; set; }
+
+        public DbSet<ERAS.Models.EBOKTranformedData.BackAllocationAssumedGORStaging> BackAllocationAssumedGORStaging { get; set; }
+        public DbSet<ERAS.Models.EBOKTranformedData.EBOKFieldProductionSummaryStaging> EBOKFieldProductionSummaryStaging { get; set; }
+        public DbSet<ERAS.Models.EBOKTranformedData.BackAllocationBPLDStaging> BackAllocationBPLDStaging { get; set; }
+        public DbSet<ERAS.Models.EBOKTranformedData.EBOKGasProductionSummaryStaging> EBOKGasProductionSummaryStaging { get; set; }
+        public DbSet<ERAS.Models.EBOKTranformedData.EKOBDailyProductionIndicatorStaging> EKOBDailyProductionIndicatorStaging { get; set; }
+        public DbSet<ERAS.Models.EBOKTranformedData.GasInjectorDailyIndicatorsStaging> GasInjectorDailyIndicatorsStaging { get; set; }
+        public DbSet<ERAS.Models.EBOKTranformedData.WaterInjectorQualityStaging> WaterInjectorQualityStaging { get; set; }
+        public DbSet<ERAS.Models.EBOKTranformedData.WaterInjectorRateHeaderStaging> WaterInjectorRateHeaderStaging { get; set; }
+        public DbSet<ERAS.Models.EBOKTranformedData.WaterInjectorRateLineItemStaging> WaterInjectorRateLineItemStaging { get; set; }
+        public DbSet<ERAS.Models.EBOKOutputData.FlowParameter> FlowParameter { get; set; }
 
         public System.Data.Entity.DbSet<ERAS.Models.ReportParameter> ReportParameter { get; set; }
    

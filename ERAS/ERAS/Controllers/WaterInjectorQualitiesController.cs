@@ -16,9 +16,25 @@ namespace ERAS.Controllers
         private ApplicationDbContext db = new ApplicationDbContext();
 
         // GET: WaterInjectorQualities
-        public ActionResult Index()
+        public ActionResult Index(DateTime? StartDate, DateTime? EndDate)
         {
-            return View(db.WaterInjectorQuality.ToList());
+            if (StartDate == null)
+            {
+                return View("Index", "ReportParameters");
+            }
+            else
+            {
+                var waterInjectorQuality = db.WaterInjectorQuality.Where(x => x.IndicatorDate >= StartDate && x.IndicatorDate <= EndDate);
+                return View(waterInjectorQuality.ToList());
+            }
+        }
+
+        public ActionResult FilterReport(ReportParameter model)
+        {
+            var StartDate = model.StartDate.Date;
+            var EndDate = model.EndDate.Date;
+            var waterInjectorQuality = db.WaterInjectorQuality.Where(x => x.IndicatorDate >= StartDate && x.IndicatorDate <= EndDate);
+            return View("Index", waterInjectorQuality);
         }
 
         // GET: WaterInjectorQualities/Details/5

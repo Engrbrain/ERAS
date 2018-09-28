@@ -16,12 +16,27 @@ namespace ERAS.Controllers
         private ApplicationDbContext db = new ApplicationDbContext();
 
         // GET: WaterInjectorRateLineItems
-        public ActionResult Index()
+        public ActionResult Index(DateTime? StartDate, DateTime? EndDate)
         {
-            return View(db.WaterInjectorRateLineItem.ToList());
+            if (StartDate == null)
+            {
+                return View("Index", "ReportParameters");
+            }
+            else
+            {
+                var waterInjectorRateLineItem = db.WaterInjectorRateLineItem.Where(x => x.IndicatorDate >= StartDate && x.IndicatorDate <= EndDate);
+                return View(waterInjectorRateLineItem.ToList());
+            }
         }
 
-        
+        public ActionResult FilterReport(ReportParameter model)
+        {
+            var StartDate = model.StartDate.Date;
+            var EndDate = model.EndDate.Date;
+            var waterInjectorRateLineItem = db.WaterInjectorRateLineItem.Where(x => x.IndicatorDate >= StartDate && x.IndicatorDate <= EndDate);
+            return View("Index", waterInjectorRateLineItem);
+        }
+
 
         // GET: WaterInjectorRateLineItems/Details/5
         public ActionResult Details(int? id)

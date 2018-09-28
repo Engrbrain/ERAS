@@ -16,11 +16,26 @@ namespace ERAS.Controllers
         private ApplicationDbContext db = new ApplicationDbContext();
 
         // GET: EKOBDailyProductionIndicators
-        public ActionResult Index()
+        public ActionResult Index(DateTime? StartDate, DateTime? EndDate)
         {
-            return View(db.EKOBDailyProductionIndicator.ToList());
+            if (StartDate == null)
+            {
+                return View("Index", "ReportParameters");
+            }
+            else
+            {
+                var eKOBDailyProductionIndicator = db.EKOBDailyProductionIndicator.Where(x => x.IndicatorDate >= StartDate && x.IndicatorDate <= EndDate);
+                return View(eKOBDailyProductionIndicator.ToList());
+            }
         }
 
+        public ActionResult FilterReport(ReportParameter model)
+        {
+            var StartDate = model.StartDate.Date;
+            var EndDate = model.EndDate.Date;
+            var eKOBDailyProductionIndicator = db.EKOBDailyProductionIndicator.Where(x => x.IndicatorDate >= StartDate && x.IndicatorDate <= EndDate);
+            return View("Index", eKOBDailyProductionIndicator);
+        }
 
         // GET: EKOBDailyProductionIndicators/Details/5
         public ActionResult Details(int? id)

@@ -35,7 +35,19 @@ namespace ERAS.Controllers
             }
         }
 
+        public ActionResult FilterReport(ReportParameter model)
+        {
+            var StartDate = model.StartDate.Date;
+            var EndDate = model.EndDate.Date;
+            List<BackAllocationActualGORHeader> backAllocationActualGORHeader = new List<BackAllocationActualGORHeader>();
 
+            backAllocationActualGORHeader = db.Database.SqlQuery<BackAllocationActualGORHeader>(
+        "exec dbo.[usp_GetBackAllocationActualGORHeader] @StartDate,@EndDate",
+       new SqlParameter("@StartDate", StartDate),
+       new SqlParameter("@EndDate", StartDate)
+        ).ToList();
+            return View("Index", backAllocationActualGORHeader);
+        }
 
         protected override void Dispose(bool disposing)
         {

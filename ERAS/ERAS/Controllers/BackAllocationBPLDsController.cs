@@ -8,6 +8,9 @@ using System.Web;
 using System.Web.Mvc;
 using ERAS.Models;
 using ERAS.Models.EBOKTranformedData;
+using System.Data.SqlClient;
+using System.Web.Services;
+using Newtonsoft.Json;
 
 namespace ERAS.Controllers
 {
@@ -16,12 +19,76 @@ namespace ERAS.Controllers
         private ApplicationDbContext db = new ApplicationDbContext();
 
         // GET: BackAllocationBPLDs
-        public ActionResult Index()
+        public ActionResult Index(DateTime? StartDate, DateTime? EndDate)
         {
-            return View(db.BackAllocationBPLD.ToList());
+            if (StartDate == null)
+            {
+                return View("Index", "ReportParameters");
+            }
+            else
+            {
+                List<BackAllocationBPLD> backAllocationBPLD = new List<BackAllocationBPLD>();
+
+                backAllocationBPLD = db.Database.SqlQuery<BackAllocationBPLD>(
+            "exec dbo.[usp_GetBackAllocationBPLD] @StartDate,@EndDate",
+           new SqlParameter("@StartDate", StartDate),
+           new SqlParameter("@EndDate", StartDate)
+            ).ToList();
+                return View(backAllocationBPLD);
+            }
         }
 
-        // GET: BackAllocationBPLDs/Details/5
+        public ActionResult FilterReport(ReportParameter model)
+        {
+            var StartDate = model.StartDate.Date;
+            var EndDate = model.EndDate.Date;
+            List<BackAllocationBPLD> backAllocationBPLD = new List<BackAllocationBPLD>();
+
+            backAllocationBPLD = db.Database.SqlQuery<BackAllocationBPLD>(
+        "exec dbo.[usp_GetBackAllocationBPLD] @StartDate,@EndDate",
+       new SqlParameter("@StartDate", StartDate),
+       new SqlParameter("@EndDate", StartDate)
+        ).ToList();
+            return View("Index", backAllocationBPLD);
+        }
+
+        public ActionResult LoadPrevious()
+        {
+            List<BackAllocationBPLD> backAllocationBPLD = new List<BackAllocationBPLD>();
+
+            backAllocationBPLD = db.Database.SqlQuery<BackAllocationBPLD>(
+        "usp_GetBackAllocationBPLDPrevious"
+        ).ToList();
+            return View("Index", backAllocationBPLD);
+        }
+
+        public ActionResult CreateMultipleBulk()
+        {
+            return View();
+        }
+
+        [WebMethod]
+        public string LoadBulkData(string mydata)
+        {
+            var serializeData = JsonConvert.DeserializeObject<List<BackAllocationBPLD>>(mydata);
+            foreach (var data in serializeData)
+            {
+                BackAllocationBPLD postdata = new BackAllocationBPLD
+                {
+                    IndicatorDate = data.IndicatorDate,
+                    Well = data.Well,
+                    BPLD = data.BPLD,
+                    ReportDate = data.ReportDate,
+                    TimeStamp = DateTime.Now,
+                    UploadTime = DateTime.Now.TimeOfDay.ToString()
+                };
+                db.BackAllocationBPLD.Add(postdata);
+            }
+            db.SaveChanges();
+            return null;
+        }
+
+        // GET: DailySafetySummaries/Details/5
         public ActionResult Details(int? id)
         {
             if (id == null)
@@ -36,21 +103,24 @@ namespace ERAS.Controllers
             return View(backAllocationBPLD);
         }
 
-        // GET: BackAllocationBPLDs/Create
+        // GET: DailySafetySummaries/Create
         public ActionResult Create()
         {
             return View();
         }
 
-        // POST: BackAllocationBPLDs/Create
+        // POST: DailySafetySummaries/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,IndicatorDate,Well,BPLD,ReportDate,UploadTime,TimeStamp,DayOftheWeek")] BackAllocationBPLD backAllocationBPLD)
+        public ActionResult Create([Bind(Include = "Id,Well,IndicatorDate,AssumedGOR,ReportDate,UploadTime,TimeStamp,DayOftheWeek")] BackAllocationBPLD backAllocationBPLD)
         {
             if (ModelState.IsValid)
             {
+                backAllocationBPLD.DayOftheWeek = DateTime.Today.Date.DayOfWeek.ToString();
+                backAllocationBPLD.TimeStamp = DateTime.Now;
+                backAllocationBPLD.UploadTime = DateTime.Now.TimeOfDay.ToString();
                 db.BackAllocationBPLD.Add(backAllocationBPLD);
                 db.SaveChanges();
                 return RedirectToAction("Index");
@@ -59,7 +129,7 @@ namespace ERAS.Controllers
             return View(backAllocationBPLD);
         }
 
-        // GET: BackAllocationBPLDs/Edit/5
+        // GET: DailySafetySummaries/Edit/5
         public ActionResult Edit(int? id)
         {
             if (id == null)
@@ -74,12 +144,12 @@ namespace ERAS.Controllers
             return View(backAllocationBPLD);
         }
 
-        // POST: BackAllocationBPLDs/Edit/5
+        // POST: DailySafetySummaries/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,IndicatorDate,Well,BPLD,ReportDate,UploadTime,TimeStamp,DayOftheWeek")] BackAllocationBPLD backAllocationBPLD)
+        public ActionResult Edit([Bind(Include = "Id,Well,IndicatorDate,AssumedGOR,ReportDate,UploadTime,TimeStamp,DayOftheWeek")] BackAllocationBPLD backAllocationBPLD)
         {
             if (ModelState.IsValid)
             {
@@ -90,31 +160,23 @@ namespace ERAS.Controllers
             return View(backAllocationBPLD);
         }
 
-        // GET: BackAllocationBPLDs/Delete/5
-        public ActionResult Delete(int? id)
+
+        public ActionResult RemoveRecord(int id)
         {
-            if (id == null)
+            try
             {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                BackAllocationBPLD backAllocationBPLD = db.BackAllocationBPLD.Find(id);
+                db.BackAllocationBPLD.Remove(backAllocationBPLD);
+                db.SaveChanges();
+                return Json(true, JsonRequestBehavior.AllowGet);
             }
-            BackAllocationBPLD backAllocationBPLD = db.BackAllocationBPLD.Find(id);
-            if (backAllocationBPLD == null)
+            catch (Exception)
             {
-                return HttpNotFound();
+                return Json(false, JsonRequestBehavior.AllowGet);
             }
-            return View(backAllocationBPLD);
         }
 
-        // POST: BackAllocationBPLDs/Delete/5
-        [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
-        public ActionResult DeleteConfirmed(int id)
-        {
-            BackAllocationBPLD backAllocationBPLD = db.BackAllocationBPLD.Find(id);
-            db.BackAllocationBPLD.Remove(backAllocationBPLD);
-            db.SaveChanges();
-            return RedirectToAction("Index");
-        }
+
 
         protected override void Dispose(bool disposing)
         {

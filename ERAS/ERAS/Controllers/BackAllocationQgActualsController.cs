@@ -8,6 +8,7 @@ using System.Web;
 using System.Web.Mvc;
 using ERAS.Models;
 using ERAS.Models.EBOKOutputData;
+using System.Data.SqlClient;
 
 namespace ERAS.Controllers
 {
@@ -16,109 +17,37 @@ namespace ERAS.Controllers
         private ApplicationDbContext db = new ApplicationDbContext();
 
         // GET: BackAllocationQgActuals
-        public ActionResult Index()
+        public ActionResult Index(DateTime? StartDate, DateTime? EndDate)
         {
+            if (StartDate == null)
+            {
+                return View("Index", "ReportParameters");
+            }
+            else
+            {
+                List<BackAllocationQgActual> backAllocationQgActual = new List<BackAllocationQgActual>();
+
+                backAllocationQgActual = db.Database.SqlQuery<BackAllocationQgActual>(
+            "exec dbo.[usp_GetBackAllocationQgActual] @StartDate,@EndDate",
+           new SqlParameter("@StartDate", StartDate),
+           new SqlParameter("@EndDate", StartDate)
+            ).ToList();
+                return View(backAllocationQgActual);
+            }
+        }
+
+        public ActionResult FilterReport(ReportParameter model)
+        {
+            var StartDate = model.StartDate.Date;
+            var EndDate = model.EndDate.Date;
             List<BackAllocationQgActual> backAllocationQgActual = new List<BackAllocationQgActual>();
 
             backAllocationQgActual = db.Database.SqlQuery<BackAllocationQgActual>(
-        "usp_GetBackAllocationQgActual"
+        "exec dbo.[usp_GetBackAllocationQgActual] @StartDate,@EndDate",
+       new SqlParameter("@StartDate", StartDate),
+       new SqlParameter("@EndDate", StartDate)
         ).ToList();
-            return View(backAllocationQgActual);
-        }
-
-        // GET: BackAllocationQgActuals/Details/5
-        public ActionResult Details(int? id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            BackAllocationQgActual backAllocationQgActual = db.BackAllocationQgActual.Find(id);
-            if (backAllocationQgActual == null)
-            {
-                return HttpNotFound();
-            }
-            return View(backAllocationQgActual);
-        }
-
-        // GET: BackAllocationQgActuals/Create
-        public ActionResult Create()
-        {
-            return View();
-        }
-
-        // POST: BackAllocationQgActuals/Create
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,IndicatorDate,Well,QgActual")] BackAllocationQgActual backAllocationQgActual)
-        {
-            if (ModelState.IsValid)
-            {
-                db.BackAllocationQgActual.Add(backAllocationQgActual);
-                db.SaveChanges();
-                return RedirectToAction("Index");
-            }
-
-            return View(backAllocationQgActual);
-        }
-
-        // GET: BackAllocationQgActuals/Edit/5
-        public ActionResult Edit(int? id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            BackAllocationQgActual backAllocationQgActual = db.BackAllocationQgActual.Find(id);
-            if (backAllocationQgActual == null)
-            {
-                return HttpNotFound();
-            }
-            return View(backAllocationQgActual);
-        }
-
-        // POST: BackAllocationQgActuals/Edit/5
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,IndicatorDate,Well,QgActual")] BackAllocationQgActual backAllocationQgActual)
-        {
-            if (ModelState.IsValid)
-            {
-                db.Entry(backAllocationQgActual).State = EntityState.Modified;
-                db.SaveChanges();
-                return RedirectToAction("Index");
-            }
-            return View(backAllocationQgActual);
-        }
-
-        // GET: BackAllocationQgActuals/Delete/5
-        public ActionResult Delete(int? id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            BackAllocationQgActual backAllocationQgActual = db.BackAllocationQgActual.Find(id);
-            if (backAllocationQgActual == null)
-            {
-                return HttpNotFound();
-            }
-            return View(backAllocationQgActual);
-        }
-
-        // POST: BackAllocationQgActuals/Delete/5
-        [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
-        public ActionResult DeleteConfirmed(int id)
-        {
-            BackAllocationQgActual backAllocationQgActual = db.BackAllocationQgActual.Find(id);
-            db.BackAllocationQgActual.Remove(backAllocationQgActual);
-            db.SaveChanges();
-            return RedirectToAction("Index");
+            return View("Index", backAllocationQgActual);
         }
 
         protected override void Dispose(bool disposing)

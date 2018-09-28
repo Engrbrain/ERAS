@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Net;
 using System.Web;
@@ -15,110 +16,37 @@ namespace ERAS.Controllers
     {
         private ApplicationDbContext db = new ApplicationDbContext();
 
-        // GET: BackAllocationGasAllocations
-        public ActionResult Index()
+        public ActionResult Index(DateTime? StartDate, DateTime? EndDate)
         {
+            if (StartDate == null)
+            {
+                return View("Index", "ReportParameters");
+            }
+            else
+            {
+                List<BackAllocationGasAllocation> backAllocationGasAllocation = new List<BackAllocationGasAllocation>();
+
+                backAllocationGasAllocation = db.Database.SqlQuery<BackAllocationGasAllocation>(
+            "exec dbo.[usp_GetBackAllocationGasAllocation] @StartDate,@EndDate",
+           new SqlParameter("@StartDate", StartDate),
+           new SqlParameter("@EndDate", StartDate)
+            ).ToList();
+                return View(backAllocationGasAllocation);
+            }
+        }
+
+        public ActionResult FilterReport(ReportParameter model)
+        {
+            var StartDate = model.StartDate.Date;
+            var EndDate = model.EndDate.Date;
             List<BackAllocationGasAllocation> backAllocationGasAllocation = new List<BackAllocationGasAllocation>();
 
             backAllocationGasAllocation = db.Database.SqlQuery<BackAllocationGasAllocation>(
-        "usp_GetBackAllocationGasAllocation"
+        "exec dbo.[usp_GetBackAllocationGasAllocation] @StartDate,@EndDate",
+       new SqlParameter("@StartDate", StartDate),
+       new SqlParameter("@EndDate", StartDate)
         ).ToList();
-            return View(backAllocationGasAllocation);
-        }
-
-        // GET: BackAllocationGasAllocations/Details/5
-        public ActionResult Details(int? id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            BackAllocationGasAllocation backAllocationGasAllocation = db.BackAllocationGasAllocation.Find(id);
-            if (backAllocationGasAllocation == null)
-            {
-                return HttpNotFound();
-            }
-            return View(backAllocationGasAllocation);
-        }
-
-        // GET: BackAllocationGasAllocations/Create
-        public ActionResult Create()
-        {
-            return View();
-        }
-
-        // POST: BackAllocationGasAllocations/Create
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,IndicatorDate,Well,GasAllocation")] BackAllocationGasAllocation backAllocationGasAllocation)
-        {
-            if (ModelState.IsValid)
-            {
-                db.BackAllocationGasAllocation.Add(backAllocationGasAllocation);
-                db.SaveChanges();
-                return RedirectToAction("Index");
-            }
-
-            return View(backAllocationGasAllocation);
-        }
-
-        // GET: BackAllocationGasAllocations/Edit/5
-        public ActionResult Edit(int? id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            BackAllocationGasAllocation backAllocationGasAllocation = db.BackAllocationGasAllocation.Find(id);
-            if (backAllocationGasAllocation == null)
-            {
-                return HttpNotFound();
-            }
-            return View(backAllocationGasAllocation);
-        }
-
-        // POST: BackAllocationGasAllocations/Edit/5
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,IndicatorDate,Well,GasAllocation")] BackAllocationGasAllocation backAllocationGasAllocation)
-        {
-            if (ModelState.IsValid)
-            {
-                db.Entry(backAllocationGasAllocation).State = EntityState.Modified;
-                db.SaveChanges();
-                return RedirectToAction("Index");
-            }
-            return View(backAllocationGasAllocation);
-        }
-
-        // GET: BackAllocationGasAllocations/Delete/5
-        public ActionResult Delete(int? id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            BackAllocationGasAllocation backAllocationGasAllocation = db.BackAllocationGasAllocation.Find(id);
-            if (backAllocationGasAllocation == null)
-            {
-                return HttpNotFound();
-            }
-            return View(backAllocationGasAllocation);
-        }
-
-        // POST: BackAllocationGasAllocations/Delete/5
-        [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
-        public ActionResult DeleteConfirmed(int id)
-        {
-            BackAllocationGasAllocation backAllocationGasAllocation = db.BackAllocationGasAllocation.Find(id);
-            db.BackAllocationGasAllocation.Remove(backAllocationGasAllocation);
-            db.SaveChanges();
-            return RedirectToAction("Index");
+            return View("Index", backAllocationGasAllocation);
         }
 
         protected override void Dispose(bool disposing)

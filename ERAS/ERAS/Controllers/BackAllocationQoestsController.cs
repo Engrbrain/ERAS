@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Net;
 using System.Web;
@@ -16,109 +17,37 @@ namespace ERAS.Controllers
         private ApplicationDbContext db = new ApplicationDbContext();
 
         // GET: BackAllocationQoests
-        public ActionResult Index()
+        public ActionResult Index(DateTime? StartDate, DateTime? EndDate)
         {
+            if (StartDate == null)
+            {
+                return View("Index", "ReportParameters");
+            }
+            else
+            {
+                List<BackAllocationQoest> backAllocationQoest = new List<BackAllocationQoest>();
+
+                backAllocationQoest = db.Database.SqlQuery<BackAllocationQoest>(
+            "exec dbo.[usp_GetBackAllocationQoest] @StartDate,@EndDate",
+           new SqlParameter("@StartDate", StartDate),
+           new SqlParameter("@EndDate", StartDate)
+            ).ToList();
+                return View(backAllocationQoest);
+            }
+        }
+
+        public ActionResult FilterReport(ReportParameter model)
+        {
+            var StartDate = model.StartDate.Date;
+            var EndDate = model.EndDate.Date;
             List<BackAllocationQoest> backAllocationQoest = new List<BackAllocationQoest>();
 
             backAllocationQoest = db.Database.SqlQuery<BackAllocationQoest>(
-        "usp_GetBackAllocationQoest"
+        "exec dbo.[usp_GetBackAllocationQoest] @StartDate,@EndDate",
+       new SqlParameter("@StartDate", StartDate),
+       new SqlParameter("@EndDate", StartDate)
         ).ToList();
-            return View(backAllocationQoest);
-        }
-
-        // GET: BackAllocationQoests/Details/5
-        public ActionResult Details(int? id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            BackAllocationQoest backAllocationQoest = db.BackAllocationQoest.Find(id);
-            if (backAllocationQoest == null)
-            {
-                return HttpNotFound();
-            }
-            return View(backAllocationQoest);
-        }
-
-        // GET: BackAllocationQoests/Create
-        public ActionResult Create()
-        {
-            return View();
-        }
-
-        // POST: BackAllocationQoests/Create
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,IndicatorDate,Well,Qoest")] BackAllocationQoest backAllocationQoest)
-        {
-            if (ModelState.IsValid)
-            {
-                db.BackAllocationQoest.Add(backAllocationQoest);
-                db.SaveChanges();
-                return RedirectToAction("Index");
-            }
-
-            return View(backAllocationQoest);
-        }
-
-        // GET: BackAllocationQoests/Edit/5
-        public ActionResult Edit(int? id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            BackAllocationQoest backAllocationQoest = db.BackAllocationQoest.Find(id);
-            if (backAllocationQoest == null)
-            {
-                return HttpNotFound();
-            }
-            return View(backAllocationQoest);
-        }
-
-        // POST: BackAllocationQoests/Edit/5
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,IndicatorDate,Well,Qoest")] BackAllocationQoest backAllocationQoest)
-        {
-            if (ModelState.IsValid)
-            {
-                db.Entry(backAllocationQoest).State = EntityState.Modified;
-                db.SaveChanges();
-                return RedirectToAction("Index");
-            }
-            return View(backAllocationQoest);
-        }
-
-        // GET: BackAllocationQoests/Delete/5
-        public ActionResult Delete(int? id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            BackAllocationQoest backAllocationQoest = db.BackAllocationQoest.Find(id);
-            if (backAllocationQoest == null)
-            {
-                return HttpNotFound();
-            }
-            return View(backAllocationQoest);
-        }
-
-        // POST: BackAllocationQoests/Delete/5
-        [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
-        public ActionResult DeleteConfirmed(int id)
-        {
-            BackAllocationQoest backAllocationQoest = db.BackAllocationQoest.Find(id);
-            db.BackAllocationQoest.Remove(backAllocationQoest);
-            db.SaveChanges();
-            return RedirectToAction("Index");
+            return View("Index", backAllocationQoest);
         }
 
         protected override void Dispose(bool disposing)

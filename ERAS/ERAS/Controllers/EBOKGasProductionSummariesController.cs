@@ -16,12 +16,26 @@ namespace ERAS.Controllers
         private ApplicationDbContext db = new ApplicationDbContext();
 
         // GET: EBOKGasProductionSummaries
-        public ActionResult Index()
+        public ActionResult Index(DateTime? StartDate, DateTime? EndDate)
         {
-            return View(db.EBOKGasProductionSummary.ToList());
+            if (StartDate == null)
+            {
+                return View("Index", "ReportParameters");
+            }
+            else
+            {
+                var eBOKGasProductionSummary = db.EBOKGasProductionSummary.Where(x => x.IndicatorDate >= StartDate && x.IndicatorDate <= EndDate);
+                return View(eBOKGasProductionSummary.ToList());
+            }
         }
 
-        
+        public ActionResult FilterReport(ReportParameter model)
+        {
+            var StartDate = model.StartDate.Date;
+            var EndDate = model.EndDate.Date;
+            var eBOKGasProductionSummary = db.EBOKGasProductionSummary.Where(x => x.IndicatorDate >= StartDate && x.IndicatorDate <= EndDate);
+            return View("Index", eBOKGasProductionSummary);
+        }
 
         // GET: EBOKGasProductionSummaries/Details/5
         public ActionResult Details(int? id)

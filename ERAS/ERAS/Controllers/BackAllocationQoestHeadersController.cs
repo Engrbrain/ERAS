@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Net;
 using System.Web;
@@ -16,109 +17,37 @@ namespace ERAS.Controllers
         private ApplicationDbContext db = new ApplicationDbContext();
 
         // GET: BackAllocationQoestHeaders
-        public ActionResult Index()
+        public ActionResult Index(DateTime? StartDate, DateTime? EndDate)
         {
-            List<BackAllocationQoestHeader> backAllocationQlestHeader = new List<BackAllocationQoestHeader>();
+            if (StartDate == null)
+            {
+                return View("Index", "ReportParameters");
+            }
+            else
+            {
+                List<BackAllocationQoestHeader> backAllocationQoestHeader = new List<BackAllocationQoestHeader>();
 
-            backAllocationQlestHeader = db.Database.SqlQuery<BackAllocationQoestHeader>(
-       "usp_GetQoestHeaderData"
-       ).ToList();
-            return View(backAllocationQlestHeader);
+                backAllocationQoestHeader = db.Database.SqlQuery<BackAllocationQoestHeader>(
+            "exec dbo.[usp_GetBackAllocationQoestHeader] @StartDate,@EndDate",
+           new SqlParameter("@StartDate", StartDate),
+           new SqlParameter("@EndDate", StartDate)
+            ).ToList();
+                return View(backAllocationQoestHeader);
+            }
         }
 
-        // GET: BackAllocationQoestHeaders/Details/5
-        public ActionResult Details(int? id)
+        public ActionResult FilterReport(ReportParameter model)
         {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            BackAllocationQoestHeader backAllocationQoestHeader = db.BackAllocationQoestHeader.Find(id);
-            if (backAllocationQoestHeader == null)
-            {
-                return HttpNotFound();
-            }
-            return View(backAllocationQoestHeader);
-        }
+            var StartDate = model.StartDate.Date;
+            var EndDate = model.EndDate.Date;
+            List<BackAllocationQoestHeader> backAllocationQoestHeader = new List<BackAllocationQoestHeader>();
 
-        // GET: BackAllocationQoestHeaders/Create
-        public ActionResult Create()
-        {
-            return View();
-        }
-
-        // POST: BackAllocationQoestHeaders/Create
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,IndicatorDate,ProdOil,wellTestPotential,WellTestActual")] BackAllocationQoestHeader backAllocationQoestHeader)
-        {
-            if (ModelState.IsValid)
-            {
-                db.BackAllocationQoestHeader.Add(backAllocationQoestHeader);
-                db.SaveChanges();
-                return RedirectToAction("Index");
-            }
-
-            return View(backAllocationQoestHeader);
-        }
-
-        // GET: BackAllocationQoestHeaders/Edit/5
-        public ActionResult Edit(int? id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            BackAllocationQoestHeader backAllocationQoestHeader = db.BackAllocationQoestHeader.Find(id);
-            if (backAllocationQoestHeader == null)
-            {
-                return HttpNotFound();
-            }
-            return View(backAllocationQoestHeader);
-        }
-
-        // POST: BackAllocationQoestHeaders/Edit/5
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,IndicatorDate,ProdOil,wellTestPotential,WellTestActual")] BackAllocationQoestHeader backAllocationQoestHeader)
-        {
-            if (ModelState.IsValid)
-            {
-                db.Entry(backAllocationQoestHeader).State = EntityState.Modified;
-                db.SaveChanges();
-                return RedirectToAction("Index");
-            }
-            return View(backAllocationQoestHeader);
-        }
-
-        // GET: BackAllocationQoestHeaders/Delete/5
-        public ActionResult Delete(int? id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            BackAllocationQoestHeader backAllocationQoestHeader = db.BackAllocationQoestHeader.Find(id);
-            if (backAllocationQoestHeader == null)
-            {
-                return HttpNotFound();
-            }
-            return View(backAllocationQoestHeader);
-        }
-
-        // POST: BackAllocationQoestHeaders/Delete/5
-        [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
-        public ActionResult DeleteConfirmed(int id)
-        {
-            BackAllocationQoestHeader backAllocationQoestHeader = db.BackAllocationQoestHeader.Find(id);
-            db.BackAllocationQoestHeader.Remove(backAllocationQoestHeader);
-            db.SaveChanges();
-            return RedirectToAction("Index");
+            backAllocationQoestHeader = db.Database.SqlQuery<BackAllocationQoestHeader>(
+        "exec dbo.[usp_GetBackAllocationQoestHeader] @StartDate,@EndDate",
+       new SqlParameter("@StartDate", StartDate),
+       new SqlParameter("@EndDate", StartDate)
+        ).ToList();
+            return View("Index", backAllocationQoestHeader);
         }
 
         protected override void Dispose(bool disposing)

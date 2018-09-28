@@ -63,4 +63,62 @@ namespace ERAS.Models.EBOKTranformedData
         public string DayOftheWeek { get; set; }
     }
 
+    public class EBOKFieldProductionSummaryStaging
+    {
+        public int Id { get; set; }
+        public DateTime IndicatorDate { get; set; }
+        public string Uptime { get; set; }
+        public string ProdOil { get; set; }
+        public string CumProd { get; set; }
+        public string ProdGas { get; set; }
+        public string WFBAllocatedGas { get; set; }
+        public string WFBFlaringUptime { get; set; }
+        public string Gaslift { get; set; }
+        public string TotalProducedGas { get; set; }
+        public string CumGas { get; set; }
+        public string ProdWater { get; set; }
+        public string CumWater { get; set; }
+        public string EffluentOilInWater { get; set; }
+        public string API { get; set; }
+        public string ExportAPI { get; set; }
+        public string ExportTemp { get; set; }
+        public string ExportMetersReadingGross { get; set; }
+        public string ExportMetersReadingNet { get; set; }
+        public string FieldWaterCut { get; set; }
+        public string ExportWaterCut { get; set; }
+        public string PumpablecargoonBoard { get; set; }
+        public string Adjustment { get; set; }
+        public string TotalMeteredGasFlared { get; set; }
+        public string ViriniPremStockBalance { get; set; }
+        public string BSW { get; set; }
+        public string FieldGOR { get; set; }
+        public string AdjustedFieldGOR { get; set; }
+        public string WaterOverboard { get; set; }
+        public string FreeWaterReceived { get; set; }
+        public string WaterOverboardMOPU { get; set; }
+        public string UllageMeasurement { get; set; }
+        public string MOPUcorrectedmeterVariance { get; set; }
+        public string BSWManual { get; set; }
+        public string BSWAutosampler { get; set; }
+        public string OffloadVolume { get; set; }
+        public string OffloadBSW { get; set; }
+        public string OffloadAPI { get; set; }
+        public string Forecast { get; set; }
+        public string IdealDayRate { get; set; }
+        public string MarketExpectation { get; set; }
+        public string Budget { get; set; }
+        public string Deferment { get; set; }
+        public string EstmatedProdGas { get; set; }
+        public string TargetLC { get; set; }
+        public string TargetHC { get; set; }
+        public string TechnicalAllowable { get; set; }
+        public string CommercialAllowable { get; set; }
+        public string ActualProdGas { get; set; }
+        public string WeeklyAverage { get; set; }
+        public DateTime ReportDate { get; set; }
+        public String UploadTime { get; set; }
+        public DateTime TimeStamp { get; set; }
+        public string DayOftheWeek { get; set; }
+    }
+
 }

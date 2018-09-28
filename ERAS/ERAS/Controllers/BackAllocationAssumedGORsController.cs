@@ -2,12 +2,15 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
+using System.Web.Services;
 using ERAS.Models;
 using ERAS.Models.EBOKTranformedData;
+using Newtonsoft.Json;
 
 namespace ERAS.Controllers
 {
@@ -16,19 +19,82 @@ namespace ERAS.Controllers
         private ApplicationDbContext db = new ApplicationDbContext();
 
         // GET: BackAllocationAssumedGORs
-        public ActionResult Index()
+        public ActionResult Index( DateTime? StartDate, DateTime? EndDate)
         {
-            return View(db.FlowParameter.ToList());
+            if (StartDate == null)
+            {
+                return View("Index", "ReportParameters");
+            }
+            else { 
+            List<BackAllocationAssumedGOR> backAllocationAssumedGOR = new List<BackAllocationAssumedGOR>();
+
+            backAllocationAssumedGOR = db.Database.SqlQuery<BackAllocationAssumedGOR>(
+        "exec dbo.[usp_GetBackAllocationAssumedGOR] @StartDate,@EndDate",
+       new SqlParameter("@StartDate", StartDate),
+       new SqlParameter("@EndDate", StartDate)
+        ).ToList();
+            return View(backAllocationAssumedGOR);
+            }
         }
 
-        // GET: BackAllocationAssumedGORs/Details/5
+        public ActionResult FilterReport(ReportParameter model)
+        {
+            var StartDate = model.StartDate.Date;
+            var EndDate = model.EndDate.Date;
+            List<BackAllocationAssumedGOR> backAllocationAssumedGOR = new List<BackAllocationAssumedGOR>();
+
+            backAllocationAssumedGOR = db.Database.SqlQuery<BackAllocationAssumedGOR>(
+        "exec dbo.[usp_GetBackAllocationAssumedGOR] @StartDate,@EndDate",
+       new SqlParameter("@StartDate", StartDate),
+       new SqlParameter("@EndDate", StartDate)
+        ).ToList();
+            return View("Index", backAllocationAssumedGOR);
+        }
+
+        public ActionResult LoadPrevious()
+        {
+            List<BackAllocationAssumedGOR> backAllocationAssumedGOR = new List<BackAllocationAssumedGOR>();
+
+            backAllocationAssumedGOR = db.Database.SqlQuery<BackAllocationAssumedGOR>(
+        "usp_GetBackAllocationAssumedGORPrevious"
+        ).ToList();
+            return View("Index", backAllocationAssumedGOR);
+        }
+
+        public ActionResult CreateMultipleBulk()
+        {
+            return View();
+        }
+
+        [WebMethod]
+        public string LoadBulkData(string mydata)
+        {
+            var serializeData = JsonConvert.DeserializeObject<List<BackAllocationAssumedGOR>>(mydata);
+            foreach (var data in serializeData)
+            {
+                BackAllocationAssumedGOR postdata = new BackAllocationAssumedGOR
+                {
+                    IndicatorDate = data.IndicatorDate,
+                    Well = data.Well,
+                    AssumedGOR = data.AssumedGOR,
+                    ReportDate = data.ReportDate,
+                    TimeStamp = DateTime.Now,
+                    UploadTime = DateTime.Now.TimeOfDay.ToString()
+                };
+                db.BackAllocationAssumedGOR.Add(postdata);
+            }
+            db.SaveChanges();
+            return null;
+        }
+
+        // GET: DailySafetySummaries/Details/5
         public ActionResult Details(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            BackAllocationAssumedGOR backAllocationAssumedGOR = db.FlowParameter.Find(id);
+            BackAllocationAssumedGOR backAllocationAssumedGOR = db.BackAllocationAssumedGOR.Find(id);
             if (backAllocationAssumedGOR == null)
             {
                 return HttpNotFound();
@@ -36,13 +102,13 @@ namespace ERAS.Controllers
             return View(backAllocationAssumedGOR);
         }
 
-        // GET: BackAllocationAssumedGORs/Create
+        // GET: DailySafetySummaries/Create
         public ActionResult Create()
         {
             return View();
         }
 
-        // POST: BackAllocationAssumedGORs/Create
+        // POST: DailySafetySummaries/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
@@ -51,7 +117,10 @@ namespace ERAS.Controllers
         {
             if (ModelState.IsValid)
             {
-                db.FlowParameter.Add(backAllocationAssumedGOR);
+                backAllocationAssumedGOR.DayOftheWeek = DateTime.Today.Date.DayOfWeek.ToString();
+                backAllocationAssumedGOR.TimeStamp = DateTime.Now;
+                backAllocationAssumedGOR.UploadTime = DateTime.Now.TimeOfDay.ToString();
+                db.BackAllocationAssumedGOR.Add(backAllocationAssumedGOR);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
@@ -59,14 +128,14 @@ namespace ERAS.Controllers
             return View(backAllocationAssumedGOR);
         }
 
-        // GET: BackAllocationAssumedGORs/Edit/5
+        // GET: DailySafetySummaries/Edit/5
         public ActionResult Edit(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            BackAllocationAssumedGOR backAllocationAssumedGOR = db.FlowParameter.Find(id);
+            BackAllocationAssumedGOR backAllocationAssumedGOR = db.BackAllocationAssumedGOR.Find(id);
             if (backAllocationAssumedGOR == null)
             {
                 return HttpNotFound();
@@ -74,7 +143,7 @@ namespace ERAS.Controllers
             return View(backAllocationAssumedGOR);
         }
 
-        // POST: BackAllocationAssumedGORs/Edit/5
+        // POST: DailySafetySummaries/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
@@ -90,31 +159,23 @@ namespace ERAS.Controllers
             return View(backAllocationAssumedGOR);
         }
 
-        // GET: BackAllocationAssumedGORs/Delete/5
-        public ActionResult Delete(int? id)
+
+        public ActionResult RemoveRecord(int id)
         {
-            if (id == null)
+            try
             {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                BackAllocationAssumedGOR backAllocationAssumedGOR = db.BackAllocationAssumedGOR.Find(id);
+                db.BackAllocationAssumedGOR.Remove(backAllocationAssumedGOR);
+                db.SaveChanges();
+                return Json(true, JsonRequestBehavior.AllowGet);
             }
-            BackAllocationAssumedGOR backAllocationAssumedGOR = db.FlowParameter.Find(id);
-            if (backAllocationAssumedGOR == null)
+            catch (Exception)
             {
-                return HttpNotFound();
+                return Json(false, JsonRequestBehavior.AllowGet);
             }
-            return View(backAllocationAssumedGOR);
         }
 
-        // POST: BackAllocationAssumedGORs/Delete/5
-        [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
-        public ActionResult DeleteConfirmed(int id)
-        {
-            BackAllocationAssumedGOR backAllocationAssumedGOR = db.FlowParameter.Find(id);
-            db.FlowParameter.Remove(backAllocationAssumedGOR);
-            db.SaveChanges();
-            return RedirectToAction("Index");
-        }
+
 
         protected override void Dispose(bool disposing)
         {

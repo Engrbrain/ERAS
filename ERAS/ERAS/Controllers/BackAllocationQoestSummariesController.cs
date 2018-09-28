@@ -1,6 +1,8 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Net;
 using System.Web;
@@ -15,109 +17,37 @@ namespace ERAS.Controllers
         private ApplicationDbContext db = new ApplicationDbContext();
 
         // GET: BackAllocationQoestSummaries
-        public ActionResult Index()
+        public ActionResult Index (DateTime? StartDate, DateTime? EndDate)
         {
-            List<BackAllocationQoestSummary> backAllocationQoestSummary = new List<BackAllocationQoestSummary>();
+            if (StartDate == null)
+            {
+                return View("Index", "ReportParameters");
+            }
+            else
+            {
+                List<BackAllocationQoest> backAllocationQoest = new List<BackAllocationQoest>();
 
-            backAllocationQoestSummary = db.Database.SqlQuery<BackAllocationQoestSummary>(
-       "usp_GetBackAllocationQoestSummaryData"
-       ).ToList();
-            return View(backAllocationQoestSummary);
+                backAllocationQoest = db.Database.SqlQuery<BackAllocationQoest>(
+            "exec dbo.[usp_GetBackAllocationQoest] @StartDate,@EndDate",
+           new SqlParameter("@StartDate", StartDate),
+           new SqlParameter("@EndDate", StartDate)
+            ).ToList();
+                return View(backAllocationQoest);
+            }
         }
 
-        // GET: BackAllocationQoestSummaries/Details/5
-        public ActionResult Details(int? id)
+        public ActionResult FilterReport(ReportParameter model)
         {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            BackAllocationQoestSummary backAllocationQoestSummary = db.BackAllocationQoestSummary.Find(id);
-            if (backAllocationQoestSummary == null)
-            {
-                return HttpNotFound();
-            }
-            return View(backAllocationQoestSummary);
-        }
+            var StartDate = model.StartDate.Date;
+            var EndDate = model.EndDate.Date;
+            List<BackAllocationQoest> backAllocationQoest = new List<BackAllocationQoest>();
 
-        // GET: BackAllocationQoestSummaries/Create
-        public ActionResult Create()
-        {
-            return View();
-        }
-
-        // POST: BackAllocationQoestSummaries/Create
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,IndicatorDate,FaultBlock,RSV,ProdOil,wellTestPotential,WellTestActual")] BackAllocationQoestSummary backAllocationQoestSummary)
-        {
-            if (ModelState.IsValid)
-            {
-                db.BackAllocationQoestSummary.Add(backAllocationQoestSummary);
-                db.SaveChanges();
-                return RedirectToAction("Index");
-            }
-
-            return View(backAllocationQoestSummary);
-        }
-
-        // GET: BackAllocationQoestSummaries/Edit/5
-        public ActionResult Edit(int? id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            BackAllocationQoestSummary backAllocationQoestSummary = db.BackAllocationQoestSummary.Find(id);
-            if (backAllocationQoestSummary == null)
-            {
-                return HttpNotFound();
-            }
-            return View(backAllocationQoestSummary);
-        }
-
-        // POST: BackAllocationQoestSummaries/Edit/5
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,IndicatorDate,FaultBlock,RSV,ProdOil,wellTestPotential,WellTestActual")] BackAllocationQoestSummary backAllocationQoestSummary)
-        {
-            if (ModelState.IsValid)
-            {
-                db.Entry(backAllocationQoestSummary).State = EntityState.Modified;
-                db.SaveChanges();
-                return RedirectToAction("Index");
-            }
-            return View(backAllocationQoestSummary);
-        }
-
-        // GET: BackAllocationQoestSummaries/Delete/5
-        public ActionResult Delete(int? id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            BackAllocationQoestSummary backAllocationQoestSummary = db.BackAllocationQoestSummary.Find(id);
-            if (backAllocationQoestSummary == null)
-            {
-                return HttpNotFound();
-            }
-            return View(backAllocationQoestSummary);
-        }
-
-        // POST: BackAllocationQoestSummaries/Delete/5
-        [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
-        public ActionResult DeleteConfirmed(int id)
-        {
-            BackAllocationQoestSummary backAllocationQoestSummary = db.BackAllocationQoestSummary.Find(id);
-            db.BackAllocationQoestSummary.Remove(backAllocationQoestSummary);
-            db.SaveChanges();
-            return RedirectToAction("Index");
+            backAllocationQoest = db.Database.SqlQuery<BackAllocationQoest>(
+        "exec dbo.[usp_GetBackAllocationQoest] @StartDate,@EndDate",
+       new SqlParameter("@StartDate", StartDate),
+       new SqlParameter("@EndDate", StartDate)
+        ).ToList();
+            return View("Index", backAllocationQoest);
         }
 
         protected override void Dispose(bool disposing)

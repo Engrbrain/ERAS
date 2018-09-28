@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Net;
 using System.Web;
@@ -16,109 +17,37 @@ namespace ERAS.Controllers
         private ApplicationDbContext db = new ApplicationDbContext();
 
         // GET: BackAllocationQlinkSummaries
-        public ActionResult Index()
+        public ActionResult Index(DateTime? StartDate, DateTime? EndDate)
         {
+            if (StartDate == null)
+            {
+                return View("Index", "ReportParameters");
+            }
+            else
+            {
+                List<BackAllocationQlinkSummary> backAllocationQlinkSummary = new List<BackAllocationQlinkSummary>();
+
+                backAllocationQlinkSummary = db.Database.SqlQuery<BackAllocationQlinkSummary>(
+            "exec dbo.[usp_GetBackAllocationQlinkSummary] @StartDate,@EndDate",
+           new SqlParameter("@StartDate", StartDate),
+           new SqlParameter("@EndDate", StartDate)
+            ).ToList();
+                return View(backAllocationQlinkSummary);
+            }
+        }
+
+        public ActionResult FilterReport(ReportParameter model)
+        {
+            var StartDate = model.StartDate.Date;
+            var EndDate = model.EndDate.Date;
             List<BackAllocationQlinkSummary> backAllocationQlinkSummary = new List<BackAllocationQlinkSummary>();
 
             backAllocationQlinkSummary = db.Database.SqlQuery<BackAllocationQlinkSummary>(
-        "usp_GetBackAllocationQlinkSummary"
+        "exec dbo.[usp_GetBackAllocationQlinkSummary] @StartDate,@EndDate",
+       new SqlParameter("@StartDate", StartDate),
+       new SqlParameter("@EndDate", StartDate)
         ).ToList();
-            return View(backAllocationQlinkSummary);
-        }
-
-        // GET: BackAllocationQlinkSummaries/Details/5
-        public ActionResult Details(int? id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            BackAllocationQlinkSummary backAllocationQlinkSummary = db.BackAllocationQlinkSummary.Find(id);
-            if (backAllocationQlinkSummary == null)
-            {
-                return HttpNotFound();
-            }
-            return View(backAllocationQlinkSummary);
-        }
-
-        // GET: BackAllocationQlinkSummaries/Create
-        public ActionResult Create()
-        {
-            return View();
-        }
-
-        // POST: BackAllocationQlinkSummaries/Create
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,IndicatorDate,FaultBlock,RSV,ProdOil,TotalQlink")] BackAllocationQlinkSummary backAllocationQlinkSummary)
-        {
-            if (ModelState.IsValid)
-            {
-                db.BackAllocationQlinkSummary.Add(backAllocationQlinkSummary);
-                db.SaveChanges();
-                return RedirectToAction("Index");
-            }
-
-            return View(backAllocationQlinkSummary);
-        }
-
-        // GET: BackAllocationQlinkSummaries/Edit/5
-        public ActionResult Edit(int? id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            BackAllocationQlinkSummary backAllocationQlinkSummary = db.BackAllocationQlinkSummary.Find(id);
-            if (backAllocationQlinkSummary == null)
-            {
-                return HttpNotFound();
-            }
-            return View(backAllocationQlinkSummary);
-        }
-
-        // POST: BackAllocationQlinkSummaries/Edit/5
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,IndicatorDate,FaultBlock,RSV,ProdOil,TotalQlink")] BackAllocationQlinkSummary backAllocationQlinkSummary)
-        {
-            if (ModelState.IsValid)
-            {
-                db.Entry(backAllocationQlinkSummary).State = EntityState.Modified;
-                db.SaveChanges();
-                return RedirectToAction("Index");
-            }
-            return View(backAllocationQlinkSummary);
-        }
-
-        // GET: BackAllocationQlinkSummaries/Delete/5
-        public ActionResult Delete(int? id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            BackAllocationQlinkSummary backAllocationQlinkSummary = db.BackAllocationQlinkSummary.Find(id);
-            if (backAllocationQlinkSummary == null)
-            {
-                return HttpNotFound();
-            }
-            return View(backAllocationQlinkSummary);
-        }
-
-        // POST: BackAllocationQlinkSummaries/Delete/5
-        [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
-        public ActionResult DeleteConfirmed(int id)
-        {
-            BackAllocationQlinkSummary backAllocationQlinkSummary = db.BackAllocationQlinkSummary.Find(id);
-            db.BackAllocationQlinkSummary.Remove(backAllocationQlinkSummary);
-            db.SaveChanges();
-            return RedirectToAction("Index");
+            return View("Index", backAllocationQlinkSummary);
         }
 
         protected override void Dispose(bool disposing)

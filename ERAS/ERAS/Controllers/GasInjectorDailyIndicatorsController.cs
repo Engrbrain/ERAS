@@ -16,9 +16,25 @@ namespace ERAS.Controllers
         private ApplicationDbContext db = new ApplicationDbContext();
 
         // GET: GasInjectorDailyIndicators
-        public ActionResult Index()
+        public ActionResult Index(DateTime? StartDate, DateTime? EndDate)
         {
-            return View(db.GasInjectorDailyIndicators.ToList());
+            if (StartDate == null)
+            {
+                return View("Index", "ReportParameters");
+            }
+            else
+            {
+                var gasInjectorDailyIndicators = db.GasInjectorDailyIndicators.Where(x => x.IndicatorDate >= StartDate && x.IndicatorDate <= EndDate);
+                return View(gasInjectorDailyIndicators.ToList());
+            }
+        }
+
+        public ActionResult FilterReport(ReportParameter model)
+        {
+            var StartDate = model.StartDate.Date;
+            var EndDate = model.EndDate.Date;
+            var gasInjectorDailyIndicators = db.GasInjectorDailyIndicators.Where(x => x.IndicatorDate >= StartDate && x.IndicatorDate <= EndDate);
+            return View("Index", gasInjectorDailyIndicators);
         }
 
         // GET: GasInjectorDailyIndicators/Details/5

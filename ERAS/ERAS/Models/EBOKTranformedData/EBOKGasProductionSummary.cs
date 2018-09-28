@@ -34,7 +34,40 @@ namespace ERAS.Models.EBOKTranformedData
         public double TotalMeteredGasFlared { get; set; }
         public double GASFLAREDTOTAL { get; set; }
         public DateTime ReportDate { get; set; }
-        public String UploadTime { get; set; }
+        public string UploadTime { get; set; }
+        public DateTime TimeStamp { get; set; }
+        public string DayOftheWeek { get; set; }
+    }
+
+    public class EBOKGasProductionSummaryStaging
+    {
+        public int Id { get; set; }
+        public string IndicatorDate { get; set; }
+        public string TwoPhaseSeperator { get; set; }
+        public string TestSeperator { get; set; }
+        public string ProductionSeperator { get; set; }
+        public string LPVessels { get; set; }
+        public string WFBAllocatedgas { get; set; }
+        public string WFBProcessUptime { get; set; }
+        public string WFBFlaringUptime { get; set; }
+        public string WFBContribution { get; set; }
+        public string WFBPROCESSTOTAL { get; set; }
+        public string WFBGasLift { get; set; }
+        public string CFBGasLift { get; set; }
+        public string TOTALGasLift { get; set; }
+        public string GeneratorFuel { get; set; }
+        public string FuelGasKOD { get; set; }
+        public string GTCompressorconsumption { get; set; }
+        public string CalcuatedInjectedGas { get; set; }
+        public string MeteredGasInjected { get; set; }
+        public string GASUtilizationTotal { get; set; }
+        public string HPFLARE { get; set; }
+        public string LPFLARE { get; set; }
+        public string WFBGasFlared { get; set; }
+        public string TotalMeteredGasFlared { get; set; }
+        public string GASFLAREDTOTAL { get; set; }
+        public DateTime ReportDate { get; set; }
+        public string UploadTime { get; set; }
         public DateTime TimeStamp { get; set; }
         public string DayOftheWeek { get; set; }
 

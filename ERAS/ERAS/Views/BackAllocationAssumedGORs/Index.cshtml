@@ -1,7 +1,7 @@
 ﻿@model IEnumerable<ERAS.Models.EBOKTranformedData.BackAllocationAssumedGOR>
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Back Allocation AssumedGOR - Index";
 }
 
 <div class="page-wrapper">
@@ -65,8 +65,10 @@
                                 <!--/span-->
                             </div>
                         }
-                        <p><a href="@Url.Action("Create", "BackAllocationAssumedGORs")" class="btn-info"> &nbsp;View Complete Report&nbsp; </a> </p>
-                        <a href="@Url.Action("Create", "BackAllocationAssumedGORs")" class="btn-info"> &nbsp;Add Data&nbsp; </a>  &nbsp;&nbsp; <a href="@Url.Action("Create", "BackAllocationAssumedGORs")" class="btn-success"> &nbsp;Add Data From Previous&nbsp; </a> &nbsp;&nbsp;  <a href="@Url.Action("Create", "BackAllocationAssumedGORs")" class="btn-warning">&nbsp; Add Multiple Data &nbsp;</a></p>
+                        <p>
+                            <a href="@Url.Action("Create", "BackAllocationAssumedGORs")" class="btn btn-info"> View Complete Report </a>
+                            <a href="@Url.Action("Create", "BackAllocationAssumedGORs")" class=" btn btn-info"> Add Data </a>   <a href="@Url.Action("LoadPrevious", "BackAllocationAssumedGORs")" class="btn btn-success"> Add Data From Previous </a>  <a href="@Url.Action("CreateMultipleBulk", "BackAllocationAssumedGORs")" class="btn btn-warning"> Add Multiple Data </a>
+                        </p>
                         <div class="table-responsive m-t-40" style="overflow-x: auto;">
                             <table id="example23" class="display nowrap table table-hover table-striped table-bordered" cellspacing="0" width="100%">
                                 <thead>
@@ -104,7 +106,7 @@
                                             <td>
                                                 <a title="Modify BackAllocationAssumedGORs" href="@Url.Action("Edit", "BackAllocationAssumedGORs", new { id = item.Id})" class="btn btn-default btn-rounded btn-condensed btn-sm"><i class='fa fa-pencil'></i></a>
                                                 <a title="View BackAllocationAssumedGORs" href="@Url.Action("Details", "BackAllocationAssumedGORs", new { id = item.Id})" class="btn btn-default btn-rounded btn-condensed btn-sm"><i class='fa fa-desktop'></i></a>
-                                                <a title="Delete BackAllocationAssumedGORs" href="@Url.Action("Delete", "BackAllocationAssumedGORs", new { id = item.Id})" class="btn btn-default btn-rounded btn-condensed btn-sm"><i class='fa fa-times'></i></a>
+                                                <a title="Delete BackAllocationAssumedGORs" href="javascript:void(0)" id="@item.Id" class="btn btn-default btn-rounded btn-condensed btn-sm delete-prompt"><i class='fa fa-times'></i></a>
                                             </td>
                                         </tr>
                                     }
@@ -117,6 +119,28 @@
         </div>
         <!-- ============================================================== -->
         <!-- End PAge Content -->
+        <!-- Bootstrap modal popup -->
+        <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header alert alert-danger">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                        <h4 class="modal-title" id="myModalLabel">Delete Confirmation</h4>
+                    </div>
+                    <div class="modal-body">
+                        <p class="success-message">Are you sure you wish to delete this record ? </p>
+                    </div>
+                    <div class="modal-footer">
+                        <button class="btn btn-success delete-confirm">Ok</button>
+                        <button class="btn btn-default" data-dismiss="modal">Cancel</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- End of the boostrap modal popup -->
+
         @section pagescript
             {
             <!-- This is data table -->
@@ -178,3 +202,53 @@
     });
             </script>
         }
+
+        <script>
+        $(document).ready(function () {
+            //start of the document ready function
+            //delcaring global variable to hold primary key value.
+            var pryEmpId;
+            $('.delete-prompt').click(function () {
+                pryRecId = $(this).attr('id');
+                $('#myModal').modal('show');
+            });
+
+            $('.delete-confirm').click(function () {
+                if (pryEmpId != '') {
+                    $.ajax({
+                        url: '/BackAllocationAssumedGORs/RemoveRecord',
+                        data: { 'Id': pryRecId },
+                        type: 'get',
+                        success: function (data) {
+                            if (data) {
+                                //now re-using the boostrap modal popup to show success message.
+                                //dynamically we will change background colour
+                                if ($('.modal-header').hasClass('alert-danger')) {
+                                    $('.modal-header').removeClass('alert-danger').addClass('alert-success');
+                                    //hide ok button as it is not necessary
+                                    $('.delete-confirm').css('display', 'none');
+                                }
+                                $('.success-message').html('Record deleted successfully');
+                                window.location.href = '/BackAllocationAssumedGORs/Index'
+                            }
+                        }, error: function (err) {
+                            if (!$('.modal-header').hasClass('alert-danger')) {
+                                $('.modal-header').removeClass('alert-success').addClass('alert-danger');
+                                $('.delete-confirm').css('display', 'none');
+                            }
+                            $('.success-message').html(err.statusText);
+                        }
+                    });
+                }
+            });
+
+            //function to reset bootstrap modal popups
+            $("#myModal").on("hidden.bs.modal", function () {
+                $(".modal-header").removeClass(' ').addClass('alert-danger');
+                $('.delete-confirm').css('display', 'inline-block');
+                $('.success-message').html('').html('Are you sure you wish to delete this record ?');
+            });
+
+            //end of the docuement ready function
+        });
+        </script>
