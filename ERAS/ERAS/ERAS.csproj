@@ -558,6 +558,19 @@
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\MasterData\WellMasterData.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+      <DependentUpon>Settings.settings</DependentUpon>
+    </Compile>
+    <Compile Include="ReportDataSet\EBOKProductionIndicatorDataSet.cs">
+      <DependentUpon>EBOKProductionIndicatorDataSet.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="ReportDataSet\EBOKProductionIndicatorDataSet.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>EBOKProductionIndicatorDataSet.xsd</DependentUpon>
+    </Compile>
     <Compile Include="Startup.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -4325,6 +4338,21 @@
     <Content Include="Content\scss\style.scss" />
     <Content Include="Content\scss\variable.scss" />
     <Content Include="Content\scss\widgets.scss" />
+    <Content Include="ReportDataSet\EBOKProductionIndicatorDataSet.xsc">
+      <DependentUpon>EBOKProductionIndicatorDataSet.xsd</DependentUpon>
+    </Content>
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="ReportDataSet\EBOKProductionIndicatorDataSet.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>EBOKProductionIndicatorDataSet.Designer.cs</LastGenOutput>
+    </None>
+    <Content Include="ReportDataSet\EBOKProductionIndicatorDataSet.xss">
+      <DependentUpon>EBOKProductionIndicatorDataSet.xsd</DependentUpon>
+    </Content>
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.3.1.js" />
     <Content Include="Scripts\jquery-3.3.1.min.js" />
@@ -4693,6 +4721,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Reports\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
